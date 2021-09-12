@@ -1,17 +1,19 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TrickSelector : MonoBehaviour
+public class TrickSelector : MonoBehaviour, ISavableComponent
 {
     public List<DataHandler.TrickEntry> currentTrickList = new List<DataHandler.TrickEntry>();
     public List<string> currentCategories = new List<string>();
     
-    [SerializeField] private Dropdown categoriesDropdown = null;
     [SerializeField] private Text currentTrickText = null;
     [SerializeField] private MinMaxSlider difficultySlider = null;
     [SerializeField] private DataHandler dataHandler = null;
     private int index;
+
+    private bool allowLandedTricksToBeSelected;
 
     private void Start()
     {
@@ -19,14 +21,14 @@ public class TrickSelector : MonoBehaviour
             Initialise();
         else
             dataHandler.OnDataLoaded += () => Initialise();
+
+        dataHandler.OnResetSaveData += ResetSaveData;
     }
 
     void Initialise()
     {
         // Setup categories
-        categoriesDropdown.options = new List<Dropdown.OptionData>();
-        foreach( var category in dataHandler.categories )
-            categoriesDropdown.options.Add( new Dropdown.OptionData( category ) );
+        currentCategories = dataHandler.categories;
 
         // Setup trick list
         RecalculateCurrentTrickList();
@@ -38,10 +40,6 @@ public class TrickSelector : MonoBehaviour
     public void RecalculateCurrentTrickList()
     {
         currentTrickList.Clear();
-        currentCategories.Clear();
-
-        // Pull categories from multi-selection
-        currentCategories.Add( categoriesDropdown.options[categoriesDropdown.value].text );
 
         // Pull difficulty from slider
         int minDifficulty = Mathf.RoundToInt( difficultySlider.GetMinValue() );
@@ -58,13 +56,23 @@ public class TrickSelector : MonoBehaviour
             if( trick.banned )
                 continue;
 
-            //if( trick.landed &&  )
-            //    continue;
+            if( trick.landed && !allowLandedTricksToBeSelected )
+                continue;
 
             currentTrickList.Add( trick );
         }
 
         RandomiseTrickList();
+    }
+
+    public void ToggleCategory( string category )
+    {
+        if( currentCategories.Contains( category ) )
+            currentCategories.Remove( category );
+        else
+            currentCategories.Add( category );
+
+        dataHandler.Save();
     }
     
     public void NextTrick()
@@ -102,5 +110,35 @@ public class TrickSelector : MonoBehaviour
         currentTrickList[index].landed = true;
         NextTrick();
         dataHandler.Save();
+    }
+
+    public void SetAllowLandedTricksToBeSelected( bool value )
+    {
+        allowLandedTricksToBeSelected = value;
+        dataHandler.Save();
+    }
+
+    private void ResetSaveData()
+    {
+        allowLandedTricksToBeSelected = false;
+        currentCategories = dataHandler.categories;
+    }
+
+    void ISavableComponent.Serialise( BinaryWriter writer )
+    {
+        writer.Write( allowLandedTricksToBeSelected );
+        writer.Write( currentCategories.Count );
+
+        foreach( var category in currentCategories )
+            writer.Write( category );
+    }
+
+    void ISavableComponent.Deserialise( BinaryReader reader )
+    {
+        allowLandedTricksToBeSelected = reader.ReadBoolean();
+        var count = reader.ReadInt32();
+
+        for( int i = 0; i < count; ++i )
+            currentCategories.Add( reader.ReadString() );
     }
 }

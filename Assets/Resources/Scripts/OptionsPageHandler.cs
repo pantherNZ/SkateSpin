@@ -19,9 +19,34 @@ class OptionsPageHandler : MonoBehaviour
         bottomHeight = optionsPanel.anchoredPosition.y;
     }
 
+    private bool dragging;
+    private bool pointerDown;
+
+    public void StartDrag()
+    {
+        dragging = true;
+        pointerDown = false;
+    }
+
+    public void StopDrag()
+    {
+        dragging = false;
+    }
+
+    public void PointerDown()
+    {
+        pointerDown = true;
+    }
+
+    public void PointerUp()
+    {
+        if( pointerDown )
+            ToggleOptions();
+    }
+
     public void ToggleOptions()
     {
-        MoveToHeight( optionsPanel.anchoredPosition.y < topHeight ? topHeight : bottomHeight );
+        StartCoroutine( MoveToHeight( optionsPanel.anchoredPosition.y < topHeight ? topHeight : bottomHeight ) );
     }
 
     private IEnumerator MoveToHeight( float toHeight )
@@ -31,7 +56,7 @@ class OptionsPageHandler : MonoBehaviour
         
 
         while( ( direction > 0 && optionsPanel.anchoredPosition.y < toHeight ) ||
-                ( direction < 0 && optionsPanel.anchoredPosition.y > toHeight ) )
+               ( direction < 0 && optionsPanel.anchoredPosition.y > toHeight ) )
         {
             optionsPanel.anchoredPosition = optionsPanel.anchoredPosition.SetY( optionsPanel.anchoredPosition.y + direction * Time.deltaTime * speed );
             yield return null;

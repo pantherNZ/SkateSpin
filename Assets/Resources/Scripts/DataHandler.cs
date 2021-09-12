@@ -26,6 +26,7 @@ public class DataHandler : MonoBehaviour, ISavableComponent
     [HideInInspector] public Dictionary<uint, int> trickDataHashMap = new Dictionary<uint, int>();
     [HideInInspector] public List<string> categories = new List<string>();
     [HideInInspector] public event Action OnDataLoaded;
+    [HideInInspector] public event Action OnResetSaveData;
     [HideInInspector] public bool IsDataLoaded { get; private set; }
 
     private string databasePath;
@@ -157,6 +158,7 @@ public class DataHandler : MonoBehaviour, ISavableComponent
 
     public void ClearSavedData()
     {
+        OnResetSaveData();
         foreach( var trick in trickData )
         {
             trick.banned = false;
