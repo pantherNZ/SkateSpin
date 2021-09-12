@@ -7,17 +7,11 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using System;
+using System.Text;
 
-public class DataHandler : MonoBehaviour
+public class DataHandler : MonoBehaviour, ISavableComponent
 {
-    public enum Flags
-    {
-        Default,
-        Banned,
-        Landed,
-    }
-
-    public struct TrickEntry
+    public class TrickEntry
     {
         public int index;
         public string displayName;
@@ -25,23 +19,28 @@ public class DataHandler : MonoBehaviour
         public bool banned;
         public string category;
         public int difficulty;
+        public uint hash;
     }
 
     [HideInInspector] public List<TrickEntry> trickData = new List<TrickEntry>();
+    [HideInInspector] public Dictionary<uint, int> trickDataHashMap = new Dictionary<uint, int>();
     [HideInInspector] public List<string> categories = new List<string>();
-    [HideInInspector] public event Action onDataLoaded;
+    [HideInInspector] public event Action OnDataLoaded;
     [HideInInspector] public bool IsDataLoaded { get; private set; }
 
     private string databasePath;
 
-    public void UpdateDatabaseTrick( TrickEntry entry )
-    { 
-    }
-
     private void Start()
     {
-        var databaseName = "Database.db";
+        SaveGameSystem.AddSaveableComponent( this );
+        Utility.FunctionTimer.CreateTimer( 0.01f, Initialise );
+    }
 
+    private const string saveDataName = "Data";
+    private const string databaseName = "Database.db";
+
+    private void Initialise()
+    {
         // Copy db file to local device persistent storage (if not already there)
         InitSqliteFile( databaseName );
 
@@ -72,8 +71,6 @@ public class DataHandler : MonoBehaviour
                 var secondaryName = reader.GetStringSafe( 1 );
                 var category = reader.GetStringSafe( 2 );
                 var difficulty = reader.GetInt32Safe( 3 );
-                var landed = reader.GetInt32Safe( 4 ) > 0;
-                var banned = reader.GetInt32Safe( 5 ) > 0;
 
                 if( !categories.Contains( category ) )
                     Debug.LogError( name + " row from SQL database contains an invalid category: " + category );
@@ -82,19 +79,25 @@ public class DataHandler : MonoBehaviour
                     ( secondaryName.Length > 0 ? "\n(" + secondaryName + ")" : string.Empty ) +
                     ( "\nDifficulty: " + difficulty.ToString() );
 
+                var hash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( name ) );
+                var index = trickData.Count;
+
                 trickData.Add( new TrickEntry()
                 {
+                    index = index,
                     displayName = displayName,
                     category = category,
                     difficulty = difficulty,
-                    landed = landed,
-                    banned = banned,
+                    hash = hash,
                 } );
+
+                trickDataHashMap.Add( hash, index );
             }
         }
 
+        SaveGameSystem.LoadGame( saveDataName );
         IsDataLoaded = true;
-        onDataLoaded?.Invoke();
+        OnDataLoaded?.Invoke();
     }
 
     private void InitSqliteFile( string dbName )
@@ -143,6 +146,65 @@ public class DataHandler : MonoBehaviour
 
             }
 
+        }
+    }
+
+    public void Save()
+    {
+        SaveGameSystem.SaveGame( saveDataName );
+    }
+
+    public void ClearSavedData()
+    {
+        foreach( var trick in trickData )
+        {
+            trick.banned = false;
+            trick.landed = false;
+        }
+
+        Save();
+    }
+
+    void ISavableComponent.Serialise( BinaryWriter writer )
+    {
+        Int32 count = 0;
+
+        foreach( var trick in trickData )
+            if( trick.landed || trick.banned )
+                count++;
+
+        writer.Write( count );
+
+        foreach( var trick in trickData )
+        {
+            if( trick.landed || trick.banned )
+            {
+                writer.Write( trick.hash );
+                writer.Write( trick.landed );
+                writer.Write( trick.banned );
+            }
+        }
+    }
+
+    void ISavableComponent.Deserialise( BinaryReader reader )
+    {
+        var count = reader.ReadInt32();
+
+        for( int i = 0; i < count; ++i )
+        {
+            var hash = reader.ReadUInt32();
+            var landed = reader.ReadBoolean();
+            var banned = reader.ReadBoolean();
+
+            if( !trickDataHashMap.ContainsKey( hash ) )
+            {
+                Debug.LogError( "Failed to find saved trick entry with hash: " + hash.ToString() );
+            }
+            else
+            {
+                trickData[trickDataHashMap[hash]].landed = landed;
+                trickData[trickDataHashMap[hash]].banned = banned;
+            }
         }
     }
 }

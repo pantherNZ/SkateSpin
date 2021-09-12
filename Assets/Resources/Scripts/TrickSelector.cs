@@ -21,7 +21,7 @@ public class TrickSelector : MonoBehaviour
         if( dataHandler.IsDataLoaded )
             Initialise();
         else
-            dataHandler.onDataLoaded += () => Initialise();
+            dataHandler.OnDataLoaded += () => Initialise();
     }
 
     void Initialise()
@@ -66,19 +66,38 @@ public class TrickSelector : MonoBehaviour
     
     public void NextTrick()
     {
+        // TODO: Play animation / visual
         index = ( index + 1 ) % currentTrickList.Count;
         currentTrickText.text = currentTrickList[index].displayName;
     }
 
     public void PreviousTrick()
     {
+        // TODO: Play animation / visual
         index = ( index + currentTrickList.Count - 1 ) % currentTrickList.Count;
         currentTrickText.text = currentTrickList[index].displayName;
     }
 
     public void RandomiseTrickList()
     {
+        // TODO: Play animation / visual
         currentTrickList.RandomShuffle();
         currentTrickText.text = currentTrickList[index].displayName;
+    }
+
+    public void BanCurrentTrick()
+    {
+        // TODO: Play animation / visual
+        currentTrickList[index].banned = true;
+        NextTrick();
+        dataHandler.Save();
+    }
+
+    public void LandCurrentTrick()
+    {
+        // TODO: Play animation / visual
+        currentTrickList[index].landed = true;
+        NextTrick();
+        dataHandler.Save();
     }
 }
