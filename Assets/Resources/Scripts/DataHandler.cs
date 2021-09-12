@@ -95,6 +95,7 @@ public class DataHandler : MonoBehaviour, ISavableComponent
             }
         }
 
+        ClearSavedData();
         SaveGameSystem.LoadGame( saveDataName );
         IsDataLoaded = true;
         OnDataLoaded?.Invoke();

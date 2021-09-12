@@ -10,14 +10,11 @@ public class TrickSelector : MonoBehaviour
     [SerializeField] private Dropdown categoriesDropdown = null;
     [SerializeField] private Text currentTrickText = null;
     [SerializeField] private MinMaxSlider difficultySlider = null;
-
-    private DataHandler dataHandler;
+    [SerializeField] private DataHandler dataHandler = null;
     private int index;
 
     private void Start()
     {
-        dataHandler = GetComponent<DataHandler>();
-
         if( dataHandler.IsDataLoaded )
             Initialise();
         else
@@ -57,6 +54,12 @@ public class TrickSelector : MonoBehaviour
 
             if( !currentCategories.Contains( trick.category ) )
                 continue;
+
+            if( trick.banned )
+                continue;
+
+            //if( trick.landed &&  )
+            //    continue;
 
             currentTrickList.Add( trick );
         }
