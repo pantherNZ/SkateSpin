@@ -1,0 +1,3 @@
+[submodule "Assets/Resources/Scripts/Utility"]
+	path = Assets/Resources/Scripts/Utility
+	url = https://github.com/pantherNZ/UnityScriptUtility.git
