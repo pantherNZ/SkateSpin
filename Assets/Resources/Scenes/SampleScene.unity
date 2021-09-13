@@ -966,7 +966,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCategories: []
-  categoriesDropdown: {fileID: 0}
   currentTrickText: {fileID: 1339965544}
   difficultySlider: {fileID: 0}
   dataHandler: {fileID: 514119249}
@@ -2822,7 +2821,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ca3e9ec79e8b4b143b4e153f2cf69029, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9ad5c98e376e74f42b6c94959adc370d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
