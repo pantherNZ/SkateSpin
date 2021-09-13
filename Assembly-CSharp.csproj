@@ -8,9 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
-    <ProjectGuid>{6AC27411-1758-A147-FDA4-53796B1EB549}</ProjectGuid>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{77CE1146-B490-683C-36BA-F69AC176A490}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -48,14 +47,10 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.9</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>2.0.11</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2021.1.17f1</UnityVersion>
-  </PropertyGroup>
-  <PropertyGroup>
-    <CodeAnalysisRuleSet>
-    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Analyzer Include="D:\Software\Visual Studio\IDE\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />

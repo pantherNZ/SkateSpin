@@ -53,7 +53,6 @@ class OptionsPageHandler : MonoBehaviour
     {
         float speed = Mathf.Abs( toHeight - optionsPanel.anchoredPosition.y ) / moveTimeSec;
         float direction = Mathf.Sign( toHeight - optionsPanel.anchoredPosition.y );
-        
 
         while( ( direction > 0 && optionsPanel.anchoredPosition.y < toHeight ) ||
                ( direction < 0 && optionsPanel.anchoredPosition.y > toHeight ) )
