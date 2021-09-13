@@ -1,0 +1,1 @@
+This is a merge commit test hello (added from master)
