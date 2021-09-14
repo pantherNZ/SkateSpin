@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{77CE1146-B490-683C-36BA-F69AC176A490}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -53,24 +54,27 @@
     <UnityVersion>2021.1.17f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Resources\Scripts\Utility\SimplexNoise.cs" />
+    <Analyzer Include="D:\Software\Visual Studio\IDE\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Resources\Scripts\Utility\Utility.cs" />
     <Compile Include="Assets\Resources\Scripts\TrickSelector.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\EventDispatcher.cs" />
     <Compile Include="Assets\Resources\Scripts\DataHandler.cs" />
-    <Compile Include="Assets\Resources\Scripts\Utility\CustomGravity.cs" />
-    <Compile Include="Assets\Resources\Scripts\Utility\Utility.cs" />
-    <Compile Include="Assets\Resources\Scripts\Utility\SecureHash.cs" />
-    <Compile Include="Assets\Resources\Scripts\Utility\SyncSolutionUtilities.cs" />
-    <Compile Include="Assets\Resources\Scripts\Utility\FunctionTimer.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\xxHash.cs" />
+    <Compile Include="Assets\Resources\Scripts\Utility\Bezier.cs" />
+    <Compile Include="Assets\Resources\Scripts\Utility\Quad.cs" />
+    <Compile Include="Assets\Resources\Scripts\Utility\CustomGravity.cs" />
+    <Compile Include="Assets\Resources\Scripts\Utility\SecureHash.cs" />
     <Compile Include="Assets\Resources\Scripts\PageNavigator.cs" />
     <Compile Include="Assets\Resources\Scripts\OptionsPageHandler.cs" />
-    <Compile Include="Assets\Resources\Scripts\Utility\Bezier.cs" />
     <Compile Include="Assets\Resources\Scripts\SaveGame.cs" />
-    <Compile Include="Assets\Resources\Scripts\Utility\Quad.cs" />
+    <Compile Include="Assets\Resources\Scripts\Utility\SimplexNoise.cs" />
+    <Compile Include="Assets\Resources\Scripts\Utility\Extensions.cs" />
+    <Compile Include="Assets\Resources\Scripts\Utility\FunctionTimer.cs" />
+    <Compile Include="Assets\Resources\Scripts\Utility\SyncSolutionUtilities.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\UtilityCoroutines.cs" />
     <Compile Include="Assets\Resources\Scripts\MinMaxSlider.cs" />
-    <Compile Include="Assets\Resources\Scripts\Utility\Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

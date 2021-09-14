@@ -28,7 +28,7 @@ public class TrickSelector : MonoBehaviour, ISavableComponent
     void Initialise()
     {
         // Setup categories
-        currentCategories = dataHandler.categories;
+        currentCategories = new List<string>( dataHandler.categories );
 
         // Setup trick list
         RecalculateCurrentTrickList();
@@ -65,16 +65,40 @@ public class TrickSelector : MonoBehaviour, ISavableComponent
         RandomiseTrickList();
     }
 
-    public void ToggleCategory( string category )
+    bool inCallback;
+
+    public void ToggleCategory( Toggle toggle, string category )
     {
-        if( currentCategories.Contains( category ) )
-            currentCategories.Remove( category );
-        else
+        if( inCallback )
+            return;
+
+        if( !dataHandler.categories.Contains( category ) )
+        {
+            Debug.LogError( "Invalid cateogry specified: '" + category + "' from " + toggle.name );
+            return;
+        }
+
+        if( toggle.isOn && !currentCategories.Contains( category ) )
+        {
             currentCategories.Add( category );
+        }
+        else if( !toggle.isOn && currentCategories.Contains( category ) )
+        {
+            // Don't allow disabling the last category
+            if( currentCategories.Count == 1 )
+            {
+                inCallback = true;
+                toggle.isOn = !toggle.isOn;
+                inCallback = false;
+                return;
+            }
+
+            currentCategories.Remove( category );
+        }
 
         dataHandler.Save();
     }
-    
+
     public void NextTrick()
     {
         // TODO: Play animation / visual
@@ -121,7 +145,7 @@ public class TrickSelector : MonoBehaviour, ISavableComponent
     private void ResetSaveData()
     {
         allowLandedTricksToBeSelected = false;
-        currentCategories = dataHandler.categories;
+        currentCategories = new List<string>( dataHandler.categories );
     }
 
     void ISavableComponent.Serialise( BinaryWriter writer )

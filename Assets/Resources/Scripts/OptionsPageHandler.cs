@@ -5,22 +5,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 class OptionsPageHandler : MonoBehaviour
 {
-    [SerializeField] private RectTransform optionsPanel = null;
+    [Serializable]
+    public class CategoryButton
+    {
+        public Toggle toggle = null;
+        public string category = string.Empty;
+    }
+
+    [SerializeField] RectTransform optionsPanel = null;
     [SerializeField] float topHeight = -550.0f;
     [SerializeField] float moveTimeSec = 0.25f;
-    private float bottomHeight;
+    [SerializeField] List<CategoryButton> toggles = new List<CategoryButton>();
+    float bottomHeight;
 
     private void Start()
     {
         GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
         bottomHeight = optionsPanel.anchoredPosition.y;
+
+        var trickSelector = FindObjectOfType<TrickSelector>();
+        foreach( var toggle in toggles )
+            toggle.toggle.onValueChanged.AddListener( ( value ) => trickSelector.ToggleCategory( toggle.toggle, toggle.category ) );
     }
 
-    private bool dragging;
-    private bool pointerDown;
+    bool dragging;
+    bool pointerDown;
 
     public void StartDrag()
     {

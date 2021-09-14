@@ -4,7 +4,7 @@ using Mono.Data.Sqlite;
 using System.IO;
 using UnityEngine.Networking;
 using System.Collections.Generic;
-using System.Collections;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System;
 using System.Text;
@@ -23,8 +23,18 @@ public class DataHandler : MonoBehaviour, ISavableComponent
     }
 
     [HideInInspector] public List<TrickEntry> trickData = new List<TrickEntry>();
-    [HideInInspector] public Dictionary<uint, int> trickDataHashMap = new Dictionary<uint, int>();
-    [HideInInspector] public List<string> categories = new List<string>();
+    [HideInInspector] Dictionary<uint, int> _trickDataHashMap = new Dictionary<uint, int>();
+    public ReadOnlyDictionary<uint, int> trickDataHashMap
+    {
+        get { return new ReadOnlyDictionary<uint, int>( _trickDataHashMap ); }
+    }
+
+    [HideInInspector] List<string> _categories = new List<string>();
+    public ReadOnlyCollection<string> categories
+    {
+        get { return _categories.AsReadOnly(); }
+    }
+
     [HideInInspector] public event Action OnDataLoaded;
     [HideInInspector] public event Action OnResetSaveData;
     [HideInInspector] public bool IsDataLoaded { get; private set; }
@@ -57,7 +67,7 @@ public class DataHandler : MonoBehaviour, ISavableComponent
             using var reader = dbcmd.ExecuteReader();
 
             while( reader.Read() )
-                categories.Add( reader.GetString( 0 ) );
+                _categories.Add( reader.GetString( 0 ) );
         }
 
         // Load all tricks
@@ -92,7 +102,7 @@ public class DataHandler : MonoBehaviour, ISavableComponent
                     hash = hash,
                 } );
 
-                trickDataHashMap.Add( hash, index );
+                _trickDataHashMap.Add( hash, index );
             }
         }
 
