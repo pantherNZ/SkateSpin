@@ -3,7 +3,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TrickSelector : MonoBehaviour, ISavableComponent
+public class TrickSelectorPage : IBasePage, ISavableComponent
 {
     public List<DataHandler.TrickEntry> currentTrickList = new List<DataHandler.TrickEntry>();
     public List<string> currentCategories = new List<string>();
@@ -28,7 +28,7 @@ public class TrickSelector : MonoBehaviour, ISavableComponent
     void Initialise()
     {
         // Setup categories
-        currentCategories = new List<string>( dataHandler.categories );
+        currentCategories = new List<string> { "Flat Ground" };
 
         // Setup trick list
         RecalculateCurrentTrickList();
@@ -145,7 +145,7 @@ public class TrickSelector : MonoBehaviour, ISavableComponent
     private void ResetSaveData()
     {
         allowLandedTricksToBeSelected = false;
-        currentCategories = new List<string>( dataHandler.categories );
+        currentCategories = new List<string> { "Flat Ground" };
     }
 
     void ISavableComponent.Serialise( BinaryWriter writer )

@@ -1,1 +1,1 @@
-@start "" "Assets/Resources/Scenes/SampleScene.unity"
+START "" /D "D:\Software\Unity\2021.1.17f1\Editor\" "Unity.exe" -projectPath "D:\Projects\SkateSpin\"

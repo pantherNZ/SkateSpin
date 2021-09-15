@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-class OptionsPageHandler : MonoBehaviour
+class OptionsPageHandler : IBasePage
 {
     [Serializable]
     public class CategoryButton
@@ -17,17 +14,16 @@ class OptionsPageHandler : MonoBehaviour
     }
 
     [SerializeField] RectTransform optionsPanel = null;
-    [SerializeField] float topHeight = -550.0f;
+    [SerializeField] float topHeight = -420.0f;
     [SerializeField] float moveTimeSec = 0.25f;
     [SerializeField] List<CategoryButton> toggles = new List<CategoryButton>();
     float bottomHeight;
 
     private void Start()
     {
-        GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
         bottomHeight = optionsPanel.anchoredPosition.y;
 
-        var trickSelector = FindObjectOfType<TrickSelector>();
+        var trickSelector = FindObjectOfType<TrickSelectorPage>();
         foreach( var toggle in toggles )
             toggle.toggle.onValueChanged.AddListener( ( value ) => trickSelector.ToggleCategory( toggle.toggle, toggle.category ) );
     }

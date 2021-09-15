@@ -9,7 +9,7 @@ using System.Linq;
 using System;
 using System.Text;
 
-public class DataHandler : MonoBehaviour, ISavableComponent
+public class DataHandler : IBasePage, ISavableComponent
 {
     public class TrickEntry
     {
@@ -41,8 +41,12 @@ public class DataHandler : MonoBehaviour, ISavableComponent
 
     private string databasePath;
 
+    static DataHandler _Instance;
+    static public DataHandler Instance { get => _Instance; private set { } }
+
     private void Start()
     {
+        _Instance = this;
         SaveGameSystem.AddSaveableComponent( this );
         Utility.FunctionTimer.CreateTimer( 0.01f, Initialise );
     }
