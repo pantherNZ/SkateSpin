@@ -28,18 +28,18 @@ class OptionsPageHandler : IBasePage
             toggle.toggle.onValueChanged.AddListener( ( value ) => trickSelector.ToggleCategory( toggle.toggle, toggle.category ) );
     }
 
-    bool dragging;
+    //bool dragging;
     bool pointerDown;
 
     public void StartDrag()
     {
-        dragging = true;
+        //dragging = true;
         pointerDown = false;
     }
 
     public void StopDrag()
     {
-        dragging = false;
+        //dragging = false;
     }
 
     public void PointerDown()

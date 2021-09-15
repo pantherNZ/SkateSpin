@@ -35,6 +35,12 @@ public class DataHandler : IBasePage, ISavableComponent
         get { return _categories.AsReadOnly(); }
     }
 
+    [HideInInspector] Dictionary<int, string> _difficultyNames = new Dictionary<int, string>();
+    public ReadOnlyDictionary<int, string> difficultyNames
+    {
+        get { return new ReadOnlyDictionary<int, string>( _difficultyNames ); }
+    }
+
     [HideInInspector] public event Action OnDataLoaded;
     [HideInInspector] public event Action OnResetSaveData;
     [HideInInspector] public bool IsDataLoaded { get; private set; }
@@ -74,6 +80,16 @@ public class DataHandler : IBasePage, ISavableComponent
                 _categories.Add( reader.GetString( 0 ) );
         }
 
+        // Load difficulty names
+        using( var dbcmd = dbcon.CreateCommand() )
+        {
+            dbcmd.CommandText = "SELECT * from DifficultyNames";
+            using var reader = dbcmd.ExecuteReader();
+
+            while( reader.Read() )
+                _difficultyNames.Add( reader.GetInt32( 0 ), reader.GetString( 1 ) );
+        }
+
         // Load all tricks
         using( var dbcmd = dbcon.CreateCommand() )
         {
@@ -84,29 +100,33 @@ public class DataHandler : IBasePage, ISavableComponent
             {
                 var name = reader.GetStringSafe( 0 );
                 var secondaryName = reader.GetStringSafe( 1 );
-                var category = reader.GetStringSafe( 2 );
+                var categories = reader.GetStringSafe( 2 );
                 var difficulty = reader.GetInt32Safe( 3 );
 
-                if( !categories.Contains( category ) )
-                    Debug.LogError( name + " row from SQL database contains an invalid category: " + category );
-
-                var displayName = name +
-                    ( secondaryName.Length > 0 ? "\n(" + secondaryName + ")" : string.Empty ) +
-                    ( "\nDifficulty: " + difficulty.ToString() );
-
-                var hash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( name ) );
-                var index = trickData.Count;
-
-                trickData.Add( new TrickEntry()
+                foreach( var c in categories.Split( ',' ) )
                 {
-                    index = index,
-                    displayName = displayName,
-                    category = category,
-                    difficulty = difficulty,
-                    hash = hash,
-                } );
+                    var category = c.Trim();
 
-                _trickDataHashMap.Add( hash, index );
+                    if( !categories.Contains( category ) )
+                        Debug.LogError( name + " row from SQL database contains an invalid category: " + category );
+
+                    var displayName = name +
+                        ( secondaryName.Length > 0 ? "\n(" + secondaryName + ")" : string.Empty );
+
+                    var hash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( category + name ) );
+                    var index = trickData.Count;
+
+                    trickData.Add( new TrickEntry()
+                    {
+                        index = index,
+                        displayName = displayName,
+                        category = category,
+                        difficulty = difficulty,
+                        hash = hash,
+                    } );
+
+                    _trickDataHashMap.Add( hash, index );
+                }
             }
         }
 

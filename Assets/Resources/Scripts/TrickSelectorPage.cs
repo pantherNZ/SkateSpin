@@ -9,6 +9,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent
     public List<string> currentCategories = new List<string>();
     
     [SerializeField] private Text currentTrickText = null;
+    [SerializeField] private Text difficultyText = null;
     [SerializeField] private MinMaxSlider difficultySlider = null;
     [SerializeField] private DataHandler dataHandler = null;
     private int index;
@@ -99,25 +100,34 @@ public class TrickSelectorPage : IBasePage, ISavableComponent
         dataHandler.Save();
     }
 
+    private void UpdateCurrentTrick()
+    {
+        currentTrickText.text = currentTrickList[index].displayName;
+        difficultyText.text = string.Format( "Difficulty - {0} ({1})", 
+            currentTrickList[index].difficulty, 
+            dataHandler.difficultyNames[currentTrickList[index].difficulty] );
+    }
+
     public void NextTrick()
     {
         // TODO: Play animation / visual
         index = ( index + 1 ) % currentTrickList.Count;
-        currentTrickText.text = currentTrickList[index].displayName;
+        UpdateCurrentTrick();
+       
     }
 
     public void PreviousTrick()
     {
         // TODO: Play animation / visual
         index = ( index + currentTrickList.Count - 1 ) % currentTrickList.Count;
-        currentTrickText.text = currentTrickList[index].displayName;
+        UpdateCurrentTrick();
     }
 
     public void RandomiseTrickList()
     {
         // TODO: Play animation / visual
         currentTrickList.RandomShuffle();
-        currentTrickText.text = currentTrickList[index].displayName;
+        UpdateCurrentTrick();
     }
 
     public void BanCurrentTrick()
