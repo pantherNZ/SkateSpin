@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +18,7 @@ public class PageNavigator : MonoBehaviour
             page.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
         }
 
+        ShowPage( 0 );
         pages[0].SetVisibility( true );
     }
 
@@ -35,9 +35,18 @@ public class PageNavigator : MonoBehaviour
     public void ShowPage( int index )
     {
         foreach( var page in pages )
+        {
             page.SetVisibility( false );
+            if( page.gameObject.TryGetComponent( out IBasePage handler ) )
+                handler.OnHidden();
+        }
 
-        pages[index].SetVisibility( true );
+        {
+            pages[index].SetVisibility( true );
+            if( pages[index].gameObject.TryGetComponent( out IBasePage handler ) )
+                handler.OnShown();
+        }
+
         HideMenu();
     }
 }

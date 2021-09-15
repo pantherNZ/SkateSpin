@@ -1,0 +1,62 @@
+Pop Shuvit, 360 shuv, 180, 360, bigspin, kickflip, varial flip, hardflip, 360 flip, heelflip, inward heelflip, 
+
+bs pop shuv, nollie bs shuv, fakie bs shuv, switch bs shuv
+fs pop shuv, nollie fs shuv, fakie fs shuv, switch fs shuv
+fs 180, fs half cab, nollie fs 180, switch fs 180
+bs 180, bs half cab, nollie bs 180, switch bs 180
+kickflip, fakie flip, nollie flip, switch flip, 
+heelflip, fakie heel, nollie heel, switch heel,
+tre flip, fakie tre flip, nollie tre, switch tre
+bs bigspin, fakie bs bigspin, switch bs bigspin, nollie bs bigspin
+fs bigspin, fakie fs bigspin, switch fs bigspin, ns fs bigspin
+hardflip, fakie hardflip, nollie hardflip, switch hardflip,
+fs 360, fs cab, nollie fs 360, switch fs 360
+bs 360, bs cab, nollie bs 360, switch bs 360
+varial flip, switch varial flip, nollie varial flip, fakie varial flip
+varial heelflip, switch varial heelflip, nollie varial heelflip, fakie varial heelflip
+bigspin flip, fakie bigspin flip, nollie bigspin flip, switch bigspin flip
+bs flip, half cab flip, nollie bs flip, switch bs flip
+fs flip, fs half cab flip, nollie fs flip, switch fs flip
+bs heelflip, half cab heelflip, nollie bs heelflip, switch bs heelflip
+fs heelflip, fs half cab heelflip, nollie fs heelflip, switch fs heelflip
+pressure flip, switch big heel, impossible
+bs 360 shuv, switch bs 360 shuv, nollie bs 360 shuv, fakie bs 360 shuv, 
+fs 360 shuv, switch fs 360 shuv, nollie fs 360 shuv, fakie fs 360 shuv
+inward heelflip, nollie inward heel, switch inward heel, fakie inward heel,
+
+transition
+rock to fakie, rock and roll, fs rock and roll, bs axle stall, fs axle stall, fakie fs smith, tailstall, nosestall, 
+bs 5.0, fs 5.0, fs smith, bs smith, fs disaster, bs disaster, blunt to fakie, blunt, bs blunt, front blunt
+switch blunt to fakie, switch blunt, switch bs blunt, switch fs blunt, fs noseblunt, bs noseblunt,
+switch rock to fakie, switch rock and roll, switch fs rock and roll, switch bs axle stall, switch fs axle stall
+fs 5050, bs 5050, fs nosegrind, bs nosegrind, 
+fs tail, bs tail, 
+
+
+rail
+
+
+
+
+
+
+ledge
+
+
+
+
+
+
+manual pad
+manual, nose manual, switch manual, switch nose manual
+manual bs shuv, manual kickflip
+nose manual nollie flip, nose manual nollie heel,
+kickflip manual, kickflip, nosemanual,
+half cab manual, half cab manual bs 180, half cab manual fs 180,
+switch flip nose manual, switch flip manual, 
+bs 180 switch nose manual, fs 180 switch nose manual
+bs 180 switch manual, fs 180 switch manual
+heelflip manual, heelflip nose manual, 
+switch heelflip manual, switch heelflip nose manual,
+nose manual nollie tre
+manual tre flip,
