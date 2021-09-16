@@ -17,15 +17,33 @@ class OptionsPageHandler : IBasePage
     [SerializeField] float topHeight = -420.0f;
     [SerializeField] float moveTimeSec = 0.25f;
     [SerializeField] List<CategoryButton> toggles = new List<CategoryButton>();
+    TrickSelectorPage trickSelector;
     float bottomHeight;
+    bool callbackEnabled = true;
 
     private void Start()
     {
         bottomHeight = optionsPanel.anchoredPosition.y;
 
-        var trickSelector = FindObjectOfType<TrickSelectorPage>();
+        trickSelector = FindObjectOfType<TrickSelectorPage>();
         foreach( var toggle in toggles )
-            toggle.toggle.onValueChanged.AddListener( ( value ) => trickSelector.ToggleCategory( toggle.toggle, toggle.category ) );
+        {
+            toggle.toggle.onValueChanged.AddListener( ( value ) =>
+            {
+                if( callbackEnabled )
+                    trickSelector.ToggleCategory( toggle.toggle, toggle.category );
+            } );
+        }
+    }
+
+    public override void OnShown()
+    {
+        base.OnShown();
+
+        callbackEnabled = false;
+        foreach( var toggle in toggles )
+            toggle.toggle.isOn = trickSelector.currentCategories.Contains( toggle.category );
+        callbackEnabled = true;
     }
 
     //bool dragging;

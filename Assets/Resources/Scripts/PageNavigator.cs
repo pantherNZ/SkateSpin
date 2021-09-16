@@ -18,8 +18,7 @@ public class PageNavigator : MonoBehaviour
             page.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
         }
 
-        ShowPage( 0 );
-        pages[0].SetVisibility( true );
+        Utility.FunctionTimer.CreateTimer( 0.01f, () => ShowPage( 0 ) );
     }
 
     public void ShowMenu()

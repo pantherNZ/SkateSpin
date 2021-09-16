@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,20 @@ public class TrickSelectorPage : IBasePage, ISavableComponent
     [SerializeField] private DataHandler dataHandler = null;
     private int index;
 
+    public class LandData
+    {
+        public int landed;
+        public int total;
+        public Dictionary<int, Pair<int, int>> perDifficultyLands;
+    }
+
+    Dictionary<string, LandData> _landedData = new Dictionary<string, LandData>();
+    public ReadOnlyDictionary<string, LandData> LandedData
+    {
+        get { return GetLandedData(); }
+    }
+    private bool landedDataDirty = true;
+
     private bool allowLandedTricksToBeSelected;
 
     private void Start()
@@ -28,9 +43,6 @@ public class TrickSelectorPage : IBasePage, ISavableComponent
 
     void Initialise()
     {
-        // Setup categories
-        currentCategories = new List<string> { "Flat Ground" };
-
         // Setup trick list
         RecalculateCurrentTrickList();
 
@@ -46,7 +58,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent
         int minDifficulty = Mathf.RoundToInt( difficultySlider.GetMinValue() );
         int maxDifficulty = Mathf.RoundToInt( difficultySlider.GetMaxValue() );
 
-        foreach( var trick in dataHandler.trickData )
+        foreach( var trick in dataHandler.TrickData )
         {
             if( trick.difficulty < minDifficulty || trick.difficulty > maxDifficulty )
                 continue;
@@ -66,14 +78,52 @@ public class TrickSelectorPage : IBasePage, ISavableComponent
         RandomiseTrickList();
     }
 
-    bool inCallback;
+    private ReadOnlyDictionary<string, LandData> GetLandedData()
+    {
+        if( landedDataDirty )
+        {
+            _landedData.Clear();
+
+            foreach( var category in DataHandler.Instance.Categories )
+            {
+                var newData = new LandData
+                {
+                    landed = 0,
+                    total = 0,
+                    perDifficultyLands = new Dictionary<int, Pair<int, int>>()
+                };
+
+                foreach( var( difficulty, _ ) in DataHandler.Instance.DifficultyNames )
+                    newData.perDifficultyLands[difficulty] = new Pair<int, int>( 0, 0 );
+
+                _landedData.Add( category, newData );
+            }
+
+            foreach( var trick in DataHandler.Instance.TrickData )
+            {
+                if( _landedData.TryGetValue( trick.category, out var current ) )
+                {
+                    current.landed += trick.landed ? 1 : 0;
+                    current.total++;
+                    if( current.perDifficultyLands.TryGetValue( trick.difficulty, out var oldValue ) )
+                        current.perDifficultyLands[trick.difficulty] = new Pair<int, int>( oldValue.First + ( trick.landed ? 1 : 0 ), oldValue.Second + 1 );
+                }
+            }
+
+            landedDataDirty = false;
+        }
+
+        return new ReadOnlyDictionary<string, LandData>( _landedData );
+    }
+
+    bool callbackEnabled = true;
 
     public void ToggleCategory( Toggle toggle, string category )
     {
-        if( inCallback )
+        if( !callbackEnabled )
             return;
 
-        if( !dataHandler.categories.Contains( category ) )
+        if( !dataHandler.Categories.Contains( category ) )
         {
             Debug.LogError( "Invalid cateogry specified: '" + category + "' from " + toggle.name );
             return;
@@ -88,9 +138,9 @@ public class TrickSelectorPage : IBasePage, ISavableComponent
             // Don't allow disabling the last category
             if( currentCategories.Count == 1 )
             {
-                inCallback = true;
+                callbackEnabled = false;
                 toggle.isOn = !toggle.isOn;
-                inCallback = false;
+                callbackEnabled = true;
                 return;
             }
 
@@ -105,7 +155,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent
         currentTrickText.text = currentTrickList[index].displayName;
         difficultyText.text = string.Format( "Difficulty - {0} ({1})", 
             currentTrickList[index].difficulty, 
-            dataHandler.difficultyNames[currentTrickList[index].difficulty] );
+            dataHandler.DifficultyNames[currentTrickList[index].difficulty] );
     }
 
     public void NextTrick()
@@ -142,6 +192,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent
     {
         // TODO: Play animation / visual
         currentTrickList[index].landed = true;
+        landedDataDirty = true;
         NextTrick();
         dataHandler.Save();
     }

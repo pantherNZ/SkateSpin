@@ -22,21 +22,44 @@ public class DataHandler : IBasePage, ISavableComponent
         public uint hash;
     }
 
-    [HideInInspector] public List<TrickEntry> trickData = new List<TrickEntry>();
-    [HideInInspector] Dictionary<uint, int> _trickDataHashMap = new Dictionary<uint, int>();
-    public ReadOnlyDictionary<uint, int> trickDataHashMap
+    public class TrickList : ReadOnlyDictionary<string, Dictionary<int, List<TrickEntry>>>, IEnumerable<TrickEntry>
     {
-        get { return new ReadOnlyDictionary<uint, int>( _trickDataHashMap ); }
+        public TrickList( Dictionary<string, Dictionary<int, List<TrickEntry>>> copy )
+            : base( copy )
+        {
+        }
+
+        public new IEnumerator<TrickEntry> GetEnumerator()
+        {
+            var enumerator = base.GetEnumerator();
+            while( enumerator.MoveNext() )
+                foreach( var (difficulty, trickList) in enumerator.Current.Value )
+                    foreach( var trick in trickList )
+                        yield return trick;
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 
+    [HideInInspector] public Dictionary<string, Dictionary<int, List<TrickEntry>>> _trickData = new Dictionary<string, Dictionary<int, List<TrickEntry>>>();
+    public TrickList TrickData
+    {
+        get { return new TrickList( _trickData ); }
+    }
+
+    [HideInInspector] Dictionary<uint, TrickEntry> trickDataHashMap = new Dictionary<uint, TrickEntry>();
+
     [HideInInspector] List<string> _categories = new List<string>();
-    public ReadOnlyCollection<string> categories
+    public ReadOnlyCollection<string> Categories
     {
         get { return _categories.AsReadOnly(); }
     }
 
     [HideInInspector] Dictionary<int, string> _difficultyNames = new Dictionary<int, string>();
-    public ReadOnlyDictionary<int, string> difficultyNames
+    public ReadOnlyDictionary<int, string> DifficultyNames
     {
         get { return new ReadOnlyDictionary<int, string>( _difficultyNames ); }
     }
@@ -96,6 +119,16 @@ public class DataHandler : IBasePage, ISavableComponent
             dbcmd.CommandText = "SELECT * from Tricks";
             using var reader = dbcmd.ExecuteReader();
 
+            // Setup empty data structures
+            foreach( var category in Categories )
+            {
+                var categoryData = new Dictionary< int, List< TrickEntry >>();
+                foreach( var (difficulty, _) in DifficultyNames )
+                    categoryData.Add( difficulty, new List<TrickEntry>() );
+                _trickData.Add( category, categoryData );
+            }
+
+            // Read in the tricks and populate the data
             while( reader.Read() )
             {
                 var name = reader.GetStringSafe( 0 );
@@ -124,26 +157,27 @@ public class DataHandler : IBasePage, ISavableComponent
 
                         var displayName = prefix + name + ( secondaryName.Length > 0 ? "\n(" + secondaryName + ")" : string.Empty );
                         var hash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( category + prefix + name ) );
-                        var index = trickData.Count;
+                        var index = _trickData.Count;
 
-                        trickData.Add( new TrickEntry()
+                        var newEntry = new TrickEntry()
                         {
                             index = index,
                             displayName = displayName,
                             category = category,
                             difficulty = difficulty,
                             hash = hash,
-                        } );
+                        };
+                        _trickData[category][difficulty].Add( newEntry );
 
                         //Debug.Log( string.Format( "Trick data calculated hash {0} from ({1}, {2}, {3})", hash, category, prefix, name ) );
 
-                        if( _trickDataHashMap.ContainsKey( hash ) )
+                        if( trickDataHashMap.ContainsKey( hash ) )
                         {
                             Debug.LogError( string.Format( "Trick data hash collision {0} from ({1}, {2}, {3})", hash, category, prefix, name ) );
                             continue;
                         }
 
-                        _trickDataHashMap.Add( hash, index );
+                        trickDataHashMap.Add( hash, newEntry );
                     }
                 }
             }
@@ -212,7 +246,8 @@ public class DataHandler : IBasePage, ISavableComponent
     public void ClearSavedData()
     {
         OnResetSaveData();
-        foreach( var trick in trickData )
+
+        foreach( var trick in TrickData )
         {
             trick.banned = false;
             trick.landed = false;
@@ -225,13 +260,13 @@ public class DataHandler : IBasePage, ISavableComponent
     {
         Int32 count = 0;
 
-        foreach( var trick in trickData )
+        foreach( var trick in TrickData )
             if( trick.landed || trick.banned )
                 count++;
 
         writer.Write( count );
 
-        foreach( var trick in trickData )
+        foreach( var trick in TrickData )
         {
             if( trick.landed || trick.banned )
             {
@@ -258,8 +293,8 @@ public class DataHandler : IBasePage, ISavableComponent
             }
             else
             {
-                trickData[trickDataHashMap[hash]].landed = landed;
-                trickData[trickDataHashMap[hash]].banned = banned;
+                trickDataHashMap[hash].landed = landed;
+                trickDataHashMap[hash].banned = banned;
             }
         }
     }
