@@ -101,7 +101,14 @@ public class DataHandler : IBasePage, ISavableComponent
                 var name = reader.GetStringSafe( 0 );
                 var secondaryName = reader.GetStringSafe( 1 );
                 var categories = reader.GetStringSafe( 2 );
-                var difficulty = reader.GetInt32Safe( 3 );
+
+                List<Pair<int, string>> difficultyMap = new List<Pair<int, string>>
+                {
+                    new Pair<int, string>( reader.GetInt32Safe( 3 ), "" ),
+                    new Pair<int, string>( reader.GetInt32Safe( 4 ), "Fakie " ),
+                    new Pair<int, string>( reader.GetInt32Safe( 5 ), "Switch " ),
+                    new Pair<int, string>( reader.GetInt32Safe( 6 ), "Nollie " ),
+                };
 
                 foreach( var c in categories.Split( ',' ) )
                 {
@@ -110,22 +117,34 @@ public class DataHandler : IBasePage, ISavableComponent
                     if( !categories.Contains( category ) )
                         Debug.LogError( name + " row from SQL database contains an invalid category: " + category );
 
-                    var displayName = name +
-                        ( secondaryName.Length > 0 ? "\n(" + secondaryName + ")" : string.Empty );
-
-                    var hash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( category + name ) );
-                    var index = trickData.Count;
-
-                    trickData.Add( new TrickEntry()
+                    foreach( var (difficulty, prefix) in difficultyMap )
                     {
-                        index = index,
-                        displayName = displayName,
-                        category = category,
-                        difficulty = difficulty,
-                        hash = hash,
-                    } );
+                        if( difficulty <= 0 )
+                            continue;
 
-                    _trickDataHashMap.Add( hash, index );
+                        var displayName = prefix + name + ( secondaryName.Length > 0 ? "\n(" + secondaryName + ")" : string.Empty );
+                        var hash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( category + prefix + name ) );
+                        var index = trickData.Count;
+
+                        trickData.Add( new TrickEntry()
+                        {
+                            index = index,
+                            displayName = displayName,
+                            category = category,
+                            difficulty = difficulty,
+                            hash = hash,
+                        } );
+
+                        //Debug.Log( string.Format( "Trick data calculated hash {0} from ({1}, {2}, {3})", hash, category, prefix, name ) );
+
+                        if( _trickDataHashMap.ContainsKey( hash ) )
+                        {
+                            Debug.LogError( string.Format( "Trick data hash collision {0} from ({1}, {2}, {3})", hash, category, prefix, name ) );
+                            continue;
+                        }
+
+                        _trickDataHashMap.Add( hash, index );
+                    }
                 }
             }
         }
