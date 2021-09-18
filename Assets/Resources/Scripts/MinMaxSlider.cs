@@ -8,7 +8,9 @@ class MinMaxSlider : MonoBehaviour
     [SerializeField] private Slider sliderMax = null;
     [SerializeField] RectTransform fill = null;
     [SerializeField] RectTransform minHandle = null;
+    [SerializeField] CanvasGroup minHandlePin = null;
     [SerializeField] RectTransform maxHandle = null;
+    [SerializeField] CanvasGroup maxHandlePin = null;
     private bool editing = false;
     private Text minText;
     private Text maxText;
@@ -29,8 +31,18 @@ class MinMaxSlider : MonoBehaviour
                 sliderMin.value = Mathf.Min( value, sliderMax.value );
                 editing = false;
                 OnValueChanged();
+                FixOrdering();
             }
         } );
+
+        var minEventDispatcher = sliderMin.GetComponent<EventDispatcher>();
+        var maxEventDispatcher = sliderMax.GetComponent<EventDispatcher>();
+        minEventDispatcher.OnBeginDragEvent += ( _ ) => { minHandlePin.SetVisibility( true ); };
+        minEventDispatcher.OnEndDragEvent += ( _ ) => { minHandlePin.SetVisibility( false ); };
+        maxEventDispatcher.OnBeginDragEvent += ( _ ) => { maxHandlePin.SetVisibility( true ); };
+        maxEventDispatcher.OnEndDragEvent += ( _ ) => { maxHandlePin.SetVisibility( false ); };
+        minHandlePin.SetVisibility( false );
+        maxHandlePin.SetVisibility( false );
 
         sliderMax.onValueChanged.AddListener( ( float value ) =>
         {
@@ -40,8 +52,17 @@ class MinMaxSlider : MonoBehaviour
                 sliderMax.value = Mathf.Max( value, sliderMin.value );
                 editing = false;
                 OnValueChanged();
+                FixOrdering();
             }
         } );
+    }
+
+    private void FixOrdering()
+    {
+        if( sliderMin.value >= sliderMin.maxValue - 0.001f )
+            sliderMin.transform.SetAsLastSibling();
+        else if( sliderMax.value <= sliderMax.minValue + 0.001f )
+            sliderMax.transform.SetAsLastSibling();
     }
 
     private void OnValueChanged()
