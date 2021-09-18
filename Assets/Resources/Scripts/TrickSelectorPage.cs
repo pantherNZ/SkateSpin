@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TrickSelectorPage : IBasePage, ISavableComponent
+public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 {
     public List<DataHandler.TrickEntry> currentTrickList = new List<DataHandler.TrickEntry>();
     public List<string> currentCategories = new List<string>();
@@ -39,6 +39,8 @@ public class TrickSelectorPage : IBasePage, ISavableComponent
             dataHandler.OnDataLoaded += () => Initialise();
 
         dataHandler.OnResetSaveData += ResetSaveData;
+
+        EventSystem.Instance.AddSubscriber( this );
     }
 
     void Initialise()
@@ -48,6 +50,16 @@ public class TrickSelectorPage : IBasePage, ISavableComponent
 
         // Initialise first trick
         NextTrick();
+    }
+
+    void IEventReceiver.OnEventReceived( IBaseEvent e )
+    {
+        if( e.GetType() == typeof( UseShortTrickNamesEvent ) ||
+            e.GetType() == typeof( AlternateTrickNamesEvent ) )
+        {
+            if( currentTrickList.Count > 0 )
+                UpdateCurrentTrick();
+        }
     }
 
     public void RecalculateCurrentTrickList()
@@ -66,10 +78,10 @@ public class TrickSelectorPage : IBasePage, ISavableComponent
             if( !currentCategories.Contains( trick.category ) )
                 continue;
 
-            if( trick.banned )
+            if( trick.status == DataHandler.TrickEntry.Status.Banned )
                 continue;
 
-            if( trick.landed && !allowLandedTricksToBeSelected )
+            if( trick.status == DataHandler.TrickEntry.Status.Landed && !allowLandedTricksToBeSelected )
                 continue;
 
             currentTrickList.Add( trick );
@@ -103,10 +115,10 @@ public class TrickSelectorPage : IBasePage, ISavableComponent
             {
                 if( _landedData.TryGetValue( trick.category, out var current ) )
                 {
-                    current.landed += trick.landed ? 1 : 0;
+                    current.landed += trick.status == DataHandler.TrickEntry.Status.Landed ? 1 : 0;
                     current.total++;
                     if( current.perDifficultyLands.TryGetValue( trick.difficulty, out var oldValue ) )
-                        current.perDifficultyLands[trick.difficulty] = new Pair<int, int>( oldValue.First + ( trick.landed ? 1 : 0 ), oldValue.Second + 1 );
+                        current.perDifficultyLands[trick.difficulty] = new Pair<int, int>( oldValue.First + ( trick.status == DataHandler.TrickEntry.Status.Landed ? 1 : 0 ), oldValue.Second + 1 );
                 }
             }
 
@@ -152,7 +164,17 @@ public class TrickSelectorPage : IBasePage, ISavableComponent
 
     private void UpdateCurrentTrick()
     {
-        currentTrickText.text = currentTrickList[index].displayName;
+        var displayName = currentTrickList[index].name;
+        
+        if( AppSettings.Instance.alternateTrickNamesEnabled )
+            displayName += ( currentTrickList[index].secondaryName.Length > 0 ? "\n(" + currentTrickList[index].secondaryName + ")" : string.Empty );
+
+        if( AppSettings.Instance.useShortTrickNames )
+            foreach( var( toReplace, replaceWith ) in dataHandler.ShortTrickNameReplacements )
+                displayName = displayName.Replace( toReplace, replaceWith );
+
+        currentTrickText.text = displayName;
+
         difficultyText.text = string.Format( "Difficulty - {0} ({1})", 
             currentTrickList[index].difficulty, 
             dataHandler.DifficultyNames[currentTrickList[index].difficulty] );
@@ -183,7 +205,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent
     public void BanCurrentTrick()
     {
         // TODO: Play animation / visual
-        currentTrickList[index].banned = true;
+        currentTrickList[index].status = DataHandler.TrickEntry.Status.Banned;
         NextTrick();
         dataHandler.Save();
     }
@@ -191,7 +213,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent
     public void LandCurrentTrick()
     {
         // TODO: Play animation / visual
-        currentTrickList[index].landed = true;
+        currentTrickList[index].status = DataHandler.TrickEntry.Status.Landed;
         landedDataDirty = true;
         NextTrick();
         dataHandler.Save();

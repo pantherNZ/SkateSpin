@@ -17,6 +17,8 @@ class OptionsPageHandler : IBasePage
     [SerializeField] float topHeight = -420.0f;
     [SerializeField] float moveTimeSec = 0.25f;
     [SerializeField] List<CategoryButton> toggles = new List<CategoryButton>();
+    [SerializeField] Toggle shortTrickNamesToggle = null;
+
     TrickSelectorPage trickSelector;
     float bottomHeight;
     bool callbackEnabled = true;
@@ -34,6 +36,11 @@ class OptionsPageHandler : IBasePage
                     trickSelector.ToggleCategory( toggle.toggle, toggle.category );
             } );
         }
+
+        shortTrickNamesToggle.onValueChanged.AddListener( ( on ) =>
+        {
+            EventSystem.Instance.TriggerEvent( new UseShortTrickNamesEvent() { value = on } );
+        } );
     }
 
     public override void OnShown()

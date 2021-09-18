@@ -13,10 +13,17 @@ public class DataHandler : IBasePage, ISavableComponent
 {
     public class TrickEntry
     {
+        public enum Status
+        {
+            Default,
+            Landed,
+            Banned,
+            MaxStatusValues,
+        }
+
         public int index;
-        public string displayName;
-        public bool landed;
-        public bool banned;
+        public string name, secondaryName;
+        public Status status;
         public string category;
         public int difficulty;
         public uint hash;
@@ -62,6 +69,12 @@ public class DataHandler : IBasePage, ISavableComponent
     public ReadOnlyDictionary<int, string> DifficultyNames
     {
         get { return new ReadOnlyDictionary<int, string>( _difficultyNames ); }
+    }
+
+    [HideInInspector] List<Pair<string,string>> _shortTrickNameReplacements = new List<Pair<string, string>>();
+    public ReadOnlyCollection<Pair<string, string>> ShortTrickNameReplacements
+    {
+        get { return _shortTrickNameReplacements.AsReadOnly(); }
     }
 
     [HideInInspector] public event Action OnDataLoaded;
@@ -155,14 +168,14 @@ public class DataHandler : IBasePage, ISavableComponent
                         if( difficulty <= 0 )
                             continue;
 
-                        var displayName = prefix + name + ( secondaryName.Length > 0 ? "\n(" + secondaryName + ")" : string.Empty );
                         var hash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( category + prefix + name ) );
                         var index = _trickData.Count;
 
                         var newEntry = new TrickEntry()
                         {
                             index = index,
-                            displayName = displayName,
+                            name = prefix + name,
+                            secondaryName = secondaryName,
                             category = category,
                             difficulty = difficulty,
                             hash = hash,
@@ -181,6 +194,16 @@ public class DataHandler : IBasePage, ISavableComponent
                     }
                 }
             }
+        }
+
+        // Load short trick name replacements
+        using( var dbcmd = dbcon.CreateCommand() )
+        {
+            dbcmd.CommandText = "SELECT * from ShortTrickNames";
+            using var reader = dbcmd.ExecuteReader();
+
+            while( reader.Read() )
+                _shortTrickNameReplacements.Add( new Pair<string, string>( reader.GetString( 0 ), reader.GetString( 1 ) ) );
         }
 
         ClearSavedData();
@@ -248,10 +271,7 @@ public class DataHandler : IBasePage, ISavableComponent
         OnResetSaveData();
 
         foreach( var trick in TrickData )
-        {
-            trick.banned = false;
-            trick.landed = false;
-        }
+            trick.status = TrickEntry.Status.Default;
 
         Save();
     }
@@ -261,18 +281,17 @@ public class DataHandler : IBasePage, ISavableComponent
         Int32 count = 0;
 
         foreach( var trick in TrickData )
-            if( trick.landed || trick.banned )
+            if( trick.status != TrickEntry.Status.Default )
                 count++;
 
         writer.Write( count );
 
         foreach( var trick in TrickData )
         {
-            if( trick.landed || trick.banned )
+            if( trick.status != TrickEntry.Status.Default )
             {
                 writer.Write( trick.hash );
-                writer.Write( trick.landed );
-                writer.Write( trick.banned );
+                writer.Write( ( char )trick.status );
             }
         }
     }
@@ -284,8 +303,7 @@ public class DataHandler : IBasePage, ISavableComponent
         for( int i = 0; i < count; ++i )
         {
             var hash = reader.ReadUInt32();
-            var landed = reader.ReadBoolean();
-            var banned = reader.ReadBoolean();
+            var status = reader.ReadChar();
 
             if( !trickDataHashMap.ContainsKey( hash ) )
             {
@@ -293,8 +311,7 @@ public class DataHandler : IBasePage, ISavableComponent
             }
             else
             {
-                trickDataHashMap[hash].landed = landed;
-                trickDataHashMap[hash].banned = banned;
+                trickDataHashMap[hash].status = ( TrickEntry.Status )status;
             }
         }
     }

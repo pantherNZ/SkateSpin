@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,11 +11,21 @@ public class TrickListPage : IBasePage
     [SerializeField] GameObject difficultyHeadingPrefab = null;
     [SerializeField] GameObject trickEntryPrefab = null;
     TrickSelectorPage trickSelector;
+    Dictionary<string, List<bool>> openCategories = new Dictionary<string, List<bool>>();
 
     private void Start()
     {
         trickSelector = FindObjectOfType<TrickSelectorPage>();
     }
+
+    public void ClearOpenData()
+    {
+        foreach( var (_, data) in openCategories )
+            for( int i = 0; i < data.Count; ++i )
+                data[i] = false;
+    }
+
+    private bool difficultyCallbackEnabled = true;
 
     public override void OnShown()
     {
@@ -33,6 +44,11 @@ public class TrickListPage : IBasePage
             categoryHeading.GetComponentInChildren<Text>().text = category;
 
             var categoryStartIdx = verticalLayout.transform.childCount;
+            int difficultyIdx = 0;
+
+            var openCategoryInfo = openCategories.GetOrAdd( category );
+            openCategoryInfo.Resize( 10 );
+            var buttons = new List<Button>();
 
             foreach( var (difficulty, name) in DataHandler.Instance.DifficultyNames )
             {
@@ -57,48 +73,63 @@ public class TrickListPage : IBasePage
                     trickEntry.SetActive( false );
                     trickEntry.transform.SetParent( verticalLayout.transform, false );
                     var text = trickEntry.GetComponentInChildren<TextMeshProUGUI>();
-                    text.text = trick.displayName;
-                    text.fontStyle = trick.landed ? FontStyles.Strikethrough : FontStyles.Normal;
-                    text.color = trick.banned ? new Color( 1.0f, 1.0f, 1.0f, 0.5f ) : Color.white;
-
-                    // TODO:
-                    // Colour / strikethrough based on landed / banned
-                    // Add button callback to iterate through banned / landed / neither
-
+                    text.text = trick.name;
+                    UpdateTrickEntryVisual( text, trick );
 
                     trickEntry.GetComponent<Button>().onClick.AddListener( () =>
                     {
+                        trick.status = ( DataHandler.TrickEntry.Status )( ( ( int )trick.status + 1 ) % ( int )DataHandler.TrickEntry.Status.MaxStatusValues );
+                        UpdateTrickEntryVisual( text, trick );
                     } );
                 }
 
                 var difficultyEndIdx = verticalLayout.transform.childCount;
+                int idx = difficultyIdx;
+                buttons.Add( difficultyHeading.GetComponent<Button>() );
 
                 // Setup on click for the difficulty entry
-                difficultyHeading.GetComponent<Button>().onClick.AddListener( () =>
+                buttons.Back().onClick.AddListener( () =>
                 {
+                    if( difficultyCallbackEnabled )
+                        openCategoryInfo[idx] = !openCategoryInfo[idx];
                     for( int i = difficultyStartIdx; i < difficultyEndIdx; ++i )
                         verticalLayout.transform.GetChild( i ).gameObject.ToggleActive();
                 } );
+
+                ++difficultyIdx;
             }
 
             var categoryEndIdx = verticalLayout.transform.childCount;
 
-            // TODO:
-            // Have it remember which difficulty blocks were open when this category was hidden and re-open next time this category is opened
-
             categoryHeading.GetComponent<Button>().onClick.AddListener( () =>
             {
-                if( verticalLayout.transform.GetChild( difficultyChildIndices[0] ).gameObject.activeSelf )
+                // Read and open any difficulty categories already open
+                if( !verticalLayout.transform.GetChild( difficultyChildIndices[0] ).gameObject.activeSelf )
+                {
+                    difficultyCallbackEnabled = false;
+
+                    foreach( var (_, openInfo) in openCategories )
+                        foreach( var (isOpen, button) in Utility.Zip( openInfo, buttons ) )
+                            if( isOpen )
+                                button.onClick.Invoke();
+
+                    foreach( var idx in difficultyChildIndices )
+                        verticalLayout.transform.GetChild( idx ).gameObject.ToggleActive();
+
+                    difficultyCallbackEnabled = true;
+                }
+                else
                 {
                     for( int idx = categoryStartIdx; idx < categoryEndIdx; ++idx )
                         verticalLayout.transform.GetChild( idx ).gameObject.SetActive( false );
                 }
-                else
-                {
-                    foreach( var idx in difficultyChildIndices )
-                        verticalLayout.transform.GetChild( idx ).gameObject.SetActive( true );
-                }
             } );
         }
+    }
+
+    private void UpdateTrickEntryVisual( TextMeshProUGUI text, DataHandler.TrickEntry trick )
+    {
+        text.fontStyle = trick.status == DataHandler.TrickEntry.Status.Landed ? FontStyles.Strikethrough : FontStyles.Normal;
+        text.color = trick.status == DataHandler.TrickEntry.Status.Banned ? new Color( 1.0f, 1.0f, 1.0f, 0.5f ) : Color.white;
     }
 }
