@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,7 +29,7 @@ public class TrickListPage : IBasePage, IEventReceiver
     }
 
     readonly Dictionary<string, CategoryData> difficultyEntryData = new Dictionary<string, CategoryData>();
-    readonly Dictionary<DataHandler.TrickEntry, TextMeshProUGUI> trickEntries = new Dictionary<DataHandler.TrickEntry, TextMeshProUGUI>();
+    readonly Dictionary<DataHandler.TrickEntry, Text> trickEntries = new Dictionary<DataHandler.TrickEntry, Text>();
 
     private bool difficultyCallbackEnabled = true;
 
@@ -96,7 +95,7 @@ public class TrickListPage : IBasePage, IEventReceiver
                     var trickEntry = Instantiate( trickEntryPrefab );
                     trickEntry.SetActive( false );
                     trickEntry.transform.SetParent( verticalLayout.transform, false );
-                    var text = trickEntry.GetComponentInChildren<TextMeshProUGUI>();
+                    var text = trickEntry.GetComponentInChildren<Text>();
                     text.text = trick.name;
                     UpdateTrickEntryVisual( text, trick );
 
@@ -194,9 +193,10 @@ public class TrickListPage : IBasePage, IEventReceiver
             UpdateTrickEntryVisual( text, trick );
     }
 
-    private void UpdateTrickEntryVisual( TextMeshProUGUI text, DataHandler.TrickEntry trick )
+    private void UpdateTrickEntryVisual( Text text, DataHandler.TrickEntry trick )
     {
-        text.fontStyle = trick.status == DataHandler.TrickEntry.Status.Landed ? FontStyles.Strikethrough : FontStyles.Normal;
+        var strikethrough = text.GetComponentInChildren<Image>();
+        strikethrough.color = strikethrough.color.SetA( trick.status == DataHandler.TrickEntry.Status.Landed ? 1.0f : 0.0f );
         text.color = trick.status == DataHandler.TrickEntry.Status.Banned ? new Color( 1.0f, 1.0f, 1.0f, 0.5f ) : Color.white;
     }
 
