@@ -12,19 +12,19 @@ public class AppSettings : MonoBehaviour, ISavableComponent, IEventReceiver
     }
 
     public bool useShortTrickNames;
-    public bool alternateTrickNamesEnabled;
+    public bool canPickLandedTricks;
 
-    private void Start()
+    private void Awake()
     {
         _Instance = this;
         EventSystem.Instance.AddSubscriber( this );
         SaveGameSystem.AddSaveableComponent( this );
     }
 
-    private void Awake()
+    private void Start()
     {
-        EventSystem.Instance.TriggerEvent( new UseShortTrickNamesEvent() { value = useShortTrickNames } );
-        EventSystem.Instance.TriggerEvent( new AlternateTrickNamesEvent() { value = alternateTrickNamesEnabled } );
+        EventSystem.Instance.TriggerEvent( new UseShortTrickNamesEvent() { value = useShortTrickNames }, this );
+        EventSystem.Instance.TriggerEvent( new CanPickLandedTricksEvent() { value = canPickLandedTricks }, this );
     }
 
     void IEventReceiver.OnEventReceived( IBaseEvent e )
@@ -34,25 +34,29 @@ public class AppSettings : MonoBehaviour, ISavableComponent, IEventReceiver
             useShortTrickNames = ( ( UseShortTrickNamesEvent )e ).value;
             DataHandler.Instance.Save();
         }
-        else if( e.GetType() == typeof( AlternateTrickNamesEvent ) )
+        else if( e.GetType() == typeof( CanPickLandedTricksEvent ) )
         {
-            alternateTrickNamesEnabled = ( ( AlternateTrickNamesEvent )e ).value;
+            canPickLandedTricks = ( ( CanPickLandedTricksEvent )e ).value;
             DataHandler.Instance.Save();
+        }
+        else if( e.GetType() == typeof( ResetSaveDataEvent ) )
+        {
+            useShortTrickNames = false;
+            canPickLandedTricks = false;
         }
     }
 
     void ISavableComponent.Serialise( BinaryWriter writer )
     {
         writer.Write( useShortTrickNames );
-        writer.Write( alternateTrickNamesEnabled );
+        writer.Write( canPickLandedTricks );
     }
 
     void ISavableComponent.Deserialise( BinaryReader reader )
     {
         useShortTrickNames = reader.ReadBoolean();
-        alternateTrickNamesEnabled = reader.ReadBoolean();
-
-        EventSystem.Instance.TriggerEvent( new UseShortTrickNamesEvent() { value = useShortTrickNames } );
-        EventSystem.Instance.TriggerEvent( new AlternateTrickNamesEvent() { value = alternateTrickNamesEnabled } );
+        canPickLandedTricks = reader.ReadBoolean();
+        EventSystem.Instance.TriggerEvent( new UseShortTrickNamesEvent() { value = useShortTrickNames }, this );
+        EventSystem.Instance.TriggerEvent( new CanPickLandedTricksEvent() { value = canPickLandedTricks }, this );
     }
 }

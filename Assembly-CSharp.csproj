@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -54,6 +54,9 @@
     <UnityVersion>2021.1.17f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="D:\Software\Visual Studio\IDE\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Resources\Scripts\Utility\Utility.cs" />
     <Compile Include="Assets\Resources\Scripts\TrickSelectorPage.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\EventDispatcher.cs" />
@@ -61,11 +64,15 @@
     <Compile Include="Assets\Resources\Scripts\Utility\xxHash.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\Bezier.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\Quad.cs" />
+    <Compile Include="Assets\Resources\Scripts\AppSettings.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\CustomGravity.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\SecureHash.cs" />
+    <Compile Include="Assets\Resources\Scripts\Utility\EventSystem.cs" />
+    <Compile Include="Assets\Resources\Scripts\EventTypes.cs" />
     <Compile Include="Assets\Resources\Scripts\PageNavigator.cs" />
     <Compile Include="Assets\Resources\Scripts\OptionsPageHandler.cs" />
     <Compile Include="Assets\Resources\Scripts\TrickListPage.cs" />
+    <Compile Include="Assets\Resources\Scripts\Utility\Touchable.cs" />
     <Compile Include="Assets\Resources\Scripts\SaveGame.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\SimplexNoise.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\Extensions.cs" />
@@ -75,10 +82,6 @@
     <Compile Include="Assets\Resources\Scripts\Utility\UtilityCoroutines.cs" />
     <Compile Include="Assets\Resources\Scripts\IBasePage.cs" />
     <Compile Include="Assets\Resources\Scripts\MinMaxSlider.cs" />
-    <Compile Include="Assets\Resources\Scripts\Utility\Touchable.cs" />
-    <Compile Include="Assets\Resources\Scripts\Utility\EventSystem.cs" />
-    <Compile Include="Assets\Resources\Scripts\EventTypes.cs" />
-    <Compile Include="Assets\Resources\Scripts\AppSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

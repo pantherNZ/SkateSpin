@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-class OptionsPageHandler : IBasePage
+class OptionsPageHandler : IBasePage, IEventReceiver
 {
     [Serializable]
     public class CategoryButton
@@ -18,10 +18,15 @@ class OptionsPageHandler : IBasePage
     [SerializeField] float moveTimeSec = 0.25f;
     [SerializeField] List<CategoryButton> toggles = new List<CategoryButton>();
     [SerializeField] Toggle shortTrickNamesToggle = null;
+    [SerializeField] Toggle canPickLandedTricksToggle = null;
 
     TrickSelectorPage trickSelector;
     float bottomHeight;
-    bool callbackEnabled = true;
+
+    private void Awake()
+    {
+        EventSystem.Instance.AddSubscriber( this );
+    }
 
     private void Start()
     {
@@ -32,25 +37,39 @@ class OptionsPageHandler : IBasePage
         {
             toggle.toggle.onValueChanged.AddListener( ( value ) =>
             {
-                if( callbackEnabled )
-                    trickSelector.ToggleCategory( toggle.toggle, toggle.category );
+                trickSelector.ToggleCategory( toggle.toggle, toggle.category );
             } );
         }
 
         shortTrickNamesToggle.onValueChanged.AddListener( ( on ) =>
         {
-            EventSystem.Instance.TriggerEvent( new UseShortTrickNamesEvent() { value = on } );
+            EventSystem.Instance.TriggerEvent( new UseShortTrickNamesEvent() { value = on }, this );
         } );
+
+        canPickLandedTricksToggle.onValueChanged.AddListener( ( on ) =>
+        {
+            EventSystem.Instance.TriggerEvent( new CanPickLandedTricksEvent() { value = on }, this );
+        } );
+    }
+
+    void IEventReceiver.OnEventReceived( IBaseEvent e )
+    {
+        if( e.GetType() == typeof( UseShortTrickNamesEvent ) )
+        {
+            shortTrickNamesToggle.SetIsOnWithoutNotify( ( ( UseShortTrickNamesEvent )e ).value );
+        }
+        else if( e.GetType() == typeof( CanPickLandedTricksEvent ) )
+        {
+            canPickLandedTricksToggle.SetIsOnWithoutNotify( ( ( CanPickLandedTricksEvent )e ).value );
+        }
     }
 
     public override void OnShown()
     {
         base.OnShown();
 
-        callbackEnabled = false;
         foreach( var toggle in toggles )
-            toggle.toggle.isOn = trickSelector.currentCategories.Contains( toggle.category );
-        callbackEnabled = true;
+            toggle.toggle.SetIsOnWithoutNotify( trickSelector.CurrentCategories.Contains( toggle.category ) );
     }
 
     //bool dragging;

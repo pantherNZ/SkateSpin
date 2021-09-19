@@ -77,16 +77,12 @@ public class DataHandler : IBasePage, ISavableComponent
         get { return _shortTrickNameReplacements.AsReadOnly(); }
     }
 
-    [HideInInspector] public event Action OnDataLoaded;
-    [HideInInspector] public event Action OnResetSaveData;
-    [HideInInspector] public bool IsDataLoaded { get; private set; }
-
     private string databasePath;
 
     static DataHandler _Instance;
     static public DataHandler Instance { get => _Instance; private set { } }
 
-    private void Start()
+    private void Awake()
     {
         _Instance = this;
         SaveGameSystem.AddSaveableComponent( this );
@@ -206,10 +202,8 @@ public class DataHandler : IBasePage, ISavableComponent
                 _shortTrickNameReplacements.Add( new Pair<string, string>( reader.GetString( 0 ), reader.GetString( 1 ) ) );
         }
 
-        ClearSavedData();
         SaveGameSystem.LoadGame( saveDataName );
-        IsDataLoaded = true;
-        OnDataLoaded?.Invoke();
+        EventSystem.Instance.TriggerEvent( new DataLoadedEvent() );
     }
 
     private void InitSqliteFile( string dbName )
@@ -268,7 +262,7 @@ public class DataHandler : IBasePage, ISavableComponent
 
     public void ClearSavedData()
     {
-        OnResetSaveData();
+        EventSystem.Instance.TriggerEvent( new ResetSaveDataEvent() );
 
         foreach( var trick in TrickData )
             trick.status = TrickEntry.Status.Default;

@@ -35,15 +35,26 @@ public class PageNavigator : MonoBehaviour
     {
         foreach( var page in pages )
         {
+            if( page == pages[index] )
+                continue;
+
             page.SetVisibility( false );
             if( page.gameObject.TryGetComponent( out IBasePage handler ) )
                 handler.OnHidden();
+
+            foreach( Transform child in page.transform )
+                if( child.TryGetComponent( out IBasePage childHandler ) )
+                    childHandler.OnHidden();
         }
 
         {
             pages[index].SetVisibility( true );
             if( pages[index].gameObject.TryGetComponent( out IBasePage handler ) )
                 handler.OnShown();
+
+            foreach( Transform child in pages[index].transform )
+                if( child.TryGetComponent( out IBasePage childHandler ) )
+                    childHandler.OnShown();
         }
 
         HideMenu();

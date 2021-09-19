@@ -4,32 +4,32 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TrickListPage : IBasePage
+public class TrickListPage : IBasePage, IEventReceiver
 {
     [SerializeField] VerticalLayoutGroup verticalLayout = null;
     [SerializeField] GameObject categoryHeadingPrefab = null;
     [SerializeField] GameObject difficultyHeadingPrefab = null;
     [SerializeField] GameObject trickEntryPrefab = null;
     TrickSelectorPage trickSelector;
-    Dictionary<string, List<bool>> openCategories = new Dictionary<string, List<bool>>();
-
-    private void Start()
-    {
-        trickSelector = FindObjectOfType<TrickSelectorPage>();
-    }
-
-    public void ClearOpenData()
-    {
-        foreach( var (_, data) in openCategories )
-            for( int i = 0; i < data.Count; ++i )
-                data[i] = false;
-    }
+    readonly Dictionary<string, List<Pair<bool, Text>>> difficultyEntryData = new Dictionary<string, List<Pair<bool, Text>>>();
+    readonly Dictionary<DataHandler.TrickEntry, TextMeshProUGUI> trickEntries = new Dictionary<DataHandler.TrickEntry, TextMeshProUGUI>();
 
     private bool difficultyCallbackEnabled = true;
 
-    public override void OnShown()
+    private void Awake()
     {
-        var landedData = trickSelector.LandedData;
+        EventSystem.Instance.AddSubscriber( this );
+    }
+
+    public void OnEventReceived( IBaseEvent e )
+    {
+        if( e.GetType() == typeof( DataLoadedEvent ) )
+            Initialise();
+    }
+
+    private void Initialise()
+    {
+        trickSelector = FindObjectOfType<TrickSelectorPage>();
 
         foreach( Transform child in verticalLayout.transform )
             child.gameObject.Destroy();
@@ -46,8 +46,7 @@ public class TrickListPage : IBasePage
             var categoryStartIdx = verticalLayout.transform.childCount;
             int difficultyIdx = 0;
 
-            var openCategoryInfo = openCategories.GetOrAdd( category );
-            openCategoryInfo.Resize( 10 );
+            var categoryInfo = difficultyEntryData.GetOrAdd( category );
             var buttons = new List<Button>();
 
             foreach( var (difficulty, name) in DataHandler.Instance.DifficultyNames )
@@ -58,11 +57,11 @@ public class TrickListPage : IBasePage
                 difficultyHeading.SetActive( false );
                 difficultyHeading.transform.SetParent( verticalLayout.transform, false );
                 var texts = difficultyHeading.GetComponentsInChildren<Text>();
-                texts[0].text = "Difficulty - " + difficulty.ToString();
+                texts[0].text = string.Format( "Difficulty - {0} ({1})",
+                        difficulty,
+                        DataHandler.Instance.DifficultyNames[difficulty] );
 
-                var completionData = landedData[category].perDifficultyLands;
-                var completionPercent = ( ( float )completionData[difficulty].First ).SafeDivide( ( float )completionData[difficulty].Second );
-                texts[1].text = Mathf.RoundToInt( completionPercent * 100.0f ).ToString() + "%";
+                categoryInfo.Add( new Pair<bool, Text>( false, texts[1] ) );
 
                 var difficultyStartIdx = verticalLayout.transform.childCount;
 
@@ -81,6 +80,8 @@ public class TrickListPage : IBasePage
                         trick.status = ( DataHandler.TrickEntry.Status )( ( ( int )trick.status + 1 ) % ( int )DataHandler.TrickEntry.Status.MaxStatusValues );
                         UpdateTrickEntryVisual( text, trick );
                     } );
+
+                    trickEntries.Add( trick, text );
                 }
 
                 var difficultyEndIdx = verticalLayout.transform.childCount;
@@ -91,7 +92,7 @@ public class TrickListPage : IBasePage
                 buttons.Back().onClick.AddListener( () =>
                 {
                     if( difficultyCallbackEnabled )
-                        openCategoryInfo[idx] = !openCategoryInfo[idx];
+                        categoryInfo[idx].First = !categoryInfo[idx].First;
                     for( int i = difficultyStartIdx; i < difficultyEndIdx; ++i )
                         verticalLayout.transform.GetChild( i ).gameObject.ToggleActive();
                 } );
@@ -108,9 +109,9 @@ public class TrickListPage : IBasePage
                 {
                     difficultyCallbackEnabled = false;
 
-                    foreach( var (_, openInfo) in openCategories )
-                        foreach( var (isOpen, button) in Utility.Zip( openInfo, buttons ) )
-                            if( isOpen )
+                    foreach( var (_, openInfo) in difficultyEntryData )
+                        foreach( var (difficultyData, button) in Utility.Zip( openInfo, buttons ) )
+                            if( difficultyData.First )
                                 button.onClick.Invoke();
 
                     foreach( var idx in difficultyChildIndices )
@@ -127,9 +128,39 @@ public class TrickListPage : IBasePage
         }
     }
 
+    public void HideAllDifficultyEntries()
+    {
+        foreach( var (_, data) in difficultyEntryData )
+            for( int i = 0; i < data.Count; ++i )
+                data[i].First = false;
+    }
+
+    public override void OnShown()
+    {
+        var landedData = trickSelector.LandedData;
+
+        foreach( var (category, data) in difficultyEntryData )
+        {
+            foreach( var (difficulty, entry) in Utility.Enumerate( data ) )
+            {
+                var completionData = landedData[category].perDifficultyLands;
+                var completionPercent = ( ( float )completionData[difficulty + 1].First ).SafeDivide( ( float )completionData[difficulty + 1].Second );
+                entry.Second.text = Mathf.RoundToInt( completionPercent * 100.0f ).ToString() + "%";
+            }
+        }
+
+        foreach( var (trick, text) in trickEntries )
+            UpdateTrickEntryVisual( text, trick );
+    }
+
     private void UpdateTrickEntryVisual( TextMeshProUGUI text, DataHandler.TrickEntry trick )
     {
         text.fontStyle = trick.status == DataHandler.TrickEntry.Status.Landed ? FontStyles.Strikethrough : FontStyles.Normal;
         text.color = trick.status == DataHandler.TrickEntry.Status.Banned ? new Color( 1.0f, 1.0f, 1.0f, 0.5f ) : Color.white;
+    }
+
+    public void ExpandCategory( string category )
+    {
+
     }
 }

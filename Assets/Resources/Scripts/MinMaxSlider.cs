@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,41 +15,58 @@ class MinMaxSlider : MonoBehaviour
     [SerializeField] CanvasGroup maxHandlePin = null;
     [SerializeField] float interpTime = 0.5f;
 
-    private bool editing = false;
+    public event Action< float, float > OnValueSet;
+    private float cachedMin;
+    private float cachedMax;
+
     private Text minText;
     private Text maxText;
-    private Coroutine[] interpCoroutine = new Coroutine[2];
+    private readonly Coroutine[] interpCoroutine = new Coroutine[2];
 
-    private void Start()
+    public float GetMinValue()
+    {
+        return cachedMin;
+    }
+
+    public float GetMaxValue()
+    {
+        return cachedMax;
+    }
+
+    public void SetMinValue( float v )
+    {
+        sliderMin.value = v;
+        cachedMin = sliderMin.value;
+    }
+
+    public void SetMaxValue( float v )
+    {
+        sliderMax.value = v;
+        cachedMax = sliderMax.value;
+    }
+
+    private void Awake()
     {
         minText = minHandle.GetComponentInChildren<Text>();
         maxText = maxHandle.GetComponentInChildren<Text>();
 
         sliderMax.minValue = sliderMin.minValue;
         sliderMax.maxValue = sliderMin.maxValue;
+        cachedMin = sliderMin.value;
+        cachedMax = sliderMax.value;
 
         sliderMin.onValueChanged.AddListener( ( float value ) =>
         {
-            if( !editing )
-            {
-                editing = true;
-                sliderMin.value = Mathf.Min( value, sliderMax.value );
-                editing = false;
-                OnValueChanged();
-                FixOrdering();
-            }
+            sliderMin.SetValueWithoutNotify( Mathf.Min( value, sliderMax.value ) );
+            OnValueChanged();
+            FixOrdering();
         } );
 
         sliderMax.onValueChanged.AddListener( ( float value ) =>
         {
-            if( !editing )
-            {
-                editing = true;
-                sliderMax.value = Mathf.Max( value, sliderMin.value );
-                editing = false;
-                OnValueChanged();
-                FixOrdering();
-            }
+            sliderMax.SetValueWithoutNotify( Mathf.Max( value, sliderMin.value ) );
+            OnValueChanged();
+            FixOrdering();
         } );
 
         var minEventDispatcher = sliderMin.GetComponent<EventDispatcher>();
@@ -65,8 +83,15 @@ class MinMaxSlider : MonoBehaviour
         {
             if( interpCoroutine[0] != null )
                 StopCoroutine( interpCoroutine[0] );
-            interpCoroutine[0] = StartCoroutine( InterpHandleToPosition( sliderMin, Mathf.Min( sliderMax.value, Mathf.Round( sliderMin.value ) ) ) );
-            minHandlePin.SetVisibility( false ); 
+            var targetValue = Mathf.Min( sliderMax.value, Mathf.Round( sliderMin.value ) );
+            interpCoroutine[0] = StartCoroutine( InterpHandleToPosition( sliderMin, targetValue ) );
+            minHandlePin.SetVisibility( false );
+
+            if( targetValue != cachedMin )
+            {
+                cachedMin = targetValue;
+                OnValueSet?.Invoke( targetValue, GetMaxValue() );
+            }
         };
 
         maxEventDispatcher.OnBeginDragEvent += ( _ ) => 
@@ -78,9 +103,15 @@ class MinMaxSlider : MonoBehaviour
         {
             if( interpCoroutine[1] != null )
                 StopCoroutine( interpCoroutine[1] );
-            if( interpTime > 0.0f )
-                interpCoroutine[1] = StartCoroutine( InterpHandleToPosition( sliderMax, Mathf.Max( sliderMin.value, Mathf.Round( sliderMax.value ) ) ) );
-            maxHandlePin.SetVisibility( false ); 
+            var targetValue = Mathf.Max( sliderMin.value, Mathf.Round( sliderMax.value ) );
+            interpCoroutine[1] = StartCoroutine( InterpHandleToPosition( sliderMax, targetValue ) );
+            maxHandlePin.SetVisibility( false );
+
+            if( targetValue != cachedMax )
+            {
+                cachedMax = targetValue;
+                OnValueSet?.Invoke( GetMinValue(), targetValue );
+            }
         };
 
         minHandlePin.SetVisibility( false );
@@ -129,15 +160,5 @@ class MinMaxSlider : MonoBehaviour
             minText.text = Mathf.RoundToInt( sliderMin.value ).ToString();
         if( maxText != null )
             maxText.text = Mathf.RoundToInt( sliderMax.value ).ToString();
-    }
-
-    public float GetMinValue()
-    {
-        return sliderMin.value;
-    }
-
-    public float GetMaxValue()
-    {
-        return sliderMax.value;
     }
 }

@@ -6,13 +6,19 @@ using UnityEngine.UI;
 
 public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 {
-    public List<DataHandler.TrickEntry> currentTrickList = new List<DataHandler.TrickEntry>();
-    public List<string> currentCategories = new List<string>();
-    
+    private readonly List<DataHandler.TrickEntry> currentTrickPool = new List<DataHandler.TrickEntry>();
+    private List<DataHandler.TrickEntry> currentTrickList = new List<DataHandler.TrickEntry>();
+    private bool trickPoolDirty = true;
+
+    private List<string> _currentCategories = new List<string>();
+    public ReadOnlyCollection<string> CurrentCategories
+    {
+        get { return _currentCategories.AsReadOnly(); }
+    }
+
     [SerializeField] private Text currentTrickText = null;
     [SerializeField] private Text difficultyText = null;
     [SerializeField] private MinMaxSlider difficultySlider = null;
-    [SerializeField] private DataHandler dataHandler = null;
     private int index;
 
     public class LandData
@@ -29,65 +35,60 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     }
     private bool landedDataDirty = true;
 
-    private bool allowLandedTricksToBeSelected;
-
-    private void Start()
+    private void Awake()
     {
-        if( dataHandler.IsDataLoaded )
-            Initialise();
-        else
-            dataHandler.OnDataLoaded += () => Initialise();
-
-        dataHandler.OnResetSaveData += ResetSaveData;
-
+        ResetSaveData();
         EventSystem.Instance.AddSubscriber( this );
+        SaveGameSystem.AddSaveableComponent( this );
+        difficultySlider.OnValueSet += ( min, max ) => trickPoolDirty = true;
     }
 
     void Initialise()
     {
         // Setup trick list
         RecalculateCurrentTrickList();
-
-        // Initialise first trick
-        NextTrick();
+        RandomiseTrickList();
     }
 
     void IEventReceiver.OnEventReceived( IBaseEvent e )
     {
-        if( e.GetType() == typeof( UseShortTrickNamesEvent ) ||
-            e.GetType() == typeof( AlternateTrickNamesEvent ) )
-        {
-            if( currentTrickList.Count > 0 )
-                UpdateCurrentTrick();
-        }
+        if( e.GetType() == typeof( UseShortTrickNamesEvent ) && currentTrickList.Count > 0 )
+            UpdateCurrentTrick( ( ( UseShortTrickNamesEvent )e ).value );
+        else if( e.GetType() == typeof( DataLoadedEvent ) )
+            Initialise();
+        else if( e.GetType() == typeof( ResetSaveDataEvent ) )
+            ResetSaveData();
     }
 
     public void RecalculateCurrentTrickList()
     {
-        currentTrickList.Clear();
+        if( !trickPoolDirty )
+            return;
+
+        currentTrickPool.Clear();
 
         // Pull difficulty from slider
         int minDifficulty = Mathf.RoundToInt( difficultySlider.GetMinValue() );
         int maxDifficulty = Mathf.RoundToInt( difficultySlider.GetMaxValue() );
 
-        foreach( var trick in dataHandler.TrickData )
+        foreach( var trick in DataHandler.Instance.TrickData )
         {
             if( trick.difficulty < minDifficulty || trick.difficulty > maxDifficulty )
                 continue;
 
-            if( !currentCategories.Contains( trick.category ) )
+            if( !_currentCategories.Contains( trick.category ) )
                 continue;
 
             if( trick.status == DataHandler.TrickEntry.Status.Banned )
                 continue;
 
-            if( trick.status == DataHandler.TrickEntry.Status.Landed && !allowLandedTricksToBeSelected )
+            if( trick.status == DataHandler.TrickEntry.Status.Landed && !AppSettings.Instance.canPickLandedTricks )
                 continue;
 
-            currentTrickList.Add( trick );
+            currentTrickPool.Add( trick );
         }
 
-        RandomiseTrickList();
+        trickPoolDirty = false;
     }
 
     private ReadOnlyDictionary<string, LandData> GetLandedData()
@@ -128,63 +129,66 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         return new ReadOnlyDictionary<string, LandData>( _landedData );
     }
 
-    bool callbackEnabled = true;
-
     public void ToggleCategory( Toggle toggle, string category )
     {
-        if( !callbackEnabled )
-            return;
-
-        if( !dataHandler.Categories.Contains( category ) )
+        if( !DataHandler.Instance.Categories.Contains( category ) )
         {
             Debug.LogError( "Invalid cateogry specified: '" + category + "' from " + toggle.name );
             return;
         }
 
-        if( toggle.isOn && !currentCategories.Contains( category ) )
+        if( toggle.isOn && !_currentCategories.Contains( category ) )
         {
-            currentCategories.Add( category );
+            _currentCategories.Add( category );
         }
-        else if( !toggle.isOn && currentCategories.Contains( category ) )
+        else if( !toggle.isOn && _currentCategories.Contains( category ) )
         {
             // Don't allow disabling the last category
-            if( currentCategories.Count == 1 )
+            if( _currentCategories.Count == 1 )
             {
-                callbackEnabled = false;
-                toggle.isOn = !toggle.isOn;
-                callbackEnabled = true;
+                toggle.SetIsOnWithoutNotify( !toggle.isOn );
                 return;
             }
 
-            currentCategories.Remove( category );
+            _currentCategories.Remove( category );
         }
 
-        dataHandler.Save();
+        trickPoolDirty = true;
+        DataHandler.Instance.Save();
     }
 
-    private void UpdateCurrentTrick()
+    private void UpdateCurrentTrick( bool useShortTrickNames )
     {
+        if( currentTrickList.IsEmpty() )
+        {
+            Debug.LogError( string.Format( "Failed to update current trick due to 0 entries (difficulty: {0}-{1}, categories: {2})"
+                , difficultySlider.GetMinValue()
+                , difficultySlider.GetMaxValue()
+                , string.Join( ", ", CurrentCategories ) ) );
+            return;
+        }
+
         var displayName = currentTrickList[index].name;
         
-        if( AppSettings.Instance.alternateTrickNamesEnabled )
-            displayName += ( currentTrickList[index].secondaryName.Length > 0 ? "\n(" + currentTrickList[index].secondaryName + ")" : string.Empty );
+        //if( AppSettings.Instance.alternateTrickNamesEnabled )
+        //   displayName += ( currentTrickList[index].secondaryName.Length > 0 ? "\n(" + currentTrickList[index].secondaryName + ")" : string.Empty );
 
-        if( AppSettings.Instance.useShortTrickNames )
-            foreach( var( toReplace, replaceWith ) in dataHandler.ShortTrickNameReplacements )
+        if( useShortTrickNames )
+            foreach( var( toReplace, replaceWith ) in DataHandler.Instance.ShortTrickNameReplacements )
                 displayName = displayName.Replace( toReplace, replaceWith );
 
         currentTrickText.text = displayName;
 
         difficultyText.text = string.Format( "Difficulty - {0} ({1})", 
-            currentTrickList[index].difficulty, 
-            dataHandler.DifficultyNames[currentTrickList[index].difficulty] );
+            currentTrickList[index].difficulty,
+            DataHandler.Instance.DifficultyNames[currentTrickList[index].difficulty] );
     }
 
     public void NextTrick()
     {
         // TODO: Play animation / visual
         index = ( index + 1 ) % currentTrickList.Count;
-        UpdateCurrentTrick();
+        UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
        
     }
 
@@ -192,14 +196,16 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     {
         // TODO: Play animation / visual
         index = ( index + currentTrickList.Count - 1 ) % currentTrickList.Count;
-        UpdateCurrentTrick();
+        UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
     }
 
     public void RandomiseTrickList()
     {
         // TODO: Play animation / visual
-        currentTrickList.RandomShuffle();
-        UpdateCurrentTrick();
+        RecalculateCurrentTrickList();
+        currentTrickList = new List<DataHandler.TrickEntry>( currentTrickPool ).RandomShuffle();
+        index = 0;
+        UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
     }
 
     public void BanCurrentTrick()
@@ -207,7 +213,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         // TODO: Play animation / visual
         currentTrickList[index].status = DataHandler.TrickEntry.Status.Banned;
         NextTrick();
-        dataHandler.Save();
+        DataHandler.Instance.Save();
     }
 
     public void LandCurrentTrick()
@@ -216,36 +222,37 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         currentTrickList[index].status = DataHandler.TrickEntry.Status.Landed;
         landedDataDirty = true;
         NextTrick();
-        dataHandler.Save();
-    }
-
-    public void SetAllowLandedTricksToBeSelected( bool value )
-    {
-        allowLandedTricksToBeSelected = value;
-        dataHandler.Save();
+        DataHandler.Instance.Save();
     }
 
     private void ResetSaveData()
     {
-        allowLandedTricksToBeSelected = false;
-        currentCategories = new List<string> { "Flat Ground" };
+        _currentCategories = new List<string> { "Flat Ground" };
+        difficultySlider.SetMinValue( 1.0f );
+        difficultySlider.SetMaxValue( 10.0f );
     }
 
     void ISavableComponent.Serialise( BinaryWriter writer )
     {
-        writer.Write( allowLandedTricksToBeSelected );
-        writer.Write( currentCategories.Count );
+        writer.Write( _currentCategories.Count );
+        writer.Write( difficultySlider.GetMinValue() );
+        writer.Write( difficultySlider.GetMaxValue() );
 
-        foreach( var category in currentCategories )
+        foreach( var category in _currentCategories )
             writer.Write( category );
     }
 
     void ISavableComponent.Deserialise( BinaryReader reader )
     {
-        allowLandedTricksToBeSelected = reader.ReadBoolean();
+        _currentCategories.Clear();
         var count = reader.ReadInt32();
+        var minDifficulty = reader.ReadSingle();
+        var maxDifficulty = reader.ReadSingle();
+
+        difficultySlider.SetMinValue( minDifficulty );
+        difficultySlider.SetMaxValue( maxDifficulty );
 
         for( int i = 0; i < count; ++i )
-            currentCategories.Add( reader.ReadString() );
+            _currentCategories.Add( reader.ReadString() );
     }
 }
