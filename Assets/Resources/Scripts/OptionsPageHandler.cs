@@ -110,7 +110,9 @@ class OptionsPageHandler : IBasePage, IEventReceiver
         while( ( direction > 0 && optionsPanel.anchoredPosition.y < toHeight ) ||
                ( direction < 0 && optionsPanel.anchoredPosition.y > toHeight ) )
         {
-            optionsPanel.anchoredPosition = optionsPanel.anchoredPosition.SetY( optionsPanel.anchoredPosition.y + direction * Time.deltaTime * speed );
+            var difference = Time.deltaTime * speed;
+            difference = Mathf.Min( difference, Mathf.Abs( toHeight - optionsPanel.anchoredPosition.y ) );
+            optionsPanel.anchoredPosition = optionsPanel.anchoredPosition.SetY( optionsPanel.anchoredPosition.y + difference * direction );
             yield return null;
         }
 

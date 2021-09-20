@@ -88,6 +88,14 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
             currentTrickPool.Add( trick );
         }
 
+        if( currentTrickPool.IsEmpty() )
+        {
+            Debug.LogError( string.Format( "RecalculateCurrentTrickList resulted in 0 entries (difficulty: {0}-{1}, categories: {2})"
+                , difficultySlider.GetMinValue()
+                , difficultySlider.GetMaxValue()
+                , string.Join( ", ", CurrentCategories ) ) );
+        }
+
         trickPoolDirty = false;
     }
 
@@ -160,13 +168,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     private void UpdateCurrentTrick( bool useShortTrickNames )
     {
         if( currentTrickList.IsEmpty() )
-        {
-            Debug.LogError( string.Format( "Failed to update current trick due to 0 entries (difficulty: {0}-{1}, categories: {2})"
-                , difficultySlider.GetMinValue()
-                , difficultySlider.GetMaxValue()
-                , string.Join( ", ", CurrentCategories ) ) );
             return;
-        }
 
         var displayName = currentTrickList[index].name;
         
@@ -186,14 +188,19 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
     public void NextTrick()
     {
+        if( currentTrickList.Count == 0 )
+            return;
+
         // TODO: Play animation / visual
         index = ( index + 1 ) % currentTrickList.Count;
         UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
-       
     }
 
     public void PreviousTrick()
     {
+        if( currentTrickList.Count == 0 )
+            return;
+
         // TODO: Play animation / visual
         index = ( index + currentTrickList.Count - 1 ) % currentTrickList.Count;
         UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
@@ -210,6 +217,9 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
     public void BanCurrentTrick()
     {
+        if( currentTrickList.Count == 0 )
+            return;
+
         // TODO: Play animation / visual
         currentTrickList[index].status = DataHandler.TrickEntry.Status.Banned;
         NextTrick();
@@ -218,6 +228,9 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
     public void LandCurrentTrick()
     {
+        if( currentTrickList.Count == 0 )
+            return;
+
         // TODO: Play animation / visual
         currentTrickList[index].status = DataHandler.TrickEntry.Status.Landed;
         landedDataDirty = true;

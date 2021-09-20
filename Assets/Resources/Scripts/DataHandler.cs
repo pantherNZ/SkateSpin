@@ -94,6 +94,8 @@ public class DataHandler : IBasePage, ISavableComponent
 
     private void Initialise()
     {
+        Debug.Log( "DataHandler::Initialise" );
+
         // Copy db file to local device persistent storage (if not already there)
         InitSqliteFile( databaseName );
 
@@ -204,6 +206,7 @@ public class DataHandler : IBasePage, ISavableComponent
 
         SaveGameSystem.LoadGame( saveDataName );
         EventSystem.Instance.TriggerEvent( new DataLoadedEvent() );
+        Debug.Log( "DataHandler::DataLoaded" );
     }
 
     private void InitSqliteFile( string dbName )
@@ -214,17 +217,24 @@ public class DataHandler : IBasePage, ISavableComponent
         //if DB does not exist in persistent data folder (folder "Documents" on iOS) or source DB is newer then copy it
         if( !System.IO.File.Exists( databasePath ) || ( System.IO.File.GetLastWriteTimeUtc( sourcePath ) > System.IO.File.GetLastWriteTimeUtc( databasePath ) ) )
         {
-
             if( sourcePath.Contains( "://" ) )
             {
+                Debug.Log( string.Format( "DataHandler::InitSqliteFile - sourcePath: {0} (Android)", sourcePath ) );
+
                 // Android  
+                var downloadHandler = new DownloadHandlerBuffer();
                 UnityWebRequest request = new UnityWebRequest( sourcePath );
+                request.downloadHandler = downloadHandler;
+                request.timeout = 5;
+                request.SendWebRequest();
+
                 // Wait for download to complete - not pretty at all but easy hack for now 
                 // and it would not take long since the data is on the local device.
                 while( !request.isDone ) {; }
 
-                if( string.IsNullOrEmpty( request.error ) )
+                if( string.IsNullOrEmpty( request.error ) && request.result == UnityWebRequest.Result.Success )
                 {
+                    Debug.Log( "DataHandler::InitSqliteFile - Writing to databasepath from streaming folder (Android)" );
                     System.IO.File.WriteAllBytes( databasePath, request.downloadHandler.data );
                 }
                 else
@@ -236,14 +246,14 @@ public class DataHandler : IBasePage, ISavableComponent
             else
             {
                 // Mac, Windows, Iphone
+                Debug.Log( string.Format( "DataHandler::InitSqliteFile - sourcePath: {0} (Mac, Windows, Iphone)", sourcePath ) );
 
                 //validate the existens of the DB in the original folder (folder "streamingAssets")
                 if( System.IO.File.Exists( sourcePath ) )
                 {
-
                     //copy file - alle systems except Android
                     System.IO.File.Copy( sourcePath, databasePath, true );
-
+                    Debug.Log( "DataHandler::InitSqliteFile - Writing to databasepath from streaming folder (Mac, Windows, Iphone)" );
                 }
                 else
                 {
