@@ -197,7 +197,28 @@ public class TrickListPage : IBasePage, IEventReceiver
     {
         var strikethrough = text.GetComponentInChildren<Image>();
         strikethrough.color = strikethrough.color.SetA( trick.status == DataHandler.TrickEntry.Status.Landed ? 1.0f : 0.0f );
-        text.color = trick.status == DataHandler.TrickEntry.Status.Banned ? new Color( 1.0f, 1.0f, 1.0f, 0.5f ) : Color.white;
+        text.color = 
+            trick.status == DataHandler.TrickEntry.Status.Landed ? new Color( 1.0f, 93.0f / 255.0f, 93.0f / 255.0f ) :
+            trick.status == DataHandler.TrickEntry.Status.Banned ? new Color( 0.5f, 0.5f, 0.5f, 0.75f ) :
+            Color.white;
+        strikethrough.transform.localScale = strikethrough.transform.localScale.SetX( GetTextWidth( text ) / 100.0f );
+    }
+
+    int GetTextWidth( Text text )
+    {
+        int totalLength = 0;
+
+        Font font = text.font; //text is my UI text
+        char[] arr = text.text.ToCharArray();
+
+        foreach( char c in arr )
+        {
+            font.RequestCharactersInTexture( c.ToString(), text.fontSize, text.fontStyle );
+            font.GetCharacterInfo( c, out var characterInfo, text.fontSize );
+            totalLength += characterInfo.advance;
+        }
+
+        return totalLength;
     }
 
     public void ExpandCategory( string category )
