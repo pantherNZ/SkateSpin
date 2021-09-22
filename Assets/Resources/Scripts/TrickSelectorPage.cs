@@ -8,9 +8,12 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 {
     private readonly List<DataHandler.TrickEntry> currentTrickPool = new List<DataHandler.TrickEntry>();
     private List<DataHandler.TrickEntry> currentTrickList = new List<DataHandler.TrickEntry>();
+    private List<DataHandler.TrickEntry> previousTrickList = new List<DataHandler.TrickEntry>();
+    private int previousIndex;
     private bool trickPoolDirty = true;
 
     private List<string> _currentCategories = new List<string>();
+
     public ReadOnlyCollection<string> CurrentCategories
     {
         get { return _currentCategories.AsReadOnly(); }
@@ -62,9 +65,6 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
     public void RecalculateCurrentTrickList()
     {
-        if( !trickPoolDirty )
-            return;
-
         currentTrickPool.Clear();
 
         // Pull difficulty from slider
@@ -170,7 +170,8 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         if( currentTrickList.IsEmpty() )
             return;
 
-        var displayName = currentTrickList[index].name;
+        var trickToUse = previousIndex > 0 ? previousTrickList[previousTrickList.Count - previousIndex] : currentTrickList[index];
+        var displayName = trickToUse.name;
         
         //if( AppSettings.Instance.alternateTrickNamesEnabled )
         //   displayName += ( currentTrickList[index].secondaryName.Length > 0 ? "\n(" + currentTrickList[index].secondaryName + ")" : string.Empty );
@@ -181,38 +182,66 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
         currentTrickText.text = displayName;
 
-        difficultyText.text = string.Format( "Difficulty - {0} ({1})", 
-            currentTrickList[index].difficulty,
-            DataHandler.Instance.DifficultyNames[currentTrickList[index].difficulty] );
+        difficultyText.text = string.Format( "Difficulty - {0} ({1})",
+            trickToUse.difficulty,
+            DataHandler.Instance.DifficultyNames[trickToUse.difficulty] );
     }
 
     public void NextTrick()
     {
-        if( currentTrickList.Count == 0 )
+        if( currentTrickList.Count == 0 || previousIndex == 0 )
             return;
 
         // TODO: Play animation / visual
-        index = ( index + 1 ) % currentTrickList.Count;
+        --previousIndex;
         UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
     }
 
     public void PreviousTrick()
     {
-        if( currentTrickList.Count == 0 )
+        if( currentTrickList.Count == 0 || previousIndex >= previousTrickList.Count )
             return;
 
         // TODO: Play animation / visual
-        index = ( index + currentTrickList.Count - 1 ) % currentTrickList.Count;
+        previousIndex++;
         UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
     }
 
     public void RandomiseTrickList()
     {
         // TODO: Play animation / visual
-        RecalculateCurrentTrickList();
-        currentTrickList = new List<DataHandler.TrickEntry>( currentTrickPool ).RandomShuffle();
-        index = 0;
+
+        if( trickPoolDirty )
+        {
+            RecalculateCurrentTrickList();
+            AppendPreviousTrick();
+            currentTrickList = new List<DataHandler.TrickEntry>( currentTrickPool ).RandomShuffle();
+        }
+        else
+        {
+            AppendPreviousTrick();
+            index++;
+            previousIndex = 0;
+
+            if( index >= currentTrickList.Count )
+            {
+                currentTrickList = new List<DataHandler.TrickEntry>( currentTrickPool ).RandomShuffle();
+                index = 0;
+            }
+        }
+
         UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
+    }
+
+    private void AppendPreviousTrick()
+    {
+        if( currentTrickList.Count == 0 )
+            return;
+
+        previousTrickList.Add( currentTrickList[index] );
+
+        if( previousTrickList.Count > 50 )
+            previousTrickList.RemoveAt( 0 );
     }
 
     public void BanCurrentTrick()

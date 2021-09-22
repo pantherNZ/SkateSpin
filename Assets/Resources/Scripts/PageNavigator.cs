@@ -1,10 +1,15 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PageNavigator : MonoBehaviour
 {
     [SerializeField] private List<CanvasGroup> pages = new List<CanvasGroup>();
+    [SerializeField] private RectTransform panel = null;
+    [SerializeField] private float centreX;
+    [SerializeField] private float moveTimeSec = 0.0f;
     private CanvasGroup canvasGroup;
+    private float leftX;
 
     void Start()
     {
@@ -18,17 +23,36 @@ public class PageNavigator : MonoBehaviour
             page.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
         }
 
+        leftX = panel.anchoredPosition.x;
         Utility.FunctionTimer.CreateTimer( 0.01f, () => ShowPage( 0 ) );
     }
 
-    public void ShowMenu()
+    public void ToggleMenu()
     {
-        canvasGroup.SetVisibility( true );
+        if( !canvasGroup.blocksRaycasts )
+            canvasGroup.SetVisibility( true );
+
+        StartCoroutine( MovePanel( panel.anchoredPosition.x < centreX ? centreX : leftX ) );
     }
 
-    public void HideMenu()
+    private IEnumerator MovePanel( float xPos )
     {
-        canvasGroup.SetVisibility( false );
+        float speed = Mathf.Abs( xPos - panel.anchoredPosition.x ) / moveTimeSec;
+        float direction = Mathf.Sign( xPos - panel.anchoredPosition.x );
+
+        while( ( direction > 0 && panel.anchoredPosition.x < xPos ) ||
+               ( direction < 0 && panel.anchoredPosition.x > xPos ) )
+        {
+            var difference = Time.deltaTime * speed;
+            difference = Mathf.Min( difference, Mathf.Abs( xPos - panel.anchoredPosition.x ) );
+            panel.anchoredPosition = panel.anchoredPosition.SetX( panel.anchoredPosition.x + difference * direction );
+            yield return null;
+        }
+
+        panel.anchoredPosition = panel.anchoredPosition.SetX( xPos );
+
+        if( !canvasGroup.blocksRaycasts )
+            canvasGroup.SetVisibility( true );
     }
 
     public void ShowPage( int index )
@@ -57,6 +81,7 @@ public class PageNavigator : MonoBehaviour
 
         pages[index].SetVisibility( true );
 
-        HideMenu();
+        canvasGroup.SetVisibility( false );
+        panel.anchoredPosition = panel.anchoredPosition.SetX( leftX );
     }
 }

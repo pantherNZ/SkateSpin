@@ -360,13 +360,13 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 20355020}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 292800871}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
-        m_MethodName: ShowMenu
+        m_MethodName: ToggleMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -396,6 +396,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1865d6e77eca9842a43aa4ce65e8a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &54129211
 GameObject:
   m_ObjectHideFlags: 0
@@ -2012,6 +2016,9 @@ MonoBehaviour:
   - {fileID: 327757040}
   - {fileID: 1531070287}
   - {fileID: 1188084209}
+  panel: {fileID: 1364908102}
+  centreX: -241
+  moveTimeSec: 0.1
 --- !u!225 &292800872
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2103,13 +2110,13 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 301679175}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 292800871}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
-        m_MethodName: ShowMenu
+        m_MethodName: ToggleMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2139,6 +2146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1865d6e77eca9842a43aa4ce65e8a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &304773888
 GameObject:
   m_ObjectHideFlags: 0
@@ -3862,13 +3873,13 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 560833059}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 292800871}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
-        m_MethodName: ShowMenu
+        m_MethodName: ToggleMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3890,6 +3901,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1865d6e77eca9842a43aa4ce65e8a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &560833060
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4761,7 +4776,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 715349743}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00384b350d17d5a4c88c7449ab6a48b6, type: 3}
+  m_Script: {fileID: 11500000, guid: f1865d6e77eca9842a43aa4ce65e8a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -6050,13 +6065,13 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 892217462}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 292800871}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
-        m_MethodName: HideMenu
+        m_MethodName: ToggleMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6078,6 +6093,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1865d6e77eca9842a43aa4ce65e8a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &892217463
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6121,7 +6140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.07424927, y: -309.8015}
+  m_AnchoredPosition: {x: -0.07424927, y: -632}
   m_SizeDelta: {x: -220.01149, y: -1358.0765}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &906923119
@@ -6784,6 +6803,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1865d6e77eca9842a43aa4ce65e8a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &1021318251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6824,7 +6847,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1021318250}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -7490,6 +7513,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1865d6e77eca9842a43aa4ce65e8a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &1112465977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7530,13 +7557,13 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1112465976}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 292800871}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
-        m_MethodName: ShowMenu
+        m_MethodName: ToggleMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9541,7 +9568,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -235.4209, y: 165.09888}
+  m_AnchoredPosition: {x: -850, y: 165.09888}
   m_SizeDelta: {x: -470.8409, y: -330.197}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1364908103
@@ -10694,6 +10721,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1865d6e77eca9842a43aa4ce65e8a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &1602110843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10734,13 +10765,13 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1602110842}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 292800871}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
-        m_MethodName: ShowMenu
+        m_MethodName: ToggleMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12351,6 +12382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2391ed619d54d3419428265f14f6ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doubleClickInterval: 0.5
 --- !u!1 &1886079604
 GameObject:
   m_ObjectHideFlags: 0
@@ -12661,6 +12693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2391ed619d54d3419428265f14f6ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doubleClickInterval: 0.5
 --- !u!1 &1922119010
 GameObject:
   m_ObjectHideFlags: 0
