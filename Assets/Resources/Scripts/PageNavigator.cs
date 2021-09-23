@@ -6,10 +6,11 @@ public class PageNavigator : MonoBehaviour
 {
     [SerializeField] private List<CanvasGroup> pages = new List<CanvasGroup>();
     [SerializeField] private RectTransform panel = null;
-    [SerializeField] private float centreX;
+    [SerializeField] private float centreX = 0.0f;
     [SerializeField] private float moveTimeSec = 0.0f;
     private CanvasGroup canvasGroup;
     private float leftX;
+    private int currentPage = 0;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class PageNavigator : MonoBehaviour
 
         leftX = panel.anchoredPosition.x;
         Utility.FunctionTimer.CreateTimer( 0.01f, () => ShowPage( 0 ) );
+        SwipeManager.OnSwipeDetected += OnSwipeDetected;
     }
 
     public void ToggleMenu()
@@ -80,8 +82,16 @@ public class PageNavigator : MonoBehaviour
                 childHandler.OnShown();
 
         pages[index].SetVisibility( true );
-
         canvasGroup.SetVisibility( false );
         panel.anchoredPosition = panel.anchoredPosition.SetX( leftX );
+        currentPage = index;
+    }
+
+    void OnSwipeDetected( Swipe direction, Vector2 swipeVelocity )
+    {
+        if( direction == Swipe.Left )
+            ShowPage( ( currentPage - 1 + pages.Count ) % pages.Count );
+        else if( direction == Swipe.Right )
+            ShowPage( ( currentPage + 1 ) % pages.Count );
     }
 }

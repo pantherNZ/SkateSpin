@@ -9,33 +9,42 @@ public class TrickListPage : IBasePage, IEventReceiver
     [SerializeField] GameObject categoryHeadingPrefab = null;
     [SerializeField] GameObject difficultyHeadingPrefab = null;
     [SerializeField] GameObject trickEntryPrefab = null;
+    [SerializeField] CanvasGroup infoPanel = null;
     TrickSelectorPage trickSelector;
+
+    public class TrickData
+    {
+        public DataHandler.TrickEntry entry;
+        public Text text;
+        public bool visible;
+    }
+
+    public class DifficultyData
+    {
+        public bool wasOpen;
+        public bool isOpen;
+        public Text text;
+        public Button button;
+        public int numEntries;
+        public List<TrickData> tricks = new List<TrickData>();
+    }
 
     class CategoryData
     {
         public Button categoryEntry;
         public bool isOpen;
         public List<int> difficultyChildIndices = new List<int>();
-
-        public class DifficultyData
-        {
-            public bool wasOpen;
-            public bool isOpen;
-            public Text text;
-            public Button button;
-        }
-
         public List<DifficultyData> perDifficultyData = new List<DifficultyData>();
     }
 
     readonly Dictionary<string, CategoryData> difficultyEntryData = new Dictionary<string, CategoryData>();
-    readonly Dictionary<DataHandler.TrickEntry, Text> trickEntries = new Dictionary<DataHandler.TrickEntry, Text>();
 
     private bool difficultyCallbackEnabled = true;
 
     private void Awake()
     {
         EventSystem.Instance.AddSubscriber( this );
+        infoPanel.SetVisibility( false );
     }
 
     public void OnEventReceived( IBaseEvent e )
@@ -81,32 +90,40 @@ public class TrickListPage : IBasePage, IEventReceiver
                         DataHandler.Instance.DifficultyNames[difficulty] );
                 buttons.Add( difficultyHeading.GetComponent<Button>() );
 
-                categoryInfo.perDifficultyData.Add( new CategoryData.DifficultyData()
+                var newDifficultyEntry = new DifficultyData()
                 {
                     text = texts[1],
                     button = buttons.Back(),
-                } );
+                    numEntries = perDifficultyData[difficulty].Count
+                };
 
                 var difficultyStartIdx = verticalLayout.transform.childCount;
 
                 // Create trick entries
                 foreach( var trick in perDifficultyData[difficulty] )
                 {
-                    var trickEntry = Instantiate( trickEntryPrefab );
-                    trickEntry.SetActive( false );
-                    trickEntry.transform.SetParent( verticalLayout.transform, false );
-                    var text = trickEntry.GetComponentInChildren<Text>();
+                    var trickUIEntry = Instantiate( trickEntryPrefab );
+                    trickUIEntry.SetActive( false );
+                    trickUIEntry.transform.SetParent( verticalLayout.transform, false );
+                    var text = trickUIEntry.GetComponentInChildren<Text>();
                     text.text = trick.name;
-                    UpdateTrickEntryVisual( text, trick );
 
-                    trickEntry.GetComponent<Button>().onClick.AddListener( () =>
+                    var newEntry = new TrickData()
+                    {
+                        entry = trick,
+                        text = text,
+                    };
+                    newDifficultyEntry.tricks.Add( newEntry );
+
+                    trickUIEntry.GetComponent<Button>().onClick.AddListener( () =>
                     {
                         trick.status = ( DataHandler.TrickEntry.Status )( ( ( int )trick.status + 1 ) % ( int )DataHandler.TrickEntry.Status.MaxStatusValues );
-                        UpdateTrickEntryVisual( text, trick );
+                        UpdateTrickEntryVisual( newEntry );
                     } );
 
-                    trickEntries.Add( trick, text );
                 }
+
+                categoryInfo.perDifficultyData.Add( newDifficultyEntry );
 
                 var difficultyEndIdx = verticalLayout.transform.childCount;
                 int idx = difficultyIdx;
@@ -155,6 +172,20 @@ public class TrickListPage : IBasePage, IEventReceiver
         }
     }
 
+    public void FilterEntries()
+    {
+        var landedData = trickSelector.LandedData;
+
+        foreach( var (category, data) in difficultyEntryData )
+        {
+
+
+            foreach( var (difficulty, entry) in Utility.Enumerate( data.perDifficultyData ) )
+            {
+            }
+        }
+    }
+
     public void ShrinkAllEntries()
     {
         difficultyCallbackEnabled = false;
@@ -177,31 +208,33 @@ public class TrickListPage : IBasePage, IEventReceiver
 
     public override void OnShown()
     {
+        FilterEntries();
+
         var landedData = trickSelector.LandedData;
 
         foreach( var (category, data) in difficultyEntryData )
         {
-            foreach( var (difficulty, entry) in Utility.Enumerate( data.perDifficultyData ) )
+            foreach( var (difficulty, DifficultyEntry) in Utility.Enumerate( data.perDifficultyData ) )
             {
                 var completionData = landedData[category].perDifficultyLands;
                 var completionPercent = ( ( float )completionData[difficulty + 1].First ).SafeDivide( ( float )completionData[difficulty + 1].Second );
-                entry.text.text = Mathf.RoundToInt( completionPercent * 100.0f ).ToString() + "%";
+                DifficultyEntry.text.text = Mathf.RoundToInt( completionPercent * 100.0f ).ToString() + "%";
+
+                foreach( var trickEntry in DifficultyEntry.tricks )
+                    UpdateTrickEntryVisual( trickEntry );
             }
         }
-
-        foreach( var (trick, text) in trickEntries )
-            UpdateTrickEntryVisual( text, trick );
     }
 
-    private void UpdateTrickEntryVisual( Text text, DataHandler.TrickEntry trick )
+    private void UpdateTrickEntryVisual( TrickData trick )
     {
-        var strikethrough = text.GetComponentInChildren<Image>();
-        strikethrough.color = strikethrough.color.SetA( trick.status == DataHandler.TrickEntry.Status.Landed ? 1.0f : 0.0f );
-        text.color = 
-            trick.status == DataHandler.TrickEntry.Status.Landed ? new Color( 1.0f, 93.0f / 255.0f, 93.0f / 255.0f ) :
-            trick.status == DataHandler.TrickEntry.Status.Banned ? new Color( 0.5f, 0.5f, 0.5f, 0.75f ) :
+        var strikethrough = trick.text.GetComponentInChildren<Image>();
+        strikethrough.color = strikethrough.color.SetA( trick.entry.status == DataHandler.TrickEntry.Status.Landed ? 1.0f : 0.0f );
+        trick.text.color = 
+            trick.entry.status == DataHandler.TrickEntry.Status.Landed ? new Color( 1.0f, 93.0f / 255.0f, 93.0f / 255.0f ) :
+            trick.entry.status == DataHandler.TrickEntry.Status.Banned ? new Color( 0.5f, 0.5f, 0.5f, 0.75f ) :
             Color.white;
-        strikethrough.transform.localScale = strikethrough.transform.localScale.SetX( GetTextWidth( text ) / 100.0f );
+        strikethrough.transform.localScale = strikethrough.transform.localScale.SetX( GetTextWidth( trick.text ) / 100.0f );
     }
 
     int GetTextWidth( Text text )
@@ -225,5 +258,10 @@ public class TrickListPage : IBasePage, IEventReceiver
     {
         ShrinkAllEntries();
         difficultyEntryData[category].categoryEntry.onClick.Invoke();
+    }
+
+    public void ToggleInfoPanel()
+    {
+        infoPanel.ToggleVisibility();
     }
 }
