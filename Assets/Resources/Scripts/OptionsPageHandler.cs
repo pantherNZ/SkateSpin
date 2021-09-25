@@ -26,13 +26,13 @@ class OptionsPageHandler : IBasePage, IEventReceiver
     private void Awake()
     {
         EventSystem.Instance.AddSubscriber( this );
+        trickSelector = FindObjectOfType<TrickSelectorPage>();
     }
 
     private void Start()
     {
         bottomHeight = optionsPanel.anchoredPosition.y;
 
-        trickSelector = FindObjectOfType<TrickSelectorPage>();
         foreach( var toggle in toggles )
         {
             toggle.toggle.onValueChanged.AddListener( ( value ) =>

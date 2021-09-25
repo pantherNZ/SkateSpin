@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class PageNavigator : MonoBehaviour
 {
-    [SerializeField] private List<CanvasGroup> pages = new List<CanvasGroup>();
+    [SerializeField] private List<GameObject> pages = new List<GameObject>();
     [SerializeField] private RectTransform panel = null;
     [SerializeField] private float centreX = 0.0f;
     [SerializeField] private float moveTimeSec = 0.0f;
-    private CanvasGroup canvasGroup;
     private float leftX;
     private int currentPage = 0;
 
     void Start()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
-        canvasGroup.SetVisibility( false );
+        gameObject.SetActive( false );
 
         GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
         foreach( var page in pages )
         {
-            page.SetVisibility( false );
+            page.SetActive( false );
             page.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
         }
 
@@ -31,8 +29,8 @@ public class PageNavigator : MonoBehaviour
 
     public void ToggleMenu()
     {
-        if( !canvasGroup.blocksRaycasts )
-            canvasGroup.SetVisibility( true );
+        if( !gameObject.activeSelf )
+            gameObject.SetActive( true );
 
         StartCoroutine( MovePanel( panel.anchoredPosition.x < centreX ? centreX : leftX ) );
     }
@@ -53,8 +51,8 @@ public class PageNavigator : MonoBehaviour
 
         panel.anchoredPosition = panel.anchoredPosition.SetX( xPos );
 
-        if( !canvasGroup.blocksRaycasts )
-            canvasGroup.SetVisibility( true );
+        if( !gameObject.activeSelf )
+            gameObject.SetActive( true );
     }
 
     public void ShowPage( int index )
@@ -64,15 +62,18 @@ public class PageNavigator : MonoBehaviour
             if( page == pages[index] )
                 continue;
 
+            page.SetActive( false );
+
             if( page.gameObject.TryGetComponent( out IBasePage pageHandler ) )
                 pageHandler.OnHidden();
 
             foreach( Transform child in page.transform )
                 if( child.TryGetComponent( out IBasePage childHandler ) )
                     childHandler.OnHidden();
-
-            page.SetVisibility( false );
         }
+
+        pages[index].SetActive( true );
+        gameObject.SetActive( false );
 
         if( pages[index].gameObject.TryGetComponent( out IBasePage handler ) )
             handler.OnShown();
@@ -81,8 +82,6 @@ public class PageNavigator : MonoBehaviour
             if( child.TryGetComponent( out IBasePage childHandler ) )
                 childHandler.OnShown();
 
-        pages[index].SetVisibility( true );
-        canvasGroup.SetVisibility( false );
         panel.anchoredPosition = panel.anchoredPosition.SetX( leftX );
         currentPage = index;
     }

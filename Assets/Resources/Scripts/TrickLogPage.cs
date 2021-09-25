@@ -7,7 +7,7 @@ public class TrickLogPage : IBasePage
     [SerializeField] List<Image> progressCircles = new List<Image>();
     TrickSelectorPage trickSelector;
 
-    private void Start()
+    private void Awake()
     {
         trickSelector = FindObjectOfType<TrickSelectorPage>();
     }

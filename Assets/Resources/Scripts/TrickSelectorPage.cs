@@ -36,7 +36,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     {
         get { return GetLandedData(); }
     }
-    private bool landedDataDirty = true;
+    public bool landedDataDirty = true;
 
     private void Awake()
     {

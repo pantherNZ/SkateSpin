@@ -671,6 +671,8 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Landed Tricks
       m_Image: {fileID: 0}
+    - m_Text: Unlanded Tricks
+      m_Image: {fileID: 0}
     - m_Text: Banned Tricks
       m_Image: {fileID: 0}
   m_OnValueChanged:
@@ -1069,7 +1071,6 @@ GameObject:
   - component: {fileID: 150857065}
   - component: {fileID: 150857064}
   - component: {fileID: 150857063}
-  - component: {fileID: 150857062}
   m_Layer: 5
   m_Name: BattlesPage
   m_TagString: Untagged
@@ -1077,18 +1078,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!225 &150857062
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 150857061}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &150857063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1951,7 +1940,6 @@ GameObject:
   - component: {fileID: 292800868}
   - component: {fileID: 292800867}
   - component: {fileID: 292800866}
-  - component: {fileID: 292800872}
   - component: {fileID: 292800871}
   m_Layer: 5
   m_Name: MenuDisplay
@@ -2055,24 +2043,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pages:
-  - {fileID: 327757040}
-  - {fileID: 1531070287}
-  - {fileID: 1188084209}
+  - {fileID: 327757034}
+  - {fileID: 1531070282}
+  - {fileID: 1188084204}
   panel: {fileID: 1364908102}
   centreX: -241
   moveTimeSec: 0.1
---- !u!225 &292800872
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 292800865}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &301679171
 GameObject:
   m_ObjectHideFlags: 0
@@ -2299,7 +2275,6 @@ GameObject:
   - component: {fileID: 327757036}
   - component: {fileID: 327757035}
   - component: {fileID: 327757039}
-  - component: {fileID: 327757040}
   m_Layer: 5
   m_Name: TrickSelectorPage
   m_TagString: Untagged
@@ -2404,18 +2379,7 @@ MonoBehaviour:
   currentTrickText: {fileID: 1339965544}
   difficultyText: {fileID: 127180465}
   difficultySlider: {fileID: 1297530597022729960}
---- !u!225 &327757040
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327757034}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  landedDataDirty: 1
 --- !u!114 &330770421 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7468507144953131814, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
@@ -2685,8 +2649,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 5.129822, y: -112.2946}
-  m_SizeDelta: {x: -116.0635, y: -366.8328}
+  m_AnchoredPosition: {x: 5.129822, y: -148.3407}
+  m_SizeDelta: {x: -116.0635, y: -438.925}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &371678396
 MonoBehaviour:
@@ -5012,7 +4976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 157.4, y: 727}
+  m_AnchoredPosition: {x: 157.4, y: 659}
   m_SizeDelta: {x: 262.54, y: 46.404}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &737351245
@@ -6349,7 +6313,6 @@ GameObject:
   - component: {fileID: 930892003}
   - component: {fileID: 930892006}
   - component: {fileID: 930892005}
-  - component: {fileID: 930892007}
   m_Layer: 5
   m_Name: Display
   m_TagString: Untagged
@@ -6415,18 +6378,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930892002}
   m_CullTransparentMesh: 1
---- !u!225 &930892007
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 930892002}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &933626933
 GameObject:
   m_ObjectHideFlags: 0
@@ -6687,19 +6638,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -6709,50 +6648,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 292800871}
-    - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExpandCategory
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: ShowPage
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TrickListPage, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: PageNavigator, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Manual Pad
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 7468507144953131815, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6840,10 +6735,6 @@ PrefabInstance:
     - target: {fileID: 7468507144953131816, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_Name
       value: TrickLogEntry (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8430586550238503520, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
-      propertyPath: m_Text
-      value: Manual Pad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
@@ -7749,7 +7640,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -157.22, y: 727}
+  m_AnchoredPosition: {x: -157.22, y: 659}
   m_SizeDelta: {x: 262.5464, y: 46.4073}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1122278687
@@ -8089,7 +7980,6 @@ GameObject:
   - component: {fileID: 1188084207}
   - component: {fileID: 1188084206}
   - component: {fileID: 1188084205}
-  - component: {fileID: 1188084209}
   - component: {fileID: 1188084210}
   m_Layer: 5
   m_Name: TrickListPage
@@ -8179,18 +8069,6 @@ RectTransform:
   m_AnchoredPosition: {x: 2864, y: 960}
   m_SizeDelta: {x: 1080, y: 1920}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &1188084209
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1188084204}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &1188084210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8207,7 +8085,9 @@ MonoBehaviour:
   categoryHeadingPrefab: {fileID: 846348146062822935, guid: 9278d0141028ce446b377696cd39d6c9, type: 3}
   difficultyHeadingPrefab: {fileID: 359875600865406278, guid: f2e34253d69b904458b8418af543b275, type: 3}
   trickEntryPrefab: {fileID: 1807129730960589172, guid: 62907c94bb1f97c40a97401d79d6b3aa, type: 3}
-  infoPanel: {fileID: 1583781744}
+  infoPanel: {fileID: 1583781740}
+  restrictionDropDown: {fileID: 67686953}
+  filter: {fileID: 1647157021}
 --- !u!1 &1210917214
 GameObject:
   m_ObjectHideFlags: 0
@@ -10163,7 +10043,6 @@ GameObject:
   - component: {fileID: 1531070285}
   - component: {fileID: 1531070284}
   - component: {fileID: 1531070283}
-  - component: {fileID: 1531070287}
   - component: {fileID: 1531070288}
   m_Layer: 5
   m_Name: TrickLogPage
@@ -10253,18 +10132,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1702, y: 951}
   m_SizeDelta: {x: 1080, y: 1920}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &1531070287
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1531070282}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &1531070288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10447,7 +10314,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1583781741}
   - component: {fileID: 1583781745}
-  - component: {fileID: 1583781744}
   - component: {fileID: 1583781743}
   - component: {fileID: 1583781742}
   m_Layer: 5
@@ -10549,18 +10415,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!225 &1583781744
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583781740}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!222 &1583781745
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10691,11 +10545,11 @@ PrefabInstance:
     - target: {fileID: 6309091844831104446, guid: a567fcbb28f332044a9e39a8dc1d5751, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 930892007}
+      objectReference: {fileID: 0}
     - target: {fileID: 6309091844831104446, guid: a567fcbb28f332044a9e39a8dc1d5751, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 930892007}
+      objectReference: {fileID: 0}
     - target: {fileID: 6309091844831104446, guid: a567fcbb28f332044a9e39a8dc1d5751, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -12307,6 +12161,10 @@ PrefabInstance:
     - target: {fileID: 7468507144953131816, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_Name
       value: TrickLogEntry
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430586550238503520, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
+      propertyPath: m_Text
+      value: Flat Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
@@ -14355,7 +14213,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -2.6293}
-  m_SizeDelta: {x: 100, y: 5.2585}
+  m_SizeDelta: {x: 135.2813, y: 5.2585}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &7679199490088193645
 MonoBehaviour:
