@@ -24,6 +24,8 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     [SerializeField] private MinMaxSlider difficultySlider = null;
     [SerializeField] private Button nextButton = null;
     [SerializeField] private Button previousButton = null;
+    [SerializeField] private Image landedDisplay = null;
+    [SerializeField] private Image bannedDisplay = null;
     private int index;
 
     public class LandData
@@ -54,6 +56,8 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         difficultySlider.OnValueSet += ( min, max ) => trickPoolDirty = true;
         previousButton.gameObject.SetActive( false );
         nextButton.gameObject.SetActive( false );
+        bannedDisplay.gameObject.SetActive( false );
+        landedDisplay.gameObject.SetActive( false );
     }
 
     void Initialise()
@@ -268,10 +272,9 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         if( currentTrickList.Count == 0 )
             return;
 
-        // TODO: Play animation / visual
         currentTrickList[index].status = DataHandler.TrickEntry.Status.Banned;
-        RandomiseTrickList();
         DataHandler.Instance.Save( true );
+        PlayBanLandAnimation( bannedDisplay.gameObject );
     }
 
     public void LandCurrentTrick()
@@ -281,9 +284,33 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
         // TODO: Play animation / visual
         currentTrickList[index].status = DataHandler.TrickEntry.Status.Landed;
-        landedDataDirty = true;
-        RandomiseTrickList();
         DataHandler.Instance.Save( true );
+        PlayBanLandAnimation( bannedDisplay.gameObject );
+        landedDataDirty = true;
+    }
+
+    public void PlayBanLandAnimation( GameObject visual )
+    {
+        var timerName = "LandBanTimer";
+        if( Utility.FunctionTimer.GetTimer( timerName ) != null )
+            return;
+
+        visual.gameObject.SetActive( true );
+        visual.transform.localScale = new Vector3( 5.0f, 5.0f, 5.0f );
+
+        float bannedTimer = 0.2f;
+        StartCoroutine( Utility.InterpolateScale( visual.transform, new Vector3( 1.0f, 1.0f, 1.0f ), bannedTimer ) );
+
+        Utility.FunctionTimer.CreateTimer( bannedTimer, () =>
+        {
+            StartCoroutine( Utility.Shake( transform.GetChild( 1 ), 0.2f, 60.0f, 10.0f, 60.0f, 1.5f ) );
+        } );
+
+        Utility.FunctionTimer.CreateTimer( 2.0f, () =>
+        {
+            RandomiseTrickList();
+            visual.gameObject.SetActive( false );
+        }, timerName );
     }
 
     private void ResetSaveData()
