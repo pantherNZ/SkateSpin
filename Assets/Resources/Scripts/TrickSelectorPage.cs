@@ -36,7 +36,13 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     {
         get { return GetLandedData(); }
     }
-    public bool landedDataDirty = true;
+
+    private bool landedDataDirty = true;
+    public void SetLandedDataDirty()
+    {
+        landedDataDirty = true;
+        DataHandler.Instance.Save( false );
+    }
 
     private void Awake()
     {
@@ -162,7 +168,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         }
 
         trickPoolDirty = true;
-        DataHandler.Instance.Save();
+        DataHandler.Instance.Save( false );
     }
 
     private void UpdateCurrentTrick( bool useShortTrickNames )
@@ -252,7 +258,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         // TODO: Play animation / visual
         currentTrickList[index].status = DataHandler.TrickEntry.Status.Banned;
         NextTrick();
-        DataHandler.Instance.Save();
+        DataHandler.Instance.Save( true );
     }
 
     public void LandCurrentTrick()
@@ -264,7 +270,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         currentTrickList[index].status = DataHandler.TrickEntry.Status.Landed;
         landedDataDirty = true;
         NextTrick();
-        DataHandler.Instance.Save();
+        DataHandler.Instance.Save( true );
     }
 
     private void ResetSaveData()

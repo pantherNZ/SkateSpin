@@ -265,9 +265,19 @@ public class DataHandler : IBasePage, ISavableComponent
         }
     }
 
-    public void Save()
+    private Utility.FunctionTimer saveTimer;
+
+    public void Save( bool instantSave )
     {
-        SaveGameSystem.SaveGame( saveDataName );
+        if( !instantSave )
+        {
+            saveTimer?.Stop();
+            saveTimer = Utility.FunctionTimer.CreateTimer( 3.0f, () => Save( true ) );
+        }
+        else
+        {
+            SaveGameSystem.SaveGame( saveDataName );
+        }
     }
 
     public void ClearSavedData()
@@ -277,7 +287,7 @@ public class DataHandler : IBasePage, ISavableComponent
         foreach( var trick in TrickData )
             trick.status = TrickEntry.Status.Default;
 
-        Save();
+        Save( true );
     }
 
     void ISavableComponent.Serialise( BinaryWriter writer )

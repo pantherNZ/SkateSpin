@@ -51,8 +51,8 @@ public class PageNavigator : MonoBehaviour
 
         panel.anchoredPosition = panel.anchoredPosition.SetX( xPos );
 
-        if( !gameObject.activeSelf )
-            gameObject.SetActive( true );
+        if( gameObject.activeSelf && direction == -1 )
+            gameObject.SetActive( false );
     }
 
     public void ShowPage( int index )

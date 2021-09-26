@@ -32,12 +32,12 @@ public class AppSettings : MonoBehaviour, ISavableComponent, IEventReceiver
         if( e.GetType() == typeof( UseShortTrickNamesEvent ) )
         {
             useShortTrickNames = ( ( UseShortTrickNamesEvent )e ).value;
-            DataHandler.Instance.Save();
+            DataHandler.Instance.Save( false );
         }
         else if( e.GetType() == typeof( CanPickLandedTricksEvent ) )
         {
             canPickLandedTricks = ( ( CanPickLandedTricksEvent )e ).value;
-            DataHandler.Instance.Save();
+            DataHandler.Instance.Save( false );
         }
         else if( e.GetType() == typeof( ResetSaveDataEvent ) )
         {
