@@ -8,12 +8,14 @@ public class PageNavigator : MonoBehaviour
     [SerializeField] private RectTransform panel = null;
     [SerializeField] private float centreX = 0.0f;
     [SerializeField] private float moveTimeSec = 0.0f;
+    [SerializeField] private GameObject confirmDeleteDataPanel = null;
     private float leftX;
     private int currentPage = 0;
 
     void Start()
     {
         gameObject.SetActive( false );
+        confirmDeleteDataPanel.SetActive( false );
 
         GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
         foreach( var page in pages )
@@ -31,6 +33,7 @@ public class PageNavigator : MonoBehaviour
     {
         if( !gameObject.activeSelf )
             gameObject.SetActive( true );
+        confirmDeleteDataPanel.SetActive( false );
 
         StartCoroutine( MovePanel( panel.anchoredPosition.x < centreX ? centreX : leftX ) );
     }
@@ -92,5 +95,10 @@ public class PageNavigator : MonoBehaviour
             ShowPage( ( currentPage - 1 + pages.Count ) % pages.Count );
         else if( direction == Swipe.Right )
             ShowPage( ( currentPage + 1 ) % pages.Count );
+    }
+
+    public void ToggleActive( GameObject obj )
+    {
+        obj.ToggleActive();
     }
 }

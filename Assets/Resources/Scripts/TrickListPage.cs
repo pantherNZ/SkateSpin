@@ -19,7 +19,8 @@ public class TrickListPage : IBasePage, IEventReceiver
         public DataHandler.TrickEntry entry;
         public GameObject uiElement;
         public Text text;
-        public bool isVisible;
+        public bool isVisibleFromRestriction;
+        public bool isVisibleFromFilter;
     }
 
     public class DifficultyData
@@ -51,7 +52,8 @@ public class TrickListPage : IBasePage, IEventReceiver
         infoPanel.SetActive( false );
         trickSelector = FindObjectOfType<TrickSelectorPage>();
 
-        restrictionDropDown.onValueChanged.AddListener( ( x ) => FilterEntries() );
+        restrictionDropDown.onValueChanged.AddListener( ( x ) => FilterEntries( true, false ) );
+        filter.onValueChanged.AddListener( ( x ) => FilterEntries( false, true ) );
     }
 
     public void OnEventReceived( IBaseEvent e )
@@ -144,7 +146,7 @@ public class TrickListPage : IBasePage, IEventReceiver
 
                     newDifficultyEntry.isOpen = !newDifficultyEntry.isOpen;
                     foreach( var trick in newDifficultyEntry.tricks )
-                        trick.uiElement.SetActive( newDifficultyEntry.isOpen && trick.isVisible );
+                        trick.uiElement.SetActive( newDifficultyEntry.isOpen && trick.isVisibleFromRestriction && trick.isVisibleFromFilter );
                 } );
             }
 
@@ -172,23 +174,32 @@ public class TrickListPage : IBasePage, IEventReceiver
                 foreach( var diffEntry in categoryInfo.perDifficultyData )
                 {
                     bool anyTrickVisible = false;
+                    bool categoryAndDifficultyOpen = ( diffEntry.isOpen || diffEntry.wasOpen ) && categoryInfo.isOpen;
+
                     foreach( var trick in diffEntry.tricks )
                     {
-                        anyTrickVisible |= trick.isVisible;
-                        trick.uiElement.SetActive( categoryInfo.isOpen && trick.isVisible );
+                        bool isVisible = trick.isVisibleFromRestriction && trick.isVisibleFromFilter;
+                        anyTrickVisible |= isVisible;
+                        trick.uiElement.SetActive( categoryAndDifficultyOpen && isVisible );
                     }
+
                     diffEntry.uiElement.SetActive( categoryInfo.isOpen && anyTrickVisible );
+                    diffEntry.isOpen = categoryAndDifficultyOpen;
                 }
             } );
         }
     }
 
-    public void FilterEntries()
+    public void FilterEntries( bool updateRestriction, bool updateFilter )
     {
         var restrictionOption = restrictionDropDown.options[restrictionDropDown.value].text;
+        var filterLowercase = filter.text.ToLower();
         bool filterLanded = restrictionOption == "Complete Tricks";
         bool filterBanned = restrictionOption == "Banned Tricks";
         bool filterUnlanded = restrictionOption == "Incomplete Tricks";
+
+        if( ( filterLowercase.Length > 0 || restrictionDropDown.value != 0 ) && !difficultyEntryData.Any( ( data ) => data.Value.isOpen ) )
+            CollapseOrExpandAllEntries( false );
 
         foreach( var (category, data) in difficultyEntryData )
         {
@@ -200,21 +211,32 @@ public class TrickListPage : IBasePage, IEventReceiver
 
                 foreach( var trickEntry in diffEntry.tricks )
                 {
-                    trickEntry.isVisible = ( filterBanned && trickEntry.entry.status == DataHandler.TrickEntry.Status.Banned )
-                        || ( filterLanded && trickEntry.entry.status == DataHandler.TrickEntry.Status.Landed )
-                        || ( filterUnlanded && trickEntry.entry.status == DataHandler.TrickEntry.Status.Default )
-                        || restrictionDropDown.value == 0;
-                    anyTrickVisible |= trickEntry.isVisible;
-                    trickEntry.uiElement.SetActive( diffEntry.isOpen && trickEntry.isVisible );
+                    if( updateRestriction )
+                        trickEntry.isVisibleFromRestriction = ( filterBanned && trickEntry.entry.status == DataHandler.TrickEntry.Status.Banned )
+                            || ( filterLanded && trickEntry.entry.status == DataHandler.TrickEntry.Status.Landed )
+                            || ( filterUnlanded && trickEntry.entry.status == DataHandler.TrickEntry.Status.Default )
+                            || restrictionDropDown.value == 0;
+
+                    if( updateFilter )
+                        trickEntry.isVisibleFromFilter = filter.text.Length == 0 || trickEntry.entry.name.ToLower().Contains( filterLowercase );
+
+                    bool isVisible = trickEntry.isVisibleFromRestriction && trickEntry.isVisibleFromFilter;
+                    anyTrickVisible |= isVisible;
+                    trickEntry.uiElement.SetActive( diffEntry.isOpen && isVisible );
                 }
 
                 data.anyChildVisible |= anyTrickVisible;
-                diffEntry.uiElement.SetActive( diffEntry.isOpen && anyTrickVisible );
+                diffEntry.uiElement.SetActive( data.isOpen && diffEntry.isOpen && anyTrickVisible );
             }
         }
     }
 
-    public void ShrinkAllEntries()
+    public void ToggleAllEntries()
+    {
+        CollapseOrExpandAllEntries( difficultyEntryData.Any( ( data ) => data.Value.isOpen ) );
+    }
+
+    public void CollapseOrExpandAllEntries( bool collapse )
     {
         difficultyCallbackEnabled = false;
 
@@ -222,12 +244,12 @@ public class TrickListPage : IBasePage, IEventReceiver
         {
             for( int i = 0; i < data.perDifficultyData.Count; ++i )
             {
-                data.perDifficultyData[i].wasOpen = false;
-                if( data.perDifficultyData[i].isOpen )
+                data.perDifficultyData[i].wasOpen = !collapse;
+                if( collapse && data.perDifficultyData[i].isOpen )
                     data.perDifficultyData[i].button.onClick.Invoke();
             }
 
-            if( data.isOpen )
+            if( data.isOpen == collapse )
                 data.categoryEntry.onClick.Invoke();
         }
 
@@ -255,7 +277,7 @@ public class TrickListPage : IBasePage, IEventReceiver
 
     public override void OnShown()
     {
-        FilterEntries();
+        FilterEntries( true, true );
         RecalculateCompletionPercentages( true );
     }
 
@@ -289,7 +311,7 @@ public class TrickListPage : IBasePage, IEventReceiver
 
     public void ExpandCategory( string category )
     {
-        ShrinkAllEntries();
+        CollapseOrExpandAllEntries( false );
         difficultyEntryData[category].categoryEntry.onClick.Invoke();
     }
 
