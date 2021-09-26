@@ -22,6 +22,8 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     [SerializeField] private Text currentTrickText = null;
     [SerializeField] private Text difficultyText = null;
     [SerializeField] private MinMaxSlider difficultySlider = null;
+    [SerializeField] private Button nextButton = null;
+    [SerializeField] private Button previousButton = null;
     private int index;
 
     public class LandData
@@ -50,6 +52,8 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         EventSystem.Instance.AddSubscriber( this );
         SaveGameSystem.AddSaveableComponent( this );
         difficultySlider.OnValueSet += ( min, max ) => trickPoolDirty = true;
+        previousButton.gameObject.SetActive( false );
+        nextButton.gameObject.SetActive( false );
     }
 
     void Initialise()
@@ -201,6 +205,10 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         // TODO: Play animation / visual
         --previousIndex;
         UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
+        previousButton.gameObject.SetActive( true );
+
+        if( previousIndex == 0 )
+            nextButton.gameObject.SetActive( false );
     }
 
     public void PreviousTrick()
@@ -211,6 +219,10 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         // TODO: Play animation / visual
         previousIndex++;
         UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
+        nextButton.gameObject.SetActive( true );
+
+        if( previousIndex >= previousTrickList.Count )
+            previousButton.gameObject.SetActive( false );
     }
 
     public void RandomiseTrickList()
@@ -245,6 +257,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
             return;
 
         previousTrickList.Add( currentTrickList[index] );
+        previousButton.gameObject.SetActive( true );
 
         if( previousTrickList.Count > 50 )
             previousTrickList.RemoveAt( 0 );
@@ -257,7 +270,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
         // TODO: Play animation / visual
         currentTrickList[index].status = DataHandler.TrickEntry.Status.Banned;
-        NextTrick();
+        RandomiseTrickList();
         DataHandler.Instance.Save( true );
     }
 
@@ -269,7 +282,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         // TODO: Play animation / visual
         currentTrickList[index].status = DataHandler.TrickEntry.Status.Landed;
         landedDataDirty = true;
-        NextTrick();
+        RandomiseTrickList();
         DataHandler.Instance.Save( true );
     }
 
