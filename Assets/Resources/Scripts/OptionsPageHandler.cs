@@ -15,18 +15,23 @@ class OptionsPageHandler : IBasePage, IEventReceiver
 
     [SerializeField] RectTransform optionsPanel = null;
     [SerializeField] float topHeight = -420.0f;
+    [SerializeField] float roundUpHeightOffset = 100.0f;
     [SerializeField] float moveTimeSec = 0.25f;
     [SerializeField] List<CategoryButton> toggles = new List<CategoryButton>();
     [SerializeField] Toggle shortTrickNamesToggle = null;
     [SerializeField] Toggle canPickLandedTricksToggle = null;
 
     TrickSelectorPage trickSelector;
+    private new Camera camera;
     float bottomHeight;
+    float moveSpeed;
 
     private void Awake()
     {
         EventSystem.Instance.AddSubscriber( this );
         trickSelector = FindObjectOfType<TrickSelectorPage>();
+        camera = Camera.main;
+        moveSpeed = Mathf.Abs( topHeight - bottomHeight ) / moveTimeSec;
     }
 
     private void Start()
@@ -72,18 +77,26 @@ class OptionsPageHandler : IBasePage, IEventReceiver
             toggle.toggle.SetIsOnWithoutNotify( trickSelector.CurrentCategories.Contains( toggle.category ) );
     }
 
-    //bool dragging;
+    bool dragging;
+    Vector2 startDragMousePos;
+    Vector2 startDragPos;
     bool pointerDown;
 
     public void StartDrag()
     {
-        //dragging = true;
+        dragging = true;
         pointerDown = false;
+        startDragMousePos = Input.mousePosition;
+        startDragPos = optionsPanel.anchoredPosition;
     }
 
     public void StopDrag()
     {
-        //dragging = false;
+        dragging = false;
+        if( startDragPos.y > bottomHeight )
+            StartCoroutine( MoveToHeight( optionsPanel.anchoredPosition.y < ( topHeight - roundUpHeightOffset ) ? bottomHeight : topHeight ) );
+        else
+            StartCoroutine( MoveToHeight( optionsPanel.anchoredPosition.y < ( bottomHeight + roundUpHeightOffset ) ? bottomHeight : topHeight ) );
     }
 
     public void PointerDown()
@@ -97,6 +110,15 @@ class OptionsPageHandler : IBasePage, IEventReceiver
             ToggleOptions();
     }
 
+    private void Update()
+    {
+        if( dragging )
+        {
+            var yPos = Mathf.Clamp( startDragPos.y + Input.mousePosition.y - startDragMousePos.y, bottomHeight, topHeight );
+            optionsPanel.anchoredPosition = optionsPanel.anchoredPosition.SetY( yPos );
+        }
+    }
+
     public void ToggleOptions()
     {
         StartCoroutine( MoveToHeight( optionsPanel.anchoredPosition.y < topHeight ? topHeight : bottomHeight ) );
@@ -104,13 +126,12 @@ class OptionsPageHandler : IBasePage, IEventReceiver
 
     private IEnumerator MoveToHeight( float toHeight )
     {
-        float speed = Mathf.Abs( toHeight - optionsPanel.anchoredPosition.y ) / moveTimeSec;
         float direction = Mathf.Sign( toHeight - optionsPanel.anchoredPosition.y );
 
         while( ( direction > 0 && optionsPanel.anchoredPosition.y < toHeight ) ||
                ( direction < 0 && optionsPanel.anchoredPosition.y > toHeight ) )
         {
-            var difference = Time.deltaTime * speed;
+            var difference = Time.deltaTime * moveSpeed;
             difference = Mathf.Min( difference, Mathf.Abs( toHeight - optionsPanel.anchoredPosition.y ) );
             optionsPanel.anchoredPosition = optionsPanel.anchoredPosition.SetY( optionsPanel.anchoredPosition.y + difference * direction );
             yield return null;

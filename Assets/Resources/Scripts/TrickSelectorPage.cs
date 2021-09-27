@@ -295,7 +295,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         if( Utility.FunctionTimer.GetTimer( timerName ) != null )
             return;
 
-        visual.gameObject.SetActive( true );
+        visual.SetActive( true );
         visual.transform.localScale = new Vector3( 5.0f, 5.0f, 5.0f );
 
         float bannedTimer = 0.2f;
@@ -309,7 +309,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         Utility.FunctionTimer.CreateTimer( 2.0f, () =>
         {
             RandomiseTrickList();
-            visual.gameObject.SetActive( false );
+            visual.SetActive( false );
         }, timerName );
     }
 
