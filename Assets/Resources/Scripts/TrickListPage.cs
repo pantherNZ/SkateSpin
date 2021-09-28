@@ -9,7 +9,6 @@ public class TrickListPage : IBasePage, IEventReceiver
     [SerializeField] GameObject categoryHeadingPrefab = null;
     [SerializeField] GameObject difficultyHeadingPrefab = null;
     [SerializeField] GameObject trickEntryPrefab = null;
-    [SerializeField] GameObject infoPanel = null;
     [SerializeField] Dropdown restrictionDropDown = null;
     [SerializeField] InputField filter = null;
     TrickSelectorPage trickSelector;
@@ -49,7 +48,6 @@ public class TrickListPage : IBasePage, IEventReceiver
     private void Awake()
     {
         EventSystem.Instance.AddSubscriber( this );
-        infoPanel.SetActive( false );
         trickSelector = FindObjectOfType<TrickSelectorPage>();
 
         restrictionDropDown.onValueChanged.AddListener( ( x ) => FilterEntries( true, false ) );
@@ -313,10 +311,5 @@ public class TrickListPage : IBasePage, IEventReceiver
     {
         CollapseOrExpandAllEntries( false );
         difficultyEntryData[category].categoryEntry.onClick.Invoke();
-    }
-
-    public void ToggleInfoPanel()
-    {
-        infoPanel.ToggleActive();
     }
 }

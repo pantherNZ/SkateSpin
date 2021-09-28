@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PageNavigator : MonoBehaviour
 {
@@ -17,16 +18,11 @@ public class PageNavigator : MonoBehaviour
         gameObject.SetActive( false );
         confirmDeleteDataPanel.SetActive( false );
 
-        GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
         foreach( var page in pages )
-        {
             page.SetActive( false );
-            page.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
-        }
 
         leftX = panel.anchoredPosition.x;
         Utility.FunctionTimer.CreateTimer( 0.01f, () => ShowPage( 0 ) );
-        SwipeManager.OnSwipeDetected += OnSwipeDetected;
     }
 
     public void ToggleMenu()
@@ -87,14 +83,6 @@ public class PageNavigator : MonoBehaviour
 
         panel.anchoredPosition = panel.anchoredPosition.SetX( leftX );
         currentPage = index;
-    }
-
-    void OnSwipeDetected( Swipe direction, Vector2 swipeVelocity )
-    {
-        if( direction == Swipe.Left )
-            ShowPage( ( currentPage - 1 + pages.Count ) % pages.Count );
-        else if( direction == Swipe.Right )
-            ShowPage( ( currentPage + 1 ) % pages.Count );
     }
 
     public void ToggleActive( GameObject obj )
