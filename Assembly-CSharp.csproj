@@ -79,7 +79,6 @@
     <Compile Include="Assets\Resources\Scripts\MinMaxSlider.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\EventSystem.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\SyncSolutionUtilities.cs" />
-    <Compile Include="Assets\Resources\Scripts\PageSliderHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -69,11 +69,11 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
     void IEventReceiver.OnEventReceived( IBaseEvent e )
     {
-        if( e.GetType() == typeof( UseShortTrickNamesEvent ) && currentTrickList.Count > 0 )
-            UpdateCurrentTrick( ( ( UseShortTrickNamesEvent )e ).value );
-        else if( e.GetType() == typeof( DataLoadedEvent ) )
+        if( e is UseShortTrickNamesEvent trickEvent && currentTrickList.Count > 0 )
+            UpdateCurrentTrick( trickEvent.value );
+        else if( e is DataLoadedEvent )
             Initialise();
-        else if( e.GetType() == typeof( ResetSaveDataEvent ) )
+        else if( e is ResetSaveDataEvent )
             ResetSaveData();
     }
 
@@ -220,7 +220,6 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         if( currentTrickList.Count == 0 || previousIndex >= previousTrickList.Count )
             return;
 
-        // TODO: Play animation / visual
         previousIndex++;
         UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
         nextButton.gameObject.SetActive( true );
@@ -231,8 +230,6 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
     public void RandomiseTrickList()
     {
-        // TODO: Play animation / visual
-
         if( trickPoolDirty )
         {
             RecalculateCurrentTrickList();

@@ -202,6 +202,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2553477}
   m_CullTransparentMesh: 1
+--- !u!1 &8137311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8137312}
+  m_Layer: 0
+  m_Name: PageCentre
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8137312
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8137311}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1295451349}
+  m_Father: {fileID: 676028594}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &20355016
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +321,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 292800871}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
         m_MethodName: ToggleMenu
         m_Mode: 1
@@ -1328,7 +1364,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 292800871}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
         m_MethodName: ShowPage
         m_Mode: 3
@@ -2158,7 +2194,6 @@ GameObject:
   - component: {fileID: 292800868}
   - component: {fileID: 292800867}
   - component: {fileID: 292800866}
-  - component: {fileID: 292800871}
   m_Layer: 5
   m_Name: MenuDisplay
   m_TagString: Untagged
@@ -2248,26 +2283,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &292800871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 292800865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21676ec96320ef9478f6ad4f0f0b3410, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pages:
-  - {fileID: 327757034}
-  - {fileID: 1531070282}
-  - {fileID: 1188084204}
-  panel: {fileID: 1364908102}
-  centreX: -241
-  moveTimeSec: 0.1
-  confirmDeleteDataPanel: {fileID: 1858378882}
 --- !u!1 &301679171
 GameObject:
   m_ObjectHideFlags: 0
@@ -2351,7 +2366,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 292800871}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
         m_MethodName: ToggleMenu
         m_Mode: 1
@@ -4038,7 +4053,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 292800871}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
         m_MethodName: ToggleMenu
         m_Mode: 1
@@ -4233,7 +4248,7 @@ PrefabInstance:
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 292800871}
+      objectReference: {fileID: 0}
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -4464,7 +4479,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 292800871}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
         m_MethodName: ToggleMenu
         m_Mode: 1
@@ -5117,7 +5132,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 525695118}
-  - {fileID: 1295451349}
+  - {fileID: 8137312}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5196,10 +5211,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 676028593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8641c88ebf33f9458336d5456359b56, type: 3}
+  m_Script: {fileID: 11500000, guid: 21676ec96320ef9478f6ad4f0f0b3410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalPageLayout: {fileID: 1295451350}
+  pages:
+  - {fileID: 327757034}
+  - {fileID: 1531070282}
+  - {fileID: 1188084204}
+  - {fileID: 150857061}
+  PageNavigationCanvas: {fileID: 292800865}
+  panel: {fileID: 1364908102}
+  centreX: -241
+  confirmDeleteDataPanel: {fileID: 1858378882}
+  horizontalPageLayout: {fileID: 1295451349}
+  offsetRoundingWidth: 250
+  pageMoveTimeSec: 0.15
+  navigatorMoveTimeSec: 0.15
 --- !u!1 &707084880
 GameObject:
   m_ObjectHideFlags: 0
@@ -5828,7 +5855,7 @@ PrefabInstance:
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 292800871}
+      objectReference: {fileID: 0}
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -6087,7 +6114,7 @@ PrefabInstance:
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 292800871}
+      objectReference: {fileID: 0}
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -6879,7 +6906,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 292800871}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
         m_MethodName: ToggleMenu
         m_Mode: 1
@@ -6998,7 +7025,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 292800871}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
         m_MethodName: ToggleActive
         m_Mode: 2
@@ -7325,7 +7352,7 @@ PrefabInstance:
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 292800871}
+      objectReference: {fileID: 0}
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -8226,7 +8253,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 292800871}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
         m_MethodName: ToggleMenu
         m_Mode: 1
@@ -9681,7 +9708,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295451348}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9689,8 +9716,8 @@ RectTransform:
   - {fileID: 327757038}
   - {fileID: 1531070286}
   - {fileID: 1188084208}
-  m_Father: {fileID: 676028594}
-  m_RootOrder: 1
+  m_Father: {fileID: 8137312}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10605,7 +10632,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 292800871}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
         m_MethodName: ShowPage
         m_Mode: 3
@@ -11361,7 +11388,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 292800871}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
         m_MethodName: ToggleMenu
         m_Mode: 1
@@ -12515,7 +12542,7 @@ PrefabInstance:
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 292800871}
+      objectReference: {fileID: 0}
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -13086,7 +13113,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 292800871}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
         m_MethodName: ShowPage
         m_Mode: 3
@@ -13695,7 +13722,7 @@ PrefabInstance:
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 292800871}
+      objectReference: {fileID: 0}
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 

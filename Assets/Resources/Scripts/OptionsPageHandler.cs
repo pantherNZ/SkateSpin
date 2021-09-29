@@ -20,6 +20,7 @@ class OptionsPageHandler : IBasePage, IEventReceiver
     [SerializeField] List<CategoryButton> toggles = new List<CategoryButton>();
     [SerializeField] Toggle shortTrickNamesToggle = null;
     [SerializeField] Toggle canPickLandedTricksToggle = null;
+    [SerializeField] int dragPriority = 1;
 
     TrickSelectorPage trickSelector;
     private new Camera camera;
@@ -59,13 +60,13 @@ class OptionsPageHandler : IBasePage, IEventReceiver
 
     void IEventReceiver.OnEventReceived( IBaseEvent e )
     {
-        if( e.GetType() == typeof( UseShortTrickNamesEvent ) )
+        if( e is UseShortTrickNamesEvent useShortTrickNamesEvent )
         {
-            shortTrickNamesToggle.SetIsOnWithoutNotify( ( ( UseShortTrickNamesEvent )e ).value );
+            shortTrickNamesToggle.SetIsOnWithoutNotify( useShortTrickNamesEvent.value );
         }
-        else if( e.GetType() == typeof( CanPickLandedTricksEvent ) )
+        else if( e is CanPickLandedTricksEvent canPickLandedTricksEvent )
         {
-            canPickLandedTricksToggle.SetIsOnWithoutNotify( ( ( CanPickLandedTricksEvent )e ).value );
+            canPickLandedTricksToggle.SetIsOnWithoutNotify( canPickLandedTricksEvent.value );
         }
     }
 
@@ -88,6 +89,8 @@ class OptionsPageHandler : IBasePage, IEventReceiver
         pointerDown = false;
         startDragMousePos = Input.mousePosition;
         startDragPos = optionsPanel.anchoredPosition;
+
+        EventSystem.Instance.TriggerEvent( new DragStartedEvent() { priority = dragPriority } );
     }
 
     public void StopDrag()

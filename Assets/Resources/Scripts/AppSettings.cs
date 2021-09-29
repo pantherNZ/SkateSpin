@@ -29,17 +29,17 @@ public class AppSettings : MonoBehaviour, ISavableComponent, IEventReceiver
 
     void IEventReceiver.OnEventReceived( IBaseEvent e )
     {
-        if( e.GetType() == typeof( UseShortTrickNamesEvent ) )
+        if( e is UseShortTrickNamesEvent useShortTrickNamesEvent )
         {
-            useShortTrickNames = ( ( UseShortTrickNamesEvent )e ).value;
+            useShortTrickNames = useShortTrickNamesEvent.value;
             DataHandler.Instance.Save( false );
         }
-        else if( e.GetType() == typeof( CanPickLandedTricksEvent ) )
+        else if( e is CanPickLandedTricksEvent canPickLandedTricksEvent )
         {
-            canPickLandedTricks = ( ( CanPickLandedTricksEvent )e ).value;
+            canPickLandedTricks = canPickLandedTricksEvent.value;
             DataHandler.Instance.Save( false );
         }
-        else if( e.GetType() == typeof( ResetSaveDataEvent ) )
+        else if( e is ResetSaveDataEvent )
         {
             useShortTrickNames = false;
             canPickLandedTricks = false;

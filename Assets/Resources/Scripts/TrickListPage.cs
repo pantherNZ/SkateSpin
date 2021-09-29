@@ -54,9 +54,9 @@ public class TrickListPage : IBasePage, IEventReceiver
         filter.onValueChanged.AddListener( ( x ) => FilterEntries( false, true ) );
     }
 
-    public void OnEventReceived( IBaseEvent e )
+    void IEventReceiver.OnEventReceived( IBaseEvent e )
     {
-        if( e.GetType() == typeof( DataLoadedEvent ) )
+        if( e is DataLoadedEvent )
             Initialise();
     }
 
