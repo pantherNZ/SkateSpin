@@ -172,7 +172,8 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
             if( dragEvent.priority > dragPriority )
             {
                 disableDragThisFrame = true;
-                FinishDrag();
+                horizontalPageLayout.anchoredPosition = horizontalPageLayout.anchoredPosition.SetX( 0.0f );
+                dragPos = null;
             }
        }
     }

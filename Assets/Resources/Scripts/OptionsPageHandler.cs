@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,7 @@ class OptionsPageHandler : IBasePage, IEventReceiver
     [SerializeField] Toggle shortTrickNamesToggle = null;
     [SerializeField] Toggle canPickLandedTricksToggle = null;
     [SerializeField] int dragPriority = 1;
+    [SerializeField] GameObject pullTab = null;
 
     TrickSelectorPage trickSelector;
     private new Camera camera;
@@ -78,47 +80,47 @@ class OptionsPageHandler : IBasePage, IEventReceiver
             toggle.toggle.SetIsOnWithoutNotify( trickSelector.CurrentCategories.Contains( toggle.category ) );
     }
 
-    bool dragging;
-    Vector2 startDragMousePos;
-    Vector2 startDragPos;
-    bool pointerDown;
+    private Vector2? dragPos;
+    private Vector2 startDragPos;
+    private Vector2 startMousePos;
+    private float clickTime;
 
-    public void StartDrag()
+    public static bool IsPointerOverGameObject( GameObject gameObject )
     {
-        dragging = true;
-        pointerDown = false;
-        startDragMousePos = Input.mousePosition;
-        startDragPos = optionsPanel.anchoredPosition;
+        UnityEngine.EventSystems.PointerEventData eventData = new UnityEngine.EventSystems.PointerEventData( UnityEngine.EventSystems.EventSystem.current );
+        eventData.position = Input.mousePosition;
+        List<UnityEngine.EventSystems.RaycastResult> raysastResults = new List<UnityEngine.EventSystems.RaycastResult>();
+        UnityEngine.EventSystems.EventSystem.current.RaycastAll( eventData, raysastResults );
+        return raysastResults.Any( x => x.gameObject == gameObject );
 
-        EventSystem.Instance.TriggerEvent( new DragStartedEvent() { priority = dragPriority } );
-    }
-
-    public void StopDrag()
-    {
-        dragging = false;
-        if( startDragPos.y > bottomHeight )
-            StartCoroutine( MoveToHeight( optionsPanel.anchoredPosition.y < ( topHeight - roundUpHeightOffset ) ? bottomHeight : topHeight ) );
-        else
-            StartCoroutine( MoveToHeight( optionsPanel.anchoredPosition.y < ( bottomHeight + roundUpHeightOffset ) ? bottomHeight : topHeight ) );
-    }
-
-    public void PointerDown()
-    {
-        pointerDown = true;
-    }
-
-    public void PointerUp()
-    {
-        if( pointerDown )
-            ToggleOptions();
     }
 
     private void Update()
     {
-        if( dragging )
+        if( dragPos != null )
         {
-            var yPos = Mathf.Clamp( startDragPos.y + Input.mousePosition.y - startDragMousePos.y, bottomHeight, topHeight );
+            var yPos = Mathf.Clamp( optionsPanel.anchoredPosition.y  + Input.mousePosition.y - dragPos.Value.y, bottomHeight, topHeight );
             optionsPanel.anchoredPosition = optionsPanel.anchoredPosition.SetY( yPos );
+            dragPos = Input.mousePosition;
+        }
+
+        if( Input.GetMouseButtonDown( 0 ) && IsPointerOverGameObject( pullTab ) )
+        {
+            dragPos = startMousePos = Input.mousePosition;
+            startDragPos = optionsPanel.anchoredPosition;
+            EventSystem.Instance.TriggerEvent( new DragStartedEvent() { priority = dragPriority } );
+            clickTime = Time.time;
+        }
+        else if( Input.GetMouseButtonUp( 0 ) )
+        {
+            if( ( startMousePos - Input.mousePosition.ToVector2() ).sqrMagnitude < 5.0f * 5.0 && ( Time.time - clickTime ) < 1.0f )
+                ToggleOptions();
+            else if( startDragPos.y > bottomHeight )
+                StartCoroutine( MoveToHeight( optionsPanel.anchoredPosition.y < ( topHeight - roundUpHeightOffset ) ? bottomHeight : topHeight ) );
+            else
+                StartCoroutine( MoveToHeight( optionsPanel.anchoredPosition.y < ( bottomHeight + roundUpHeightOffset ) ? bottomHeight : topHeight ) );
+
+            dragPos = null;
         }
     }
 
