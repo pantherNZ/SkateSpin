@@ -64,6 +64,9 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
 
     public void ShowPage( int index )
     {
+        if( currentPage == index )
+            return;
+
         foreach( var page in pages )
         {
             if( page == pages[index] )
@@ -77,7 +80,9 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
                     childHandler.OnHidden();
         }
 
-        //pages[index].SetActive( true );
+        while( currentPage != index )
+            ChangePageInstant( true );
+
         PageNavigationCanvas.SetActive( false );
 
         if( pages[index].gameObject.TryGetComponent( out IBasePage handler ) )
@@ -145,17 +150,19 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
         }
 
         if( fixPagesAfter )
-        {
-            var layoutRoot = horizontalPageLayout.GetChild( 0 );
-            var fromIndex = horizontalPageLayout.anchoredPosition.x < start_x ? 0 : layoutRoot.childCount - 1;
-            var toIndex = ( layoutRoot.childCount - 1 ) - fromIndex;
-            layoutRoot.GetChild( fromIndex ).SetSiblingIndex( toIndex );
-            horizontalPageLayout.anchoredPosition = horizontalPageLayout.anchoredPosition.SetX( 0.0f );
-        }
+            ChangePageInstant( horizontalPageLayout.anchoredPosition.x < start_x );
         else
-        {
             horizontalPageLayout.anchoredPosition = horizontalPageLayout.anchoredPosition.SetX( xPos );
-        }
+    }
+
+    void ChangePageInstant( bool left )
+    {
+        currentPage = ( currentPage + ( left ? 1 : ( pages.Count - 1 ) ) ) % pages.Count;
+        var layoutRoot = horizontalPageLayout.GetChild( 0 );
+        var fromIndex = left ? 0 : layoutRoot.childCount - 1;
+        var toIndex = ( layoutRoot.childCount - 1 ) - fromIndex;
+        layoutRoot.GetChild( fromIndex ).SetSiblingIndex( toIndex );
+        horizontalPageLayout.anchoredPosition = horizontalPageLayout.anchoredPosition.SetX( 0.0f );
     }
 
     void IEventReceiver.OnEventReceived( IBaseEvent e )

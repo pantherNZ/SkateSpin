@@ -321,7 +321,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 676028598}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
         m_MethodName: ToggleMenu
         m_Mode: 1
@@ -2366,7 +2366,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 676028598}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
         m_MethodName: ToggleMenu
         m_Mode: 1
@@ -2546,13 +2546,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82432b7b04deca64192a70034449a5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  root: {fileID: 8137312}
   currentTrickText: {fileID: 1339965544}
   difficultyText: {fileID: 127180465}
   difficultySlider: {fileID: 1297530597022729960}
   nextButton: {fileID: 875874163}
   previousButton: {fileID: 1210917216}
-  landedDisplay: {fileID: 49129317}
   bannedDisplay: {fileID: 259909906}
+  landedDisplay: {fileID: 49129317}
 --- !u!114 &330770421 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7468507144953131814, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
@@ -3363,7 +3364,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 250.87, y: 152}
+  m_AnchoredPosition: {x: 250.87, y: 324.39}
   m_SizeDelta: {x: -382.27, y: 98.0893}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &468382667
@@ -5812,7 +5813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionsPanel: {fileID: 1922119011}
-  topHeight: 500
+  topHeight: 420
   roundUpHeightOffset: 150
   moveTimeSec: 0.08
   toggles:
@@ -7805,7 +7806,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00024414062, y: -132}
+  m_AnchoredPosition: {x: 0.00024414062, y: 40.390015}
   m_SizeDelta: {x: 0.00054932, y: -374.4814}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1050649380
@@ -8255,7 +8256,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 676028598}
         m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
         m_MethodName: ToggleMenu
         m_Mode: 1
@@ -11520,7 +11521,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -201.46136, y: 152}
+  m_AnchoredPosition: {x: -201.46136, y: 324.39}
   m_SizeDelta: {x: -443.0998, y: 98.0893}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1629129695
@@ -14246,7 +14247,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1818056252}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.75501627
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -14548,7 +14549,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.2346, y: 386.61}
+  m_AnchoredPosition: {x: 0, y: 451}
   m_SizeDelta: {x: 1080.6062, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1297530597022729960
@@ -14662,7 +14663,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -339, y: 293}
+  m_AnchoredPosition: {x: 0, y: 393}
   m_SizeDelta: {x: 218.699, y: 68.6111}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1297530598094269029
@@ -14718,7 +14719,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 1
     m_MaxSize: 300
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0

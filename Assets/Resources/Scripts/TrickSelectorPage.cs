@@ -19,13 +19,14 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         get { return _currentCategories.AsReadOnly(); }
     }
 
+    [SerializeField] private RectTransform root = null;
     [SerializeField] private Text currentTrickText = null;
     [SerializeField] private Text difficultyText = null;
     [SerializeField] private MinMaxSlider difficultySlider = null;
     [SerializeField] private Button nextButton = null;
     [SerializeField] private Button previousButton = null;
-    [SerializeField] private Image landedDisplay = null;
     [SerializeField] private Image bannedDisplay = null;
+    [SerializeField] private Image landedDisplay = null;
     private int index;
 
     public class LandData
@@ -279,10 +280,9 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         if( currentTrickList.Count == 0 )
             return;
 
-        // TODO: Play animation / visual
         currentTrickList[index].status = DataHandler.TrickEntry.Status.Landed;
         DataHandler.Instance.Save( true );
-        PlayBanLandAnimation( bannedDisplay.gameObject );
+        PlayBanLandAnimation( landedDisplay.gameObject );
         landedDataDirty = true;
     }
 
@@ -300,7 +300,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
         Utility.FunctionTimer.CreateTimer( bannedTimer, () =>
         {
-            StartCoroutine( Utility.Shake( transform.GetChild( 1 ), 0.2f, 60.0f, 10.0f, 60.0f, 1.5f ) );
+            StartCoroutine( Utility.Shake( root, 0.2f, 60.0f, 10.0f, 60.0f, 1.5f ) );
         } );
 
         Utility.FunctionTimer.CreateTimer( 2.0f, () =>
