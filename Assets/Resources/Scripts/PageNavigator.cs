@@ -98,7 +98,7 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
 
     private bool disableDragThisFrame;
 
-    private void Update()
+    private void LateUpdate()
     {
         if( dragPos != null )
         {
@@ -123,14 +123,14 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
     private void FinishDrag()
     {
         if( Mathf.Abs( start_x - horizontalPageLayout.anchoredPosition.x ) < offsetRoundingWidth )
-            StartCoroutine( MovePage( start_x ) );
+            StartCoroutine( MovePage( start_x, false ) );
         else
-            StartCoroutine( MovePage( horizontalPageLayout.anchoredPosition.x < start_x ? start_x - screenWidth : start_x + screenWidth ) );
+            StartCoroutine( MovePage( start_x + ( horizontalPageLayout.anchoredPosition.x < start_x ? -screenWidth : screenWidth ), true ) );
 
         dragPos = null;
     }
 
-    private IEnumerator MovePage( float xPos )
+    private IEnumerator MovePage( float xPos, bool fixPagesAfter )
     {
         float speed = Mathf.Abs( xPos - horizontalPageLayout.anchoredPosition.x ) / pageMoveTimeSec;
         float direction = Mathf.Sign( xPos - horizontalPageLayout.anchoredPosition.x );
@@ -144,7 +144,11 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
             yield return null;
         }
 
-        horizontalPageLayout.anchoredPosition = horizontalPageLayout.anchoredPosition.SetX( xPos );
+        var layoutRoot = horizontalPageLayout.GetChild( 0 );
+        var fromIndex = horizontalPageLayout.anchoredPosition.x < start_x ? 0 : layoutRoot.childCount - 1;
+        var toIndex = ( layoutRoot.childCount - 1 ) - fromIndex;
+        layoutRoot.GetChild( fromIndex ).SetSiblingIndex( toIndex );
+        horizontalPageLayout.anchoredPosition = horizontalPageLayout.anchoredPosition.SetX( fixPagesAfter ? 0.0f : xPos );
     }
 
     void IEventReceiver.OnEventReceived( IBaseEvent e )

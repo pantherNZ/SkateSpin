@@ -5223,10 +5223,11 @@ MonoBehaviour:
   panel: {fileID: 1364908102}
   centreX: -241
   confirmDeleteDataPanel: {fileID: 1858378882}
-  horizontalPageLayout: {fileID: 1295451349}
+  horizontalPageLayout: {fileID: 8137312}
   offsetRoundingWidth: 250
   pageMoveTimeSec: 0.15
   navigatorMoveTimeSec: 0.15
+  dragPriority: 0
 --- !u!1 &707084880
 GameObject:
   m_ObjectHideFlags: 0
@@ -5829,6 +5830,7 @@ MonoBehaviour:
     category: Rail
   shortTrickNamesToggle: {fileID: 1629129695}
   canPickLandedTricksToggle: {fileID: 468382667}
+  dragPriority: 1
 --- !u!1001 &747593565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14244,7 +14246,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1818056252}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.75501627
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
