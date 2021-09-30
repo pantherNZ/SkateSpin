@@ -144,11 +144,18 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
             yield return null;
         }
 
-        var layoutRoot = horizontalPageLayout.GetChild( 0 );
-        var fromIndex = horizontalPageLayout.anchoredPosition.x < start_x ? 0 : layoutRoot.childCount - 1;
-        var toIndex = ( layoutRoot.childCount - 1 ) - fromIndex;
-        layoutRoot.GetChild( fromIndex ).SetSiblingIndex( toIndex );
-        horizontalPageLayout.anchoredPosition = horizontalPageLayout.anchoredPosition.SetX( fixPagesAfter ? 0.0f : xPos );
+        if( fixPagesAfter )
+        {
+            var layoutRoot = horizontalPageLayout.GetChild( 0 );
+            var fromIndex = horizontalPageLayout.anchoredPosition.x < start_x ? 0 : layoutRoot.childCount - 1;
+            var toIndex = ( layoutRoot.childCount - 1 ) - fromIndex;
+            layoutRoot.GetChild( fromIndex ).SetSiblingIndex( toIndex );
+            horizontalPageLayout.anchoredPosition = horizontalPageLayout.anchoredPosition.SetX( 0.0f );
+        }
+        else
+        {
+            horizontalPageLayout.anchoredPosition = horizontalPageLayout.anchoredPosition.SetX( xPos );
+        }
     }
 
     void IEventReceiver.OnEventReceived( IBaseEvent e )
