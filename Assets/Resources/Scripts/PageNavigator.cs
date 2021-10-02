@@ -15,6 +15,9 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
     [SerializeField] private float pageMoveTimeSec = 1.0f;
     [SerializeField] private float navigatorMoveTimeSec = 0.0f;
     [SerializeField] private int dragPriority = 0;
+    [SerializeField] private Image blurPage = null;
+    [SerializeField] private float blurAmount = 1.5f;
+    [SerializeField] private float blurSpeed = 3.0f;
 
     Vector2? dragPos;
     float start_x;
@@ -31,6 +34,8 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
         Utility.FunctionTimer.CreateTimer( 0.01f, () => ShowPage( 0 ) );
 
         EventSystem.Instance.AddSubscriber( this );
+
+        blurPage.material = Instantiate( blurPage.material );
     }
 
     public void ToggleMenu()
@@ -39,7 +44,27 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
             PageNavigationCanvas.SetActive( true );
         confirmDeleteDataPanel.SetActive( false );
 
+        StartCoroutine( InterpBlur( panel.anchoredPosition.x < centreX ? blurAmount : 0.0f ) );
         StartCoroutine( MovePanel( panel.anchoredPosition.x < centreX ? centreX : leftX ) );
+    }
+
+    private IEnumerator InterpBlur( float targetBlur )
+    {
+        float currentVal = blurAmount - targetBlur;
+        float direction = Mathf.Sign( targetBlur - currentVal );
+
+        while( ( direction > 0 && currentVal < targetBlur ) ||
+               ( direction < 0 && currentVal > targetBlur ) )
+        {
+            var difference = Time.deltaTime * blurSpeed;
+            difference = Mathf.Min( difference, Mathf.Abs( targetBlur - currentVal ) );
+            currentVal += difference * direction;
+            blurPage.material.SetFloat( "_Size", currentVal );
+            yield return null;
+        }
+
+        currentVal = targetBlur;
+        blurPage.material.SetFloat( "_Size", currentVal );
     }
 
     private IEnumerator MovePanel( float xPos )
@@ -163,6 +188,7 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
         var toIndex = ( layoutRoot.childCount - 1 ) - fromIndex;
         layoutRoot.GetChild( fromIndex ).SetSiblingIndex( toIndex );
         horizontalPageLayout.anchoredPosition = horizontalPageLayout.anchoredPosition.SetX( 0.0f );
+        blurPage.material.SetFloat( "_Size", 0.0f );
     }
 
     void IEventReceiver.OnEventReceived( IBaseEvent e )
