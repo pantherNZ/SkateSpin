@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 {
@@ -20,6 +21,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     }
 
     [SerializeField] private RectTransform root = null;
+    [SerializeField] private RectTransform trickDisplay = null;
     [SerializeField] private Text currentTrickText = null;
     [SerializeField] private Text difficultyText = null;
     [SerializeField] private MinMaxSlider difficultySlider = null;
@@ -27,7 +29,9 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     [SerializeField] private Button previousButton = null;
     [SerializeField] private Image bannedDisplay = null;
     [SerializeField] private Image landedDisplay = null;
+    [SerializeField] private GameObject trickInfoButton = null;
     private int index;
+    private bool showAlternateTrickName;
 
     public class LandData
     {
@@ -186,20 +190,26 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
             return;
 
         var trickToUse = previousIndex > 0 ? previousTrickList[previousTrickList.Count - previousIndex] : currentTrickList[index];
-        var displayName = trickToUse.name;
-        
-        //if( AppSettings.Instance.alternateTrickNamesEnabled )
-        //   displayName += ( currentTrickList[index].secondaryName.Length > 0 ? "\n(" + currentTrickList[index].secondaryName + ")" : string.Empty );
+        if( showAlternateTrickName )
+        {
+            currentTrickText.text = trickToUse.secondaryName;
+        }
+        else
+        {
+            var displayName = trickToUse.name;
 
-        if( useShortTrickNames )
-            foreach( var( toReplace, replaceWith ) in DataHandler.Instance.ShortTrickNameReplacements )
-                displayName = displayName.Replace( toReplace, replaceWith );
+            if( useShortTrickNames )
+                foreach( var (toReplace, replaceWith) in DataHandler.Instance.ShortTrickNameReplacements )
+                    displayName = displayName.Replace( toReplace, replaceWith );
 
-        currentTrickText.text = displayName;
+            currentTrickText.text = displayName;
+        }
 
         difficultyText.text = string.Format( "Difficulty - {0} ({1})",
             trickToUse.difficulty,
             DataHandler.Instance.DifficultyNames[trickToUse.difficulty] );
+
+        trickInfoButton.SetActive( trickToUse.secondaryName.Length > 0 );
     }
 
     public void NextTrick()
@@ -207,8 +217,8 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         if( currentTrickList.Count == 0 || previousIndex == 0 )
             return;
 
-        // TODO: Play animation / visual
         --previousIndex;
+        showAlternateTrickName = false;
         UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
         previousButton.gameObject.SetActive( true );
 
@@ -222,6 +232,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
             return;
 
         previousIndex++;
+        showAlternateTrickName = false;
         UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
         nextButton.gameObject.SetActive( true );
 
@@ -250,6 +261,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
             }
         }
 
+        showAlternateTrickName = false;
         UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
     }
 
@@ -315,6 +327,36 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         _currentCategories = new List<string> { "Flat Ground" };
         difficultySlider.SetMinValue( 1.0f );
         difficultySlider.SetMaxValue( 10.0f );
+    }
+
+    public void ToggleAlternateTrickName()
+    {
+        showAlternateTrickName = !showAlternateTrickName;
+        StartCoroutine( AlternateTrickInterpolate() );
+    }
+
+    IEnumerator AlternateTrickInterpolate()
+    {
+        var interp = 0.0f;
+        var durationSec = 1.0f;
+
+        while( interp < Mathf.PI * 2.0f )
+        {
+            var prev = interp;
+            interp += Time.deltaTime * ( Mathf.PI * 2.0f / durationSec );
+            trickDisplay.localScale = new Vector3( 1.0f, 0.5f + Mathf.Cos( interp ) / 2.0f, 1.0f );
+
+            if( prev < Mathf.PI && interp >= Mathf.PI )
+                UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
+
+            yield return null;
+        }
+
+        trickDisplay.localScale = new Vector3( 1.0f, 1.0f, 1.0f );
+
+        //yield return StartCoroutine( Utility.InterpolateScale( trickDisplay, new Vector3( 1.0f, 0.0f, 1.0f ), 0.3f ) );
+        //yield return new WaitForSeconds( 0.1f );
+        //yield return StartCoroutine( Utility.InterpolateScale( trickDisplay, new Vector3( 1.0f, 1.0f, 1.0f ), 0.3f ) );
     }
 
     void ISavableComponent.Serialise( BinaryWriter writer )

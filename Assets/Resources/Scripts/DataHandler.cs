@@ -173,7 +173,7 @@ public class DataHandler : IBasePage, ISavableComponent
                         {
                             index = index,
                             name = prefix + name,
-                            secondaryName = secondaryName,
+                            secondaryName = secondaryName.Length > 0 ? prefix + secondaryName : string.Empty,
                             category = category,
                             difficulty = difficulty,
                             hash = hash,
