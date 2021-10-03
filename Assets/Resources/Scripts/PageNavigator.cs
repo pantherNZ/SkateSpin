@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PageNavigator : MonoBehaviour, IEventReceiver
+public class PageNavigator : MonoBehaviour
 {
     [SerializeField] private List<GameObject> pages = new List<GameObject>();
     [SerializeField] private GameObject PageNavigationCanvas = null;
@@ -14,7 +15,6 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
     [SerializeField] private float offsetRoundingWidth = 100.0f;
     [SerializeField] private float pageMoveTimeSec = 1.0f;
     [SerializeField] private float navigatorMoveTimeSec = 0.0f;
-    [SerializeField] private int dragPriority = 0;
     [SerializeField] private Image blurPage = null;
     [SerializeField] private float blurAmount = 1.5f;
     [SerializeField] private float blurSpeed = 3.0f;
@@ -32,8 +32,6 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
 
         leftX = panel.anchoredPosition.x;
         Utility.FunctionTimer.CreateTimer( 0.01f, () => ShowPage( 0 ) );
-
-        EventSystem.Instance.AddSubscriber( this );
 
         blurPage.material = Instantiate( blurPage.material );
     }
@@ -92,33 +90,11 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
         if( currentPage == index )
             return;
 
-        foreach( var page in pages )
-        {
-            if( page == pages[index] )
-                continue;
-
-            if( page.gameObject.TryGetComponent( out IBasePage pageHandler ) )
-                pageHandler.OnHidden();
-
-            foreach( Transform child in page.transform )
-                if( child.TryGetComponent( out IBasePage childHandler ) )
-                    childHandler.OnHidden();
-        }
-
         while( currentPage != index )
             ChangePageInstant( true );
 
         PageNavigationCanvas.SetActive( false );
-
-        if( pages[index].gameObject.TryGetComponent( out IBasePage handler ) )
-            handler.OnShown();
-
-        foreach( Transform child in pages[index].transform )
-            if( child.TryGetComponent( out IBasePage childHandler ) )
-                childHandler.OnShown();
-
         panel.anchoredPosition = panel.anchoredPosition.SetX( leftX );
-        currentPage = index;
     }
 
     public void ToggleActive( GameObject obj )
@@ -126,28 +102,44 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
         obj.ToggleActive();
     }
 
-    private bool disableDragThisFrame;
-
-    private void LateUpdate()
+    private void Update()
     {
         if( dragPos != null )
         {
-            float val = horizontalPageLayout.anchoredPosition.x + Input.mousePosition.x - dragPos.Value.x;
+            float val = horizontalPageLayout.anchoredPosition.x + Utility.GetMouseOrTouchPos().x - dragPos.Value.x;
             horizontalPageLayout.anchoredPosition = horizontalPageLayout.anchoredPosition.SetX( Mathf.Clamp( val, start_x - screenWidth, start_x + screenWidth ) );
-            dragPos = Input.mousePosition;
+            dragPos = Utility.GetMouseOrTouchPos();
         }
 
-        if( !disableDragThisFrame && Input.GetMouseButtonDown( 0 ) )
+        if( Utility.IsMouseDownOrTouchStart() )
         {
-            dragPos = Input.mousePosition;
-            start_x = screenWidth * Mathf.Floor( horizontalPageLayout.anchoredPosition.x / screenWidth + 0.5f );
+            var eventData = new UnityEngine.EventSystems.PointerEventData( UnityEngine.EventSystems.EventSystem.current )
+            {
+                position = Utility.GetMouseOrTouchPos()
+            };
+            var raycastResults = new List<UnityEngine.EventSystems.RaycastResult>();
+            UnityEngine.EventSystems.EventSystem.current.RaycastAll( eventData, raycastResults );
+
+            if( raycastResults.All( x =>
+            {
+                return x.gameObject.GetComponent<Touchable>() == null &&
+                        x.gameObject.GetComponentInParent<Touchable>() == null &&
+                        x.gameObject.GetComponent<Button>() == null &&
+                        x.gameObject.GetComponentInParent<Button>() == null &&
+                        x.gameObject.GetComponent<Toggle>() == null &&
+                        x.gameObject.GetComponentInParent<Toggle>() == null &&
+                        x.gameObject.GetComponent<Slider>() == null &&
+                        x.gameObject.GetComponentInParent<Slider>() == null;
+            } ) )
+            {
+                dragPos = Utility.GetMouseOrTouchPos();
+                start_x = screenWidth * Mathf.Floor( horizontalPageLayout.anchoredPosition.x / screenWidth + 0.5f );
+            }
         }
-        else if( Input.GetMouseButtonUp( 0 ) )
+        else if( Utility.IsMouseUpOrTouchEnd() )
         {
             FinishDrag();
         }
-
-        disableDragThisFrame = false;
     }
 
     private void FinishDrag()
@@ -183,24 +175,32 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
     void ChangePageInstant( bool left )
     {
         currentPage = ( currentPage + ( left ? 1 : ( pages.Count - 1 ) ) ) % pages.Count;
+
+        foreach( var page in pages )
+        {
+            if( page == pages[currentPage] )
+                continue;
+
+            if( page.gameObject.TryGetComponent( out IBasePage pageHandler ) )
+                pageHandler.OnHidden();
+
+            foreach( Transform child in page.transform )
+                if( child.TryGetComponent( out IBasePage childHandler ) )
+                    childHandler.OnHidden();
+        }
+
         var layoutRoot = horizontalPageLayout.GetChild( 0 );
         var fromIndex = left ? 0 : layoutRoot.childCount - 1;
         var toIndex = ( layoutRoot.childCount - 1 ) - fromIndex;
         layoutRoot.GetChild( fromIndex ).SetSiblingIndex( toIndex );
         horizontalPageLayout.anchoredPosition = horizontalPageLayout.anchoredPosition.SetX( 0.0f );
         blurPage.material.SetFloat( "_Size", 0.0f );
-    }
 
-    void IEventReceiver.OnEventReceived( IBaseEvent e )
-    {
-       if( e is DragStartedEvent dragEvent )
-       {
-            if( dragEvent.priority > dragPriority )
-            {
-                disableDragThisFrame = true;
-                horizontalPageLayout.anchoredPosition = horizontalPageLayout.anchoredPosition.SetX( 0.0f );
-                dragPos = null;
-            }
-       }
+        if( pages[currentPage].gameObject.TryGetComponent( out IBasePage handler ) )
+            handler.OnShown();
+
+        foreach( Transform child in pages[currentPage].transform )
+            if( child.TryGetComponent( out IBasePage childHandler ) )
+                childHandler.OnShown();
     }
 }

@@ -47,10 +47,12 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     }
 
     private bool landedDataDirty = true;
-    public void SetLandedDataDirty()
+    public void SetTrickLanded( DataHandler.TrickEntry trick, bool saveInstant )
     {
+        trick.status = DataHandler.TrickEntry.Status.Landed;
         landedDataDirty = true;
-        DataHandler.Instance.Save( false );
+        EventSystem.Instance.TriggerEvent( new TrickLandedEvent() { trick = trick } );
+        DataHandler.Instance.Save( saveInstant );
     }
 
     private void Awake()
@@ -292,10 +294,8 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         if( currentTrickList.Count == 0 )
             return;
 
-        currentTrickList[index].status = DataHandler.TrickEntry.Status.Landed;
-        DataHandler.Instance.Save( true );
+        SetTrickLanded( currentTrickList[index], true );
         PlayBanLandAnimation( landedDisplay.gameObject );
-        landedDataDirty = true;
     }
 
     public void PlayBanLandAnimation( GameObject visual )

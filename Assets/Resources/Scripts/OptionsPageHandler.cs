@@ -21,7 +21,6 @@ class OptionsPageHandler : IBasePage, IEventReceiver
     [SerializeField] List<CategoryButton> toggles = new List<CategoryButton>();
     [SerializeField] Toggle shortTrickNamesToggle = null;
     [SerializeField] Toggle canPickLandedTricksToggle = null;
-    [SerializeField] int dragPriority = 1;
     [SerializeField] GameObject pullTab = null;
 
     TrickSelectorPage trickSelector;
@@ -85,16 +84,6 @@ class OptionsPageHandler : IBasePage, IEventReceiver
     private Vector2 startMousePos;
     private float clickTime;
 
-    public static bool IsPointerOverGameObject( GameObject gameObject )
-    {
-        UnityEngine.EventSystems.PointerEventData eventData = new UnityEngine.EventSystems.PointerEventData( UnityEngine.EventSystems.EventSystem.current );
-        eventData.position = Input.mousePosition;
-        List<UnityEngine.EventSystems.RaycastResult> raysastResults = new List<UnityEngine.EventSystems.RaycastResult>();
-        UnityEngine.EventSystems.EventSystem.current.RaycastAll( eventData, raysastResults );
-        return raysastResults.Any( x => x.gameObject == gameObject );
-
-    }
-
     private void Update()
     {
         if( dragPos != null )
@@ -104,14 +93,13 @@ class OptionsPageHandler : IBasePage, IEventReceiver
             dragPos = Input.mousePosition;
         }
 
-        if( Input.GetMouseButtonDown( 0 ) && IsPointerOverGameObject( pullTab ) )
+        if( Utility.IsMouseDownOrTouchStart() && Utility.IsPointerOverGameObject( pullTab ) )
         {
             dragPos = startMousePos = Input.mousePosition;
             startDragPos = optionsPanel.anchoredPosition;
-            EventSystem.Instance.TriggerEvent( new DragStartedEvent() { priority = dragPriority } );
             clickTime = Time.time;
         }
-        else if( Input.GetMouseButtonUp( 0 ) )
+        else if( Utility.IsMouseUpOrTouchEnd() )
         {
             if( ( startMousePos - Input.mousePosition.ToVector2() ).sqrMagnitude < 5.0f * 5.0 && ( Time.time - clickTime ) < 1.0f )
                 ToggleOptions();

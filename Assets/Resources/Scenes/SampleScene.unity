@@ -1499,6 +1499,7 @@ GameObject:
   m_Component:
   - component: {fileID: 197217321}
   - component: {fileID: 197217322}
+  - component: {fileID: 197217323}
   m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
@@ -1534,6 +1535,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197217320}
   m_CullTransparentMesh: 1
+--- !u!114 &197217323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197217320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1865d6e77eca9842a43aa4ce65e8a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &238377740
 GameObject:
   m_ObjectHideFlags: 0
@@ -4232,6 +4249,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 419723997}
     m_Modifications:
+    - target: {fileID: 3387511588854613142, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_TargetGraphic
       value: 
@@ -4251,7 +4272,7 @@ PrefabInstance:
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 676028598}
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -5231,7 +5252,6 @@ MonoBehaviour:
   offsetRoundingWidth: 250
   pageMoveTimeSec: 0.15
   navigatorMoveTimeSec: 0.15
-  dragPriority: 0
   blurPage: {fileID: 734321825}
   blurAmount: 2
   blurSpeed: 5
@@ -5834,7 +5854,6 @@ MonoBehaviour:
     category: Rail
   shortTrickNamesToggle: {fileID: 1629129695}
   canPickLandedTricksToggle: {fileID: 468382667}
-  dragPriority: 1
   pullTab: {fileID: 715349743}
 --- !u!1001 &747593565
 PrefabInstance:
@@ -5862,7 +5881,7 @@ PrefabInstance:
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 676028598}
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -6126,7 +6145,7 @@ PrefabInstance:
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 676028598}
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -7366,7 +7385,7 @@ PrefabInstance:
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 676028598}
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -12554,11 +12573,15 @@ PrefabInstance:
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 676028598}
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1188084210}
+    - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowPage
+      objectReference: {fileID: 0}
     - target: {fileID: 7468507144953131815, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -13262,6 +13285,8 @@ GameObject:
   - component: {fileID: 1916868485}
   - component: {fileID: 1916868486}
   - component: {fileID: 1916868487}
+  - component: {fileID: 1916868489}
+  - component: {fileID: 1916868488}
   m_Layer: 0
   m_Name: MaxSlider
   m_TagString: Untagged
@@ -13329,7 +13354,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1916868489}
   m_FillRect: {fileID: 0}
   m_HandleRect: {fileID: 2029313469}
   m_Direction: 0
@@ -13353,6 +13378,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doubleClickInterval: 0.5
+--- !u!222 &1916868488
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916868484}
+  m_CullTransparentMesh: 1
+--- !u!114 &1916868489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916868484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1865d6e77eca9842a43aa4ce65e8a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1922119010
 GameObject:
   m_ObjectHideFlags: 0
@@ -13734,7 +13783,7 @@ PrefabInstance:
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 676028598}
     - target: {fileID: 7468507144742248533, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -14138,6 +14187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2029313469}
   - component: {fileID: 2029313470}
+  - component: {fileID: 2029313471}
   m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
@@ -14173,6 +14223,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029313468}
   m_CullTransparentMesh: 1
+--- !u!114 &2029313471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029313468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1865d6e77eca9842a43aa4ce65e8a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2068987960
 GameObject:
   m_ObjectHideFlags: 0
@@ -14256,7 +14322,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1818056252}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.75501627
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

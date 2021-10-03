@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TrickLogPage : IBasePage
+public class TrickLogPage : IBasePage, IEventReceiver
 {
     [SerializeField] List<Image> progressCircles = new List<Image>();
     TrickSelectorPage trickSelector;
@@ -12,7 +12,12 @@ public class TrickLogPage : IBasePage
         trickSelector = FindObjectOfType<TrickSelectorPage>();
     }
 
-    public override void OnShown()
+    private void Start()
+    {
+        UpdateProgessCircles();
+    }
+
+    private void UpdateProgessCircles()
     {
         var landedData = trickSelector.LandedData;
 
@@ -29,6 +34,14 @@ public class TrickLogPage : IBasePage
             var value = ( ( float )landedData[category].landed ).SafeDivide( ( float )landedData[category].total ); // Random.value;
             x.GetComponentsInChildren<Image>()[1].fillAmount = value;
             x.GetComponentInChildren<Text>().text = Mathf.RoundToInt( value * 100.0f ).ToString() + "%";
+        }
+    }
+
+    void IEventReceiver.OnEventReceived( IBaseEvent e )
+    {
+        if( e is TrickLandedEvent )
+        {
+            UpdateProgessCircles();
         }
     }
 }

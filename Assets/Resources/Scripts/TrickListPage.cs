@@ -126,7 +126,7 @@ public class TrickListPage : IBasePage, IEventReceiver
 
                         if( before == DataHandler.TrickEntry.Status.Landed || trick.status == DataHandler.TrickEntry.Status.Landed )
                         {
-                            trickSelector.SetLandedDataDirty();
+                            trickSelector.SetTrickLanded( trick, false );
                             RecalculateCompletionPercentages( false );
                         }
 
