@@ -10,11 +10,8 @@ public class TrickLogPage : IBasePage, IEventReceiver
     private void Awake()
     {
         trickSelector = FindObjectOfType<TrickSelectorPage>();
-    }
 
-    private void Start()
-    {
-        UpdateProgessCircles();
+        EventSystem.Instance.AddSubscriber( this );
     }
 
     private void UpdateProgessCircles()
@@ -40,6 +37,10 @@ public class TrickLogPage : IBasePage, IEventReceiver
     void IEventReceiver.OnEventReceived( IBaseEvent e )
     {
         if( e is TrickLandedEvent )
+        {
+            UpdateProgessCircles();
+        }
+        else if( e is DataLoadedEvent )
         {
             UpdateProgessCircles();
         }

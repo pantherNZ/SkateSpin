@@ -18,6 +18,7 @@ public class PageNavigator : MonoBehaviour
     [SerializeField] private Image blurPage = null;
     [SerializeField] private float blurAmount = 1.5f;
     [SerializeField] private float blurSpeed = 3.0f;
+    [SerializeField] private VerticalLayoutGroup vertLayout = null;
 
     Vector2? dragPos;
     float start_x;
@@ -129,7 +130,8 @@ public class PageNavigator : MonoBehaviour
                         x.gameObject.GetComponent<Toggle>() == null &&
                         x.gameObject.GetComponentInParent<Toggle>() == null &&
                         x.gameObject.GetComponent<Slider>() == null &&
-                        x.gameObject.GetComponentInParent<Slider>() == null;
+                        x.gameObject.GetComponentInParent<Slider>() == null &&
+                        x.gameObject.GetComponent<Scrollbar>() == null;
             } ) )
             {
                 dragPos = Utility.GetMouseOrTouchPos();
@@ -174,27 +176,29 @@ public class PageNavigator : MonoBehaviour
 
     void ChangePageInstant( bool left )
     {
-        currentPage = ( currentPage + ( left ? 1 : ( pages.Count - 1 ) ) ) % pages.Count;
-
-        foreach( var page in pages )
-        {
-            if( page == pages[currentPage] )
-                continue;
-
-            if( page.gameObject.TryGetComponent( out IBasePage pageHandler ) )
-                pageHandler.OnHidden();
-
-            foreach( Transform child in page.transform )
-                if( child.TryGetComponent( out IBasePage childHandler ) )
-                    childHandler.OnHidden();
-        }
-
         var layoutRoot = horizontalPageLayout.GetChild( 0 );
         var fromIndex = left ? 0 : layoutRoot.childCount - 1;
         var toIndex = ( layoutRoot.childCount - 1 ) - fromIndex;
         layoutRoot.GetChild( fromIndex ).SetSiblingIndex( toIndex );
         horizontalPageLayout.anchoredPosition = horizontalPageLayout.anchoredPosition.SetX( 0.0f );
         blurPage.material.SetFloat( "_Size", 0.0f );
+        ChangePageInstant( ( currentPage + ( left ? 1 : ( pages.Count - 1 ) ) ) % pages.Count );
+    }
+
+    void ChangePageInstant( int page )
+    {
+        if( page == currentPage )
+            return;
+
+        var previousPage = currentPage;
+        currentPage = page;
+
+        if( pages[previousPage].gameObject.TryGetComponent( out IBasePage pageHandler ) )
+            pageHandler.OnHidden();
+
+        foreach( Transform child in pages[previousPage].transform )
+            if( child.TryGetComponent( out IBasePage childHandler ) )
+                childHandler.OnHidden();
 
         if( pages[currentPage].gameObject.TryGetComponent( out IBasePage handler ) )
             handler.OnShown();
@@ -202,5 +206,13 @@ public class PageNavigator : MonoBehaviour
         foreach( Transform child in pages[currentPage].transform )
             if( child.TryGetComponent( out IBasePage childHandler ) )
                 childHandler.OnShown();
+
+        var white = new Color( 230.0f / 255.0f, 238.0f / 255.0f, 248.0f / 255.0f );
+        var red = new Color( 1.0f, 79.0f / 255.0f, 79.0f / 255.0f );
+
+        vertLayout.transform.GetChild( previousPage ).GetComponentInChildren<Image>().color = white;
+        vertLayout.transform.GetChild( previousPage ).GetComponentInChildren<Text>().color = white;
+        vertLayout.transform.GetChild( currentPage ).GetComponentInChildren<Image>().color = red;
+        vertLayout.transform.GetChild( currentPage ).GetComponentInChildren<Text>().color = red;
     }
 }

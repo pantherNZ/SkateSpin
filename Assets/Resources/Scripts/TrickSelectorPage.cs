@@ -315,7 +315,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
             StartCoroutine( Utility.Shake( root, 0.2f, 60.0f, 10.0f, 60.0f, 1.5f ) );
         } );
 
-        Utility.FunctionTimer.CreateTimer( 2.0f, () =>
+        Utility.FunctionTimer.CreateTimer( 1.5f, () =>
         {
             RandomiseTrickList();
             visual.SetActive( false );
