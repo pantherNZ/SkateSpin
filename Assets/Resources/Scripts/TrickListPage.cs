@@ -57,7 +57,15 @@ public class TrickListPage : IBasePage, IEventReceiver
     void IEventReceiver.OnEventReceived( IBaseEvent e )
     {
         if( e is DataLoadedEvent )
+        {
             Initialise();
+        }
+        else if( e is TrickLandedEvent )
+        {
+            if( restrictionDropDown.value == 0 || restrictionDropDown.options[restrictionDropDown.value].text == "Banned Tricks" )
+                FilterEntries( true, false );
+            RecalculateCompletionPercentages( true );
+        }
     }
 
     private void Initialise()
@@ -186,6 +194,9 @@ public class TrickListPage : IBasePage, IEventReceiver
                 }
             } );
         }
+
+        FilterEntries( true, true );
+        RecalculateCompletionPercentages( true );
     }
 
     public void FilterEntries( bool updateRestriction, bool updateFilter )
@@ -271,12 +282,6 @@ public class TrickListPage : IBasePage, IEventReceiver
                         UpdateTrickEntryVisual( trickEntry );
             }
         }
-    }
-
-    public override void OnShown()
-    {
-        FilterEntries( true, true );
-        RecalculateCompletionPercentages( true );
     }
 
     private void UpdateTrickEntryVisual( TrickData trick )
