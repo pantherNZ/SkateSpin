@@ -43,7 +43,7 @@ nollie varial heel
 morgan
 inward heel
 halcab inwardheel
-nollie iwnard heel
+nollie inward heel
 switch varial heel
 bigflip
 switch bigflip BAIL
