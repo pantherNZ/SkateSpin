@@ -105,10 +105,11 @@
 "Laser Flip","360 Heeflip","Flat Ground",1,1,1,1
 "Backside Pop Shuvit Late Kickflip","INVALID","Flat Ground",1,"INVALID","INVALID","INVALID"
 "Fronstside Pop Shuvit Late Kickflip","INVALID","Flat Ground",1,"INVALID","INVALID","INVALID"
-"Backside Biggerspin Kickflip","INVALID","Flat Ground",1,1,"INVALID",1
+"Backside Biggerspin Kickflip","INVALID","Flat Ground",1,1,"INVALID","INVALID"
+"Nollie Biggerspin Kickflip","INVALID","Flat Ground",10,"INVALID","INVALID","INVALID"
 "540 Kickflip","INVALID","Flat Ground",1,1,"INVALID",1
 "Backside 540 Pop Shuvit","INVALID","Flat Ground",1,1,"INVALID","INVALID"
-"Forward Kickflip","Dolphin Flip","Flat Ground",5,6,8,8
+"Forward Kickflip","Dolphin Flip","Flat Ground",8,9,10,10
 "Backside Caballerial Bigspin","Fakie Gazelle","Flat Ground",5,"INVALID","INVALID","INVALID"
 "Backside Caballerial Bigspin Kickflip","Fakie Gazelle Kickflip","Flat Ground",7,"INVALID","INVALID","INVALID"
 "Backside Bigspin 360","Backside Gazelle","Flat Ground",1,"INVALID","INVALID","INVALID"
@@ -124,11 +125,14 @@
 "Frontside Pop Shuvit Rewind","INVALID","Flat Ground",4,3,3,4
 "Late Kickflip","INVALID","Flat Ground",5,5,7,6
 "Late Heelflip","INVALID","Flat Ground",6,6,8,7
-"Backside Half Cab Late Kickflip","Fakie Backside 180 Late Kickflip","Flat Ground",6,"INVALID","INVALID","INVALID"
-"Backside 180 Late Kickflip","INVALID","Flat Ground",6,"INVALID","INVALID","INVALID"
+"Backside Half Cab Late Kickflip","Fakie Backside 180 Late Kickflip","Flat Ground",8,"INVALID","INVALID","INVALID"
+"Backside 180 Late Kickflip","INVALID","Flat Ground",8,"INVALID",9,9
+"Frontside 180 Late Kickflip","INVALID","Flat Ground",9,"INVALID",10,10
 "Impossible","INVALID","Flat Ground",5,5,7,7
 "Frontfoot Impossible","INVALID","Flat Ground",6,6,7,7
-"Impossible Late Kickflip","INVALID","Flat Ground",9,10,10,10
+"Impossible Late Kickflip","INVALID","Flat Ground",9,"INVALID","INVALID","INVALID"
+"Triple Kickflip","INVALID","Flat Ground",10,"INVALID","INVALID","INVALID"
+"Merlin Twist","Switch Frontfoot Impossible Frontside 180","Flat Ground",10,"INVALID","INVALID","INVALID"
 "Manual","INVALID","Manual Pad",1,"INVALID","INVALID","INVALID"
 "Nose Manual","INVALID","Manual Pad",1,"INVALID","INVALID","INVALID"
 "Manual Frontside 180","INVALID","Manual Pad",2,"INVALID","INVALID","INVALID"

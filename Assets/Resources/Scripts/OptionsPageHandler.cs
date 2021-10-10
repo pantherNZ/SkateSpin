@@ -132,4 +132,9 @@ class OptionsPageHandler : IBasePage, IEventReceiver
 
         optionsPanel.anchoredPosition = optionsPanel.anchoredPosition.SetY( toHeight );
     }
+
+    public void OpenSupportSite()
+    {
+        Application.OpenURL( "https://www.buymeacoffee.com/AlexDenford" );
+    }
 }

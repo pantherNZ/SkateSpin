@@ -1,6 +1,6 @@
 import csv, sqlite3
 
-con = sqlite3.connect("Assets/StreamingAssets/Database.db")
+con = sqlite3.connect("../Assets/StreamingAssets/Database.db")
 cur = con.cursor()
 
 cur.execute("DROP TABLE IF EXISTS Tricks_Backup")
