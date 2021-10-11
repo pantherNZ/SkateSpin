@@ -16,7 +16,7 @@ with open('TrelloJson.json', 'r') as file:
         lists_by_id[list['id']] = list['name']
 
     for card in parsed_json["cards"]:
-        list_id = card['idList']
+        list_id = lists_by_id[card['idList']]
         trick = card['name']
         category = 'Difficulty'
 
@@ -33,7 +33,7 @@ with open('TrelloJson.json', 'r') as file:
         update_sql = f'''
             UPDATE Tricks
             SET {category}={list_id}
-            WHERE Name={trick};'''
+            WHERE Name="{trick}";'''
         cur.execute(update_sql)
 
         print(card['name'] + ' -> ' + list_id)

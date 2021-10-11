@@ -331,6 +331,9 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
     public void ToggleAlternateTrickName()
     {
+        if( Utility.FunctionTimer.GetTimer( "LandBanTimer" ) != null )
+            return;
+
         showAlternateTrickName = !showAlternateTrickName;
         StartCoroutine( AlternateTrickInterpolate() );
     }
