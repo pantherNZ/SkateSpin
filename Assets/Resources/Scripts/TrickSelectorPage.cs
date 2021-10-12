@@ -30,8 +30,13 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     [SerializeField] private Image bannedDisplay = null;
     [SerializeField] private Image landedDisplay = null;
     [SerializeField] private GameObject trickInfoButton = null;
+    [SerializeField] private GameObject selectorButtonsPanel = null;
+    [SerializeField] private GameObject challengeButtonsPanel = null;
+    [SerializeField] private GameObject optionsPanel = null;
+    [SerializeField] private GameObject menuButton = null;
     private int index;
     private bool showAlternateTrickName;
+    private bool challengeMode;
 
     public class LandData
     {
@@ -336,6 +341,29 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
         showAlternateTrickName = !showAlternateTrickName;
         StartCoroutine( AlternateTrickInterpolate() );
+    }
+
+    public void ActivateChallenge( string challenge )
+    {
+        if( !challengeMode )
+        {
+            ToggleChallengeMode();
+        }
+    }
+
+    public void DeactivateChallenge()
+    {
+        if( challengeMode )
+            ToggleChallengeMode();
+    }
+
+    private void ToggleChallengeMode()
+    {
+        challengeMode = !challengeMode;
+        optionsPanel.ToggleActive();
+        selectorButtonsPanel.ToggleActive();
+        challengeButtonsPanel.ToggleActive();
+        menuButton.ToggleActive();
     }
 
     IEnumerator AlternateTrickInterpolate()

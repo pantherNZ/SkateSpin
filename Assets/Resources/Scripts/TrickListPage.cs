@@ -93,9 +93,7 @@ public class TrickListPage : IBasePage, IEventReceiver
                 difficultyHeading.transform.SetParent( verticalLayout.transform, false );
 
                 var texts = difficultyHeading.GetComponentsInChildren<Text>();
-                texts[0].text = string.Format( "Difficulty - {0} ({1})",
-                        difficulty,
-                        DataHandler.Instance.DifficultyNames[difficulty] );
+                texts[0].text = string.Format( "Difficulty - {0} ({1})", difficulty, DataHandler.Instance.DifficultyNames[difficulty] );
                 buttons.Add( difficultyHeading.GetComponent<Button>() );
 
                 var newDifficultyEntry = new DifficultyData()
@@ -292,24 +290,7 @@ public class TrickListPage : IBasePage, IEventReceiver
             trick.entry.status == DataHandler.TrickEntry.Status.Landed ? new Color( 1.0f, 93.0f / 255.0f, 93.0f / 255.0f ) :
             trick.entry.status == DataHandler.TrickEntry.Status.Banned ? new Color( 0.5f, 0.5f, 0.5f, 0.75f ) :
             Color.white;
-        strikethrough.transform.localScale = strikethrough.transform.localScale.SetX( GetTextWidth( trick.text ) / 100.0f );
-    }
-
-    int GetTextWidth( Text text )
-    {
-        int totalLength = 0;
-
-        Font font = text.font; //text is my UI text
-        char[] arr = text.text.ToCharArray();
-
-        foreach( char c in arr )
-        {
-            font.RequestCharactersInTexture( c.ToString(), text.fontSize, text.fontStyle );
-            font.GetCharacterInfo( c, out var characterInfo, text.fontSize );
-            totalLength += characterInfo.advance;
-        }
-
-        return totalLength;
+        strikethrough.transform.localScale = strikethrough.transform.localScale.SetX( Utility.GetTextWidth( trick.text ) / 100.0f );
     }
 
     public void ExpandCategory( string category )

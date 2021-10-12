@@ -77,6 +77,26 @@ public class DataHandler : IBasePage, ISavableComponent
         get { return _shortTrickNameReplacements.AsReadOnly(); }
     }
 
+    public class ChallengeData
+    {
+        public string name;
+        public string person;
+        public ReadOnlyCollection<TrickEntry> tricks;
+        public int difficulty;
+        public string category;
+        public bool completed;
+    }
+
+    [HideInInspector] Dictionary<string, List<ChallengeData>> _challengesData = new Dictionary<string, List<ChallengeData>>();
+    public ReadOnlyDictionary<string, ReadOnlyCollection<ChallengeData>> ChallengesData
+    {
+        get
+        {
+            return new ReadOnlyDictionary<string, ReadOnlyCollection<ChallengeData>>( 
+                _challengesData.ToDictionary( k => k.Key, v => v.Value.AsReadOnly() ) );
+        }
+    }
+
     private string databasePath;
 
     static DataHandler _Instance;
@@ -202,6 +222,43 @@ public class DataHandler : IBasePage, ISavableComponent
 
             while( reader.Read() )
                 _shortTrickNameReplacements.Add( new Pair<string, string>( reader.GetString( 0 ), reader.GetString( 1 ) ) );
+        }
+
+        // Load challenges
+        using( var dbcmd = dbcon.CreateCommand() )
+        {
+            dbcmd.CommandText = "SELECT * from Challenges";
+            using var reader = dbcmd.ExecuteReader();
+
+            while( reader.Read() )
+            {
+                var name = reader.GetString( 0 );
+                var tricks = reader.GetString( 2 ).Split( new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries ).ToList();
+                var trickList = new List<TrickEntry>();
+                var challengeData = new ChallengeData()
+                {
+                    name = name,
+                    difficulty = reader.GetInt32( 1 ),
+                    person = reader.GetString( 3 ),
+                    category = reader.GetString( 4 )
+                };
+
+                foreach( var trick in trickList )
+                {
+                    var hash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( challengeData.category + trick ) );
+
+                    if( !trickDataHashMap.ContainsKey( hash ) )
+                    {
+                        Debug.LogError( string.Format( "Failed to find trick entry from hash for challenge {0} from ({1}, {2})", name, challengeData.category, trick ) );
+                        continue;
+                    }
+
+                    trickList.Add( trickDataHashMap[hash] );
+                }
+
+                challengeData.tricks = trickList.AsReadOnly();
+                _challengesData.GetOrAdd( name ).Add( challengeData );
+            }
         }
 
         SaveGameSystem.LoadGame( saveDataName );

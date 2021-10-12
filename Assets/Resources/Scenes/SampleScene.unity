@@ -609,7 +609,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 792884739}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1253,7 +1253,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 792884739}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.69200003}
   m_AnchorMax: {x: 0.5, y: 0.69200003}
@@ -1952,7 +1952,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 792884739}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2834,6 +2834,10 @@ MonoBehaviour:
   bannedDisplay: {fileID: 259909906}
   landedDisplay: {fileID: 49129317}
   trickInfoButton: {fileID: 757496957}
+  selectorButtonsPanel: {fileID: 689215953}
+  challengeButtonsPanel: {fileID: 1990778457}
+  optionsPanel: {fileID: 737827513}
+  menuButton: {fileID: 560833056}
 --- !u!114 &330770421 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7468507144953131814, guid: 48369331f78a5474d939c9ff56c3e314, type: 3}
@@ -3640,6 +3644,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d078c36ee86c204ba0ba675d2b5fd35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  verticalLayout: {fileID: 1761911781}
+  challengeEntryPrefab: {fileID: 5529567916543189694, guid: eb54a9780e51d7947bc8235e07112d13, type: 3}
+  challengeSubEntryPrefab: {fileID: 7297363964671424226, guid: 1a66c9072c48fa24a9da3de9c95c39a1, type: 3}
 --- !u!1 &419723996
 GameObject:
   m_ObjectHideFlags: 0
@@ -5938,7 +5945,7 @@ RectTransform:
   - {fileID: 1856717954}
   - {fileID: 1260656740}
   m_Father: {fileID: 792884739}
-  m_RootOrder: 2
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6264,7 +6271,7 @@ GameObject:
   - component: {fileID: 737827518}
   - component: {fileID: 737827519}
   m_Layer: 5
-  m_Name: OptionsPage
+  m_Name: OptionsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6922,13 +6929,13 @@ RectTransform:
   m_Children:
   - {fileID: 560833057}
   - {fileID: 491860539}
-  - {fileID: 689215954}
   - {fileID: 1085372582}
   - {fileID: 1093072366}
   - {fileID: 259909905}
   - {fileID: 49129316}
   - {fileID: 1277691067}
   - {fileID: 127180464}
+  - {fileID: 689215954}
   - {fileID: 1990778458}
   m_Father: {fileID: 327757038}
   m_RootOrder: 0
@@ -9323,7 +9330,7 @@ RectTransform:
   - {fileID: 1210917215}
   - {fileID: 875874162}
   m_Father: {fileID: 792884739}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9398,7 +9405,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 792884739}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -9612,7 +9619,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -10166,18 +10173,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 676028598}
-        m_TargetAssemblyTypeName: PageNavigator, Assembly-CSharp
-        m_MethodName: ToggleMenu
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16124,7 +16119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1990778458
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16446,7 +16441,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1818056252}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.75501627
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -16572,7 +16567,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1704077733}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.75501627
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -17914,7 +17909,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6309091844831104441, guid: a567fcbb28f332044a9e39a8dc1d5751, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6309091844831104441, guid: a567fcbb28f332044a9e39a8dc1d5751, type: 3}
       propertyPath: m_AnchorMax.x
