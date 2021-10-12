@@ -539,7 +539,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 20355020}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -2015,7 +2015,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &265079951
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2531,7 +2531,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 301679175}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -3518,7 +3518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &399826281
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4396,7 +4396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &509482190
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4472,7 +4472,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 509482191}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -4530,8 +4530,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 155.74622}
-  m_SizeDelta: {x: -77.0221, y: -930.2108}
+  m_AnchoredPosition: {x: 0, y: 211}
+  m_SizeDelta: {x: -210.8188, y: -1038.7949}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &512011956
 MonoBehaviour:
@@ -4567,11 +4567,10 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "SkateSpin is random trick selection system, based on skate dice but with
-    far more options and tracking of your progress of completions. Sort by difficulty
-    and various categories to get the exact tricks you want. \n\nPlease bare in mind
-    the difficulty of tricks is subjective, but if you think something is obviously
-    incorrect, please let us know below!\n\nCreated by Alex Denford. \nGraphics by
-    James Marson.\n\n\nPlease report bugs or weird problems to:\nemail@email.com"
+    far more options and tracking of your progress of completions. You can sort by
+    difficulty and various trick categories. \n\nKeep in mind the difficulty of tricks
+    is subjective, but if you think something is obviously wrong, please let us know
+    below!\n\nPlease report bugs\nSkateSpin@Gmail.com"
 --- !u!222 &512011957
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4938,10 +4937,10 @@ RectTransform:
   m_Father: {fileID: 849459158}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 238.95047, y: -537.9115}
+  m_SizeDelta: {x: 477.90094, y: 92.869225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &560833056
 GameObject:
@@ -5022,7 +5021,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 560833059}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -6429,7 +6428,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 746944186}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -7425,7 +7424,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: c961eb2dea4f3ef4f92a31ef7645f63f, type: 3}
-    m_FontSize: 20
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 2
@@ -7856,7 +7855,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 892217462}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -8008,8 +8007,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1.9564819, y: 142}
-  m_SizeDelta: {x: -798.4064, y: 91.1208}
+  m_AnchoredPosition: {x: -32.238, y: 150}
+  m_SizeDelta: {x: -695.0351, y: 148.9729}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &906923119
 MonoBehaviour:
@@ -8080,16 +8079,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.1273585, b: 0.1273585, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d70e53aa588ce5147a3fbb5a884fd0c4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 34770a282f6b09d4d819ab24fc8399ee, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -9930,10 +9929,10 @@ RectTransform:
   m_Father: {fileID: 849459158}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 238.95047, y: -415.04227}
+  m_SizeDelta: {x: 477.90094, y: 92.869225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1210917214
 GameObject:
@@ -10085,7 +10084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1217249815
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11462,7 +11461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1364908102
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11797,7 +11796,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.12800026, y: -100}
-  m_SizeDelta: {x: 371.0802, y: 110.5864}
+  m_SizeDelta: {x: 350, y: 110.5864}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1387812110
 MonoBehaviour:
@@ -12722,7 +12721,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1602110842}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -13533,7 +13532,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1713455174}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -14887,7 +14886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1858378883
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15242,7 +15241,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1916868489}
+  m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 0}
   m_HandleRect: {fileID: 2029313469}
   m_Direction: 0
@@ -15840,7 +15839,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1954036066
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16181,7 +16180,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.9565, y: -454}
+  m_AnchoredPosition: {x: -25.242, y: -468}
   m_SizeDelta: {x: 328.1653, y: 81.3506}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2019294752
@@ -16668,7 +16667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2083072543
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17021,7 +17020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1540718570791386752, guid: 816d50e7605c9f647a3988db9bc6e013, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1540718570791386752, guid: 816d50e7605c9f647a3988db9bc6e013, type: 3}
       propertyPath: m_AnchorMin.x
@@ -17029,15 +17028,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1540718570791386752, guid: 816d50e7605c9f647a3988db9bc6e013, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1540718570791386752, guid: 816d50e7605c9f647a3988db9bc6e013, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 477.90094
       objectReference: {fileID: 0}
     - target: {fileID: 1540718570791386752, guid: 816d50e7605c9f647a3988db9bc6e013, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 92.869225
       objectReference: {fileID: 0}
     - target: {fileID: 1540718570791386752, guid: 816d50e7605c9f647a3988db9bc6e013, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17069,11 +17068,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1540718570791386752, guid: 816d50e7605c9f647a3988db9bc6e013, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 238.95047
       objectReference: {fileID: 0}
     - target: {fileID: 1540718570791386752, guid: 816d50e7605c9f647a3988db9bc6e013, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -46.434612
       objectReference: {fileID: 0}
     - target: {fileID: 1540718570791386752, guid: 816d50e7605c9f647a3988db9bc6e013, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -17682,10 +17681,10 @@ RectTransform:
   m_Father: {fileID: 849459158}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 238.95047, y: -292.17307}
+  m_SizeDelta: {x: 477.90094, y: 92.869225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1540718571202024116
 GameObject:
@@ -17813,10 +17812,10 @@ RectTransform:
   m_Father: {fileID: 849459158}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 238.95047, y: -169.30383}
+  m_SizeDelta: {x: 477.90094, y: 92.869225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1540718571617878733
 CanvasRenderer:
