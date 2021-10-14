@@ -243,7 +243,7 @@ public class DataHandler : IBasePage, ISavableComponent
                     category = reader.GetString( 4 )
                 };
 
-                foreach( var trick in trickList )
+                foreach( var trick in tricks )
                 {
                     var hash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( challengeData.category + trick ) );
 

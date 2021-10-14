@@ -20,6 +20,9 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         get { return _currentCategories.AsReadOnly(); }
     }
 
+    private int challengeTrickIndex;
+    private DataHandler.ChallengeData currentChallenge;
+
     [SerializeField] private RectTransform root = null;
     [SerializeField] private RectTransform trickDisplay = null;
     [SerializeField] private Text currentTrickText = null;
@@ -34,6 +37,8 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     [SerializeField] private GameObject challengeButtonsPanel = null;
     [SerializeField] private GameObject optionsPanel = null;
     [SerializeField] private GameObject menuButton = null;
+    [SerializeField] private Text challengeInfoText = null;
+    [SerializeField] private Text optionsText = null;
     private int index;
     private bool showAlternateTrickName;
     private bool challengeMode;
@@ -87,6 +92,8 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
             Initialise();
         else if( e is ResetSaveDataEvent )
             ResetSaveData();
+        else if( e is StartChallengeRequestEvent startChallengeRequest )
+            ActivateChallenge( startChallengeRequest.challenge );
     }
 
     public void RecalculateCurrentTrickList()
@@ -193,10 +200,24 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
     private void UpdateCurrentTrick( bool useShortTrickNames )
     {
-        if( currentTrickList.IsEmpty() )
+        DataHandler.TrickEntry trickToUse = null;
+
+        if( challengeMode )
+        {
+            trickToUse = currentChallenge.tricks[challengeTrickIndex];
+        }
+        else if( previousIndex > 0 )
+        {
+            trickToUse = previousTrickList[previousTrickList.Count - previousIndex];
+        }
+        else if( index < currentTrickList.Count )
+        {
+            trickToUse = currentTrickList[index];
+        }
+
+        if( trickToUse == null )
             return;
 
-        var trickToUse = previousIndex > 0 ? previousTrickList[previousTrickList.Count - previousIndex] : currentTrickList[index];
         if( showAlternateTrickName )
         {
             currentTrickText.text = trickToUse.secondaryName;
@@ -249,22 +270,37 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
     public void RandomiseTrickList()
     {
-        if( trickPoolDirty )
+        if( challengeMode )
         {
-            RecalculateCurrentTrickList();
-            AppendPreviousTrick();
-            currentTrickList = new List<DataHandler.TrickEntry>( currentTrickPool ).RandomShuffle();
+            challengeTrickIndex++;
+
+            if( challengeTrickIndex >= currentChallenge.tricks.Count )
+            {
+                currentChallenge.completed = true;
+                EventSystem.Instance.TriggerEvent( new ChallengeCompletedEvent(){ challenge = currentChallenge } );
+                DeactivateChallenge();
+                return;
+            }
         }
         else
         {
-            AppendPreviousTrick();
-            index++;
-            previousIndex = 0;
-
-            if( index >= currentTrickList.Count )
+            if( trickPoolDirty )
             {
+                RecalculateCurrentTrickList();
+                AppendPreviousTrick();
                 currentTrickList = new List<DataHandler.TrickEntry>( currentTrickPool ).RandomShuffle();
-                index = 0;
+            }
+            else
+            {
+                AppendPreviousTrick();
+                index++;
+                previousIndex = 0;
+
+                if( index >= currentTrickList.Count )
+                {
+                    currentTrickList = new List<DataHandler.TrickEntry>( currentTrickPool ).RandomShuffle();
+                    index = 0;
+                }
             }
         }
 
@@ -286,6 +322,12 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
     public void BanCurrentTrick()
     {
+        if( challengeMode )
+        {
+            DeactivateChallenge();
+            return;
+        }
+
         if( currentTrickList.Count == 0 )
             return;
 
@@ -343,27 +385,36 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         StartCoroutine( AlternateTrickInterpolate() );
     }
 
-    public void ActivateChallenge( string challenge )
+    public void ActivateChallenge( DataHandler.ChallengeData challenge )
     {
         if( !challengeMode )
         {
             ToggleChallengeMode();
+            currentChallenge = challenge;
+            challengeInfoText.text = string.Format( "{0}\n <size=50>Defend against {1}</size>", currentChallenge.name, currentChallenge.person );
+            UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
         }
     }
 
     public void DeactivateChallenge()
     {
         if( challengeMode )
+        {
             ToggleChallengeMode();
+            EventSystem.Instance.TriggerEvent( new PageChangeRequestEvent() { page = 3 } );
+        }
     }
 
     private void ToggleChallengeMode()
     {
         challengeMode = !challengeMode;
+        currentChallenge = null;
         optionsPanel.ToggleActive();
         selectorButtonsPanel.ToggleActive();
         challengeButtonsPanel.ToggleActive();
         menuButton.ToggleActive();
+        challengeInfoText.gameObject.ToggleActive();
+        optionsText.gameObject.ToggleActive();
     }
 
     IEnumerator AlternateTrickInterpolate()

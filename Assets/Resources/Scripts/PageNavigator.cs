@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PageNavigator : MonoBehaviour
+public class PageNavigator : MonoBehaviour, IEventReceiver
 {
     [SerializeField] private List<GameObject> pages = new List<GameObject>();
     [SerializeField] private GameObject PageNavigationCanvas = null;
@@ -25,6 +25,11 @@ public class PageNavigator : MonoBehaviour
     private const float screenWidth = 1080.0f;
     private float leftX;
     private int currentPage = 0;
+
+    void Awake()
+    {
+        EventSystem.Instance.AddSubscriber( this );
+    }
 
     void Start()
     {
@@ -214,5 +219,13 @@ public class PageNavigator : MonoBehaviour
         vertLayout.transform.GetChild( previousPage ).GetComponentInChildren<Text>().color = white;
         vertLayout.transform.GetChild( currentPage ).GetComponentInChildren<Image>().color = red;
         vertLayout.transform.GetChild( currentPage ).GetComponentInChildren<Text>().color = red;
+    }
+
+    void IEventReceiver.OnEventReceived( IBaseEvent e )
+    {
+        if( e is PageChangeRequestEvent pageChangeRequest )
+        {
+            ShowPage( pageChangeRequest.page );
+        }
     }
 }

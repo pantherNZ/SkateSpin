@@ -9,6 +9,8 @@ public class ChallengesPage : IBasePage, IEventReceiver
     [SerializeField] GameObject challengeEntryPrefab = null;
     [SerializeField] GameObject challengeSubEntryPrefab = null;
 
+    private Dictionary<DataHandler.ChallengeData, GameObject> challengeToUIEntry = new Dictionary<DataHandler.ChallengeData, GameObject>();
+
     void Awake()
     {
         EventSystem.Instance.AddSubscriber( this );
@@ -20,6 +22,10 @@ public class ChallengesPage : IBasePage, IEventReceiver
         {
             Initialise();
         }
+        else if( e is ChallengeCompletedEvent challengeCompleted )
+        {
+            UpdateCompleted( challengeCompleted.challenge );
+        }
     }
 
     private void Initialise()
@@ -30,18 +36,39 @@ public class ChallengesPage : IBasePage, IEventReceiver
             entry.GetComponentInChildren<Text>().text = name;
             entry.transform.SetParent( verticalLayout.transform );
 
-            foreach( var challenge in challenges )
+            foreach( var( _, challenge ) in Utility.Enumerate( challenges ) )
             {
                 var subEntry = Instantiate( challengeSubEntryPrefab );
                 var text = subEntry.GetComponentInChildren<Text>();
                 text.text = "Defend against " + challenge.person;
                 subEntry.transform.SetParent( verticalLayout.transform );
 
-                var strikethrough = subEntry.GetComponentInChildren<Image>();
-                strikethrough.gameObject.SetActive( challenge.completed );
-                if( challenge.completed )
-                    strikethrough.transform.localScale = strikethrough.transform.localScale.SetX( Utility.GetTextWidth( text ) / 100.0f );
+                challengeToUIEntry.Add( challenge, subEntry );
+                UpdateCompleted( challenge );
             }
+        }
+    }
+
+    private void UpdateCompleted( DataHandler.ChallengeData challenge )
+    {
+        var thisChallenge = challenge;
+        var subEntry = challengeToUIEntry[thisChallenge];
+        var strikethrough = subEntry.GetComponentInChildren<Image>( true );
+        var text = subEntry.GetComponentInChildren<Text>();
+        strikethrough.gameObject.SetActive( thisChallenge.completed );
+        subEntry.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
+
+        if( thisChallenge.completed )
+        {
+            strikethrough.transform.localScale = strikethrough.transform.localScale.SetX( Utility.GetTextWidth( text ) / 100.0f );
+        }
+        else
+        {
+            subEntry.GetComponentInChildren<Button>().onClick.AddListener( () =>
+            {
+                EventSystem.Instance.TriggerEvent( new StartChallengeRequestEvent() { challenge = thisChallenge } );
+                EventSystem.Instance.TriggerEvent( new PageChangeRequestEvent() { page = 0 } );
+            } );
         }
     }
 }
