@@ -1,613 +1,615 @@
-Name,SecondaryName,Category,Difficulty,FakieDifficulty,SwitchDifficulty,NollieDifficulty
-Backside Boardslide,INVALID,"Ledge, Rail",1,1,1,1
-Frontside Boardslide,INVALID,"Ledge, Rail",1,1,1,1
-Backside 5050,INVALID,"Ledge, Rail",1,1,1,1
-Backside 5.0,INVALID,"Ledge, Rail",1,1,1,1
-Frontside 5.0,INVALID,"Ledge, Rail",1,1,1,1
-Backside Feeble,INVALID,Rail,1,1,1,1
-Frontside Feeble,INVALID,Rail,1,1,1,1
-Backside Smith,INVALID,"Ledge, Rail",1,1,1,1
-Frontside Smith,INVALID,"Ledge, Rail",1,1,1,1
-Backside Bluntslide,INVALID,"Ledge, Rail",1,1,1,1
-Frontside Bluntslide,INVALID,"Ledge, Rail",1,1,1,1
-Backside Bluntslide to fakie,INVALID,"Ledge, Rail",1,1,1,1
-Frontside Bluntslide to fakie,INVALID,"Ledge, Rail",1,1,1,1
-Backside Krooked Grind,INVALID,"Ledge, Rail",1,1,1,1
-Frontside Krooked Grind,INVALID,"Ledge, Rail",1,1,1,1
-Backside Overcrook,INVALID,Rail,1,1,1,1
-Backside Nosegrind,INVALID,Ledge,1,1,1,1
-Frontside Nosegrind,INVALID,"Ledge, Rail",1,1,1,1
-Backside Noseslide,INVALID,"Ledge, Rail",1,1,1,1
-Frontside Noseslide,INVALID,"Ledge, Rail",1,1,1,1
-Backside Noseslide to fakie,INVALID,"Ledge, Rail",1,1,1,1
-Frontside Noseslide to fakie,INVALID,"Ledge, Rail",1,1,1,1
-Backside Tailslide,INVALID,"Ledge, Rail",1,1,1,1
-Frontside Tailslide,INVALID,"Ledge, Rail",1,1,1,1
-Backside Tailslide to fakie,INVALID,"Ledge, Rail",1,1,1,1
-Frontside Tailslide to fakie,INVALID,"Ledge, Rail",1,1,1,1
-Backside Lipslide,INVALID,"Ledge, Rail",1,1,1,1
-Frontside Lipslide,INVALID,"Ledge, Rail",1,1,1,1
-Backside Lipslide to fakie,INVALID,"Ledge, Rail",1,1,1,1
-Frontside Lipslide to fakie,INVALID,"Ledge, Rail",1,1,1,1
-Rock to fakie,INVALID,"Mini Ramp, Vert",1,1,1,1
-Rock and Roll,INVALID,"Mini Ramp, Vert",1,1,1,1
-Frontside Rock and Roll,INVALID,"Mini Ramp, Vert",1,1,1,1
-Backside Axle Stall,INVALID,"Mini Ramp, Vert",1,1,1,1
-Frontside Axle Stall,INVALID,"Mini Ramp, Vert",1,1,1,1
-Tail Stall,INVALID,"Mini Ramp, Vert",1,1,1,1
-Noses Stall,INVALID,"Mini Ramp, Vert",1,1,1,1
-Backside 5.0,INVALID,"Mini Ramp, Vert",1,1,1,1
-Frontside 5.0,INVALID,"Mini Ramp, Vert",1,1,1,1
-Frontside Smith,INVALID,"Mini Ramp, Vert",1,1,1,1
-Backside Smith,INVALID,"Mini Ramp, Vert",1,1,1,1
-Frontside Disaster,INVALID,"Mini Ramp, Vert",1,1,1,1
-Backside Disaster,INVALID,"Mini Ramp, Vert",1,1,1,1
-Blunt to fakie,INVALID,"Mini Ramp, Vert",1,1,1,1
-Blunt Rock to fakie,INVALID,"Mini Ramp, Vert",1,1,1,1
-Backside Blunt,INVALID,"Mini Ramp, Vert",1,1,1,1
-Frontside Blunt,INVALID,"Mini Ramp, Vert",1,1,1,1
-Frontside Noseblunt,INVALID,"Mini Ramp, Vert",1,1,1,1
-Backside Noseblunt,INVALID,"Mini Ramp, Vert",1,1,1,1
-Frontside 5050,INVALID,"Mini Ramp, Vert",1,1,1,1
-Backside 5050,INVALID,"Mini Ramp, Vert",1,1,1,1
-Frontside Nosegrind,INVALID,"Mini Ramp, Vert",1,1,1,1
-Backside Nosegrind,INVALID,"Mini Ramp, Vert",1,1,1,1
-Frontside Tailslide,INVALID,"Mini Ramp, Vert",1,1,1,1
-Backside Tailslide,INVALID,"Mini Ramp, Vert",1,1,1,1
-Backside Pivot to fakie,Backside 5.0 to fakie,"Mini Ramp, Vert",3,3,4,INVALID
-Frontside Pivot to fakie,Frontside 5.0 to fakie,"Mini Ramp, Vert",4,4,5,INVALID
-Backside Pop Shuvit,INVALID,Flat Ground,1,1,2,1
-Frontside Pop Shuvit,INVALID,Flat Ground,1,1,2,1
-Backside Bigspin,INVALID,Flat Ground,4,3,6,4
-Frontside Bigspin,INVALID,Flat Ground,4,3,5,4
-Backside 180,INVALID,Flat Ground,1,INVALID,4,3
-Frontside 180,INVALID,Flat Ground,1,INVALID,2,3
-Backside Half Cab,Fakie Backside 180,Flat Ground,1,INVALID,INVALID,INVALID
-Frontside Half Cab,Fakie Frontside 180,Flat Ground,1,INVALID,INVALID,INVALID
-Backside 360,INVALID,Flat Ground,5,INVALID,7,4
-Frontside 360,INVALID,Flat Ground,5,INVALID,6,5
-Backside Caballerial,Fakie Backside 360,Flat Ground,3,INVALID,INVALID,INVALID
-Frontside Caballerial,Fakie Frontside 360,Flat Ground,4,INVALID,INVALID,INVALID
-Backside 360 Pop Shuvit,INVALID,Flat Ground,4,3,6,4
-Frontside 360 Pop Shuvit,INVALID,Flat Ground,5,4,6,4
-Backside 180 Kickflip,INVALID,Flat Ground,3,INVALID,5,5
-Frontside 180 Kickflip,INVALID,Flat Ground,3,INVALID,5,5
-Backside 180 Heelflip,INVALID,Flat Ground,3,INVALID,5,5
-Frontside 180 Heelflip,INVALID,Flat Ground,4,INVALID,5,5
-Backside Bigspin Kickflip,INVALID,Flat Ground,5,4,8,6
-Frontside Bigspin Heelflip,INVALID,Flat Ground,8,7,9,7
-Kickflip,INVALID,Flat Ground,2,2,4,4
-Heelflip,INVALID,Flat Ground,2,2,4,4
-Varial Kickflip,INVALID,Flat Ground,2,4,6,5
-Varial Heelflip,INVALID,Flat Ground,2,5,6,5
-Hardflip,INVALID,Flat Ground,4,5,6,6
-Tre Flip,360 Kickflip,Flat Ground,4,4,6,6
-Double Kickflip,INVALID,Flat Ground,4,4,6,6
-Double Heelflip,INVALID,Flat Ground,4,4,6,6
-Backside 180 Double Kickflip,INVALID,Flat Ground,6,INVALID,8,8
-Frontside 180 Double Kickflip,INVALID,Flat Ground,7,INVALID,8,8
-Backside 180 Double Heelflip,INVALID,Flat Ground,7,INVALID,8,8
-Frontside 180 Double Heelflip,INVALID,Flat Ground,7,INVALID,8,8
-Backside Half Cab Double Kickflip,INVALID,Flat Ground,7,INVALID,INVALID,INVALID
-Frontside Half Cab Double Kickflip,INVALID,Flat Ground,7,INVALID,INVALID,INVALID
-Hardflip Rewind,INVALID,Flat Ground,6,7,9,8
-Tre Double Kickflip,360 Double Kickflip,Flat Ground,8,8,9,8
-Varial Double Heelflip,INVALID,Flat Ground,7,INVALID,INVALID,INVALID
-Hard Double Kickflip,INVALID,Flat Ground,7,INVALID,INVALID,INVALID
-Inward Heelflip,INVALID,Flat Ground,5,5,6,6
-Inward Heelflip Rewind,INVALID,Flat Ground,7,8,8,7
-Pressure Flip,INVALID,Flat Ground,4,INVALID,INVALID,INVALID
-Pressure Inward Heelflip,INVALID,Flat Ground,6,INVALID,INVALID,INVALID
-Backside 360 Heelflip,INVALID,Flat Ground,8,INVALID,10,8
-Backside 360 Kickflip,INVALID,Flat Ground,8,INVALID,10,8
-Frontside 360 Heelflip,INVALID,Flat Ground,8,INVALID,9,8
-Frontside 360 Kickflip,INVALID,Flat Ground,9,INVALID,9,8
-Laser Flip,360 Heeflip,Flat Ground,8,8,9,7
-Backside Pop Shuvit Late Kickflip,INVALID,Flat Ground,8,INVALID,INVALID,INVALID
-Fronstside Pop Shuvit Late Kickflip,INVALID,Flat Ground,8,INVALID,INVALID,INVALID
-Backside Biggerspin Kickflip,INVALID,Flat Ground,8,6,INVALID,INVALID
-Nollie Biggerspin Kickflip,INVALID,Flat Ground,10,INVALID,INVALID,INVALID
-540 Kickflip,INVALID,Flat Ground,8,8,INVALID,9
-Backside 540 Pop Shuvit,INVALID,Flat Ground,7,7,INVALID,INVALID
-Forward Kickflip,Dolphin Flip,Flat Ground,5,6,8,8
-Backside Caballerial Bigspin,Fakie Gazelle,Flat Ground,5,INVALID,INVALID,INVALID
-Backside Caballerial Bigspin Kickflip,Fakie Gazelle Kickflip,Flat Ground,7,INVALID,INVALID,INVALID
-Backside Bigspin 360,Backside Gazelle,Flat Ground,7,INVALID,INVALID,INVALID
-Backside Caballerial Kickflip,Fakie Backside 360 Kickflip,Flat Ground,6,INVALID,INVALID,INVALID
-Frontside Caballerial Kickflip,Fakie Frontside 360 Kickflip,Flat Ground,8,INVALID,INVALID,INVALID
-Backside Caballerial Heelflip,Fakie Backside 360 Heelflip,Flat Ground,7,INVALID,INVALID,INVALID
-Frontside Caballerial Heelflip,Fakie Frontside 360 Heelflip,Flat Ground,8,INVALID,INVALID,INVALID
-Backside Halfcab Kickflip,Fakie Backside 180 Kickflip,Flat Ground,3,INVALID,INVALID,INVALID
-Frontside Halfcab Kickflip,Fakie Frontside 180 Kickflip,Flat Ground,4,INVALID,INVALID,INVALID
-Backside Halfcab Heelflip,Fakie Backside 180 Heelflip,Flat Ground,3,INVALID,INVALID,INVALID
-Frontside Halfcab Heelflip,Fakie Frontside 180 Heelflip,Flat Ground,4,INVALID,INVALID,INVALID
-Backside Pop Shuvit Rewind,INVALID,Flat Ground,2,3,3,4
-Frontside Pop Shuvit Rewind,INVALID,Flat Ground,4,3,3,4
-Late Kickflip,INVALID,Flat Ground,5,5,7,6
-Late Heelflip,INVALID,Flat Ground,7,6,8,8
-Backside Half Cab Late Kickflip,Fakie Backside 180 Late Kickflip,Flat Ground,6,INVALID,INVALID,INVALID
-Backside 180 Late Kickflip,INVALID,Flat Ground,6,INVALID,9,9
-Frontside 180 Late Kickflip,INVALID,Flat Ground,9,INVALID,10,10
-Impossible,INVALID,Flat Ground,5,5,8,8
-Frontfoot Impossible,INVALID,Flat Ground,6,6,8,7
-Impossible Late Kickflip,INVALID,Flat Ground,9,10,10,10
-Triple Kickflip,INVALID,Flat Ground,10,INVALID,INVALID,INVALID
-Merlin Twist,Switch Frontfoot Impossible Frontside 180,Flat Ground,10,INVALID,INVALID,INVALID
-Manual,INVALID,Manual Pad,1,INVALID,INVALID,INVALID
-Nose Manual,INVALID,Manual Pad,1,INVALID,INVALID,INVALID
-Manual Frontside 180,INVALID,Manual Pad,2,INVALID,INVALID,INVALID
-Manual Backside 180,INVALID,Manual Pad,2,INVALID,INVALID,INVALID
-Nose Manual Frontside 180,INVALID,Manual Pad,2,INVALID,INVALID,INVALID
-Nose Manual Backside 180,INVALID,Manual Pad,2,INVALID,INVALID,INVALID
-Manual Kickflip,INVALID,Manual Pad,3,INVALID,INVALID,INVALID
-Nose Manual Nollie Kickflip,INVALID,Manual Pad,5,INVALID,INVALID,INVALID
-Manual Heelflip,INVALID,Manual Pad,3,INVALID,INVALID,INVALID
-Nose Manual Nollie Heelflip,INVALID,Manual Pad,5,INVALID,INVALID,INVALID
-Manual Backside Pop Shuvit,INVALID,Manual Pad,2,INVALID,INVALID,INVALID
-Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,2,INVALID,INVALID,INVALID
-Manual Frontside Pop Shuvit,INVALID,Manual Pad,2,INVALID,INVALID,INVALID
-Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,2,INVALID,INVALID,INVALID
-Manual Backside 180 Kickflip,INVALID,Manual Pad,5,INVALID,INVALID,INVALID
-Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nose Manual Nollie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Tre Flip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Tre Flip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Hardflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Hardflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Frontside 180 Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Backside 180 Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Nollie Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Nollie Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Backside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Backside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Frontside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Frontside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Backside 180 Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Backside 180 Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Frontside 180 Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Frontside 180 Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Backside 180 Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Backside 180 Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Frontside 180 Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Frontside 180 Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Tre Flip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Nollie Tre Flip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Hardflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Nollie Hardflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside 180 Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside 180 Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Nollie Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Nollie Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside 180 Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside 180 Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside 180 Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside 180 Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside 180 Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside 180 Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside 180 Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside 180 Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Tre Flip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Nollie Tre Flip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Hardflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Hardflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside 180 Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside 180 Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Nollie Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Nollie Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside 180 Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside 180 Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside 180 Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside 180 Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside 180 Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside 180 Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside 180 Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside 180 Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Tre Flip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Nollie Tre Flip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Hardflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Hardflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside 180 Switch Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside 180 Switch Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Nose Manual Nollie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Nose Manual Nollie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Nose Manual Nollie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Nose Manual Nollie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Kickflip Nose Manual Nollie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Nose Manual Nollie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Nose Manual Nollie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Heelflip Nose Manual Nollie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Kickflip Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Heelflip Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Nose Manual Nollie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Nose Manual Nollie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Backside Pop Shuvit Nose Manual Nollie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Nose Manual Nollie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Nose Manual Nollie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Frontside Pop Shuvit Nose Manual Nollie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Backside Pop Shuvit Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Switch Frontside Pop Shuvit Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Backside Pop Shuvit Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Frontside Pop Shuvit Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie Kickflip Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID
-Fakie HeelFlip Manual Fakie Tre Flip,INVALID,Manual Pad,9,INVALID,INVALID,INVALID
-Fakie HeelFlip Switch Manual Tre Flip,INVALID,Manual Pad,10,INVALID,INVALID,INVALID
+Name,SecondaryName,Category,Difficulty,FakieDifficulty,SwitchDifficulty,NollieDifficulty,SpecialTrick
+Backside Boardslide,INVALID,"Ledge, Rail",1,1,1,1,0
+Frontside Boardslide,INVALID,"Ledge, Rail",1,1,1,1,0
+Backside 5050,INVALID,"Ledge, Rail",1,1,1,1,0
+Backside 5.0,INVALID,"Ledge, Rail",1,1,1,1,0
+Frontside 5.0,INVALID,"Ledge, Rail",1,1,1,1,0
+Backside Feeble,INVALID,Rail,1,1,1,1,0
+Frontside Feeble,INVALID,Rail,1,1,1,1,0
+Backside Smith,INVALID,"Ledge, Rail",1,1,1,1,0
+Frontside Smith,INVALID,"Ledge, Rail",1,1,1,1,0
+Backside Bluntslide,INVALID,"Ledge, Rail",1,1,1,1,0
+Frontside Bluntslide,INVALID,"Ledge, Rail",1,1,1,1,0
+Backside Bluntslide to fakie,INVALID,"Ledge, Rail",1,1,1,1,0
+Frontside Bluntslide to fakie,INVALID,"Ledge, Rail",1,1,1,1,0
+Backside Krooked Grind,INVALID,"Ledge, Rail",1,1,1,1,0
+Frontside Krooked Grind,INVALID,"Ledge, Rail",1,1,1,1,0
+Backside Overcrook,INVALID,Rail,1,1,1,1,0
+Backside Nosegrind,INVALID,Ledge,1,1,1,1,0
+Frontside Nosegrind,INVALID,"Ledge, Rail",1,1,1,1,0
+Backside Noseslide,INVALID,"Ledge, Rail",1,1,1,1,0
+Frontside Noseslide,INVALID,"Ledge, Rail",1,1,1,1,0
+Backside Noseslide to fakie,INVALID,"Ledge, Rail",1,1,1,1,0
+Frontside Noseslide to fakie,INVALID,"Ledge, Rail",1,1,1,1,0
+Backside Tailslide,INVALID,"Ledge, Rail",1,1,1,1,0
+Frontside Tailslide,INVALID,"Ledge, Rail",1,1,1,1,0
+Backside Tailslide to fakie,INVALID,"Ledge, Rail",1,1,1,1,0
+Frontside Tailslide to fakie,INVALID,"Ledge, Rail",1,1,1,1,0
+Backside Lipslide,INVALID,"Ledge, Rail",1,1,1,1,0
+Frontside Lipslide,INVALID,"Ledge, Rail",1,1,1,1,0
+Backside Lipslide to fakie,INVALID,"Ledge, Rail",1,1,1,1,0
+Frontside Lipslide to fakie,INVALID,"Ledge, Rail",1,1,1,1,0
+Rock to fakie,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Rock and Roll,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Frontside Rock and Roll,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Backside Axle Stall,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Frontside Axle Stall,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Tail Stall,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Noses Stall,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Backside 5.0,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Frontside 5.0,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Frontside Smith,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Backside Smith,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Frontside Disaster,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Backside Disaster,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Blunt to fakie,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Blunt Rock to fakie,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Backside Blunt,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Frontside Blunt,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Frontside Noseblunt,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Backside Noseblunt,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Frontside 5050,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Backside 5050,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Frontside Nosegrind,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Backside Nosegrind,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Frontside Tailslide,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Backside Tailslide,INVALID,"Mini Ramp, Vert",1,1,1,1,0
+Backside Pivot to fakie,Backside 5.0 to fakie,"Mini Ramp, Vert",3,3,4,INVALID,0
+Frontside Pivot to fakie,Frontside 5.0 to fakie,"Mini Ramp, Vert",4,4,5,INVALID,0
+Backside Pop Shuvit,INVALID,Flat Ground,1,1,2,1,0
+Frontside Pop Shuvit,INVALID,Flat Ground,1,1,2,1,0
+Backside Bigspin,INVALID,Flat Ground,4,3,6,4,0
+Frontside Bigspin,INVALID,Flat Ground,4,3,5,4,0
+Backside 180,INVALID,Flat Ground,1,INVALID,4,3,0
+Frontside 180,INVALID,Flat Ground,1,INVALID,2,3,0
+Backside Half Cab,Fakie Backside 180,Flat Ground,1,INVALID,INVALID,INVALID,0
+Frontside Half Cab,Fakie Frontside 180,Flat Ground,1,INVALID,INVALID,INVALID,0
+Backside 360,INVALID,Flat Ground,5,INVALID,7,4,0
+Frontside 360,INVALID,Flat Ground,5,INVALID,6,5,0
+Backside Caballerial,Fakie Backside 360,Flat Ground,3,INVALID,INVALID,INVALID,0
+Frontside Caballerial,Fakie Frontside 360,Flat Ground,4,INVALID,INVALID,INVALID,0
+Backside 360 Pop Shuvit,INVALID,Flat Ground,4,3,6,4,0
+Frontside 360 Pop Shuvit,INVALID,Flat Ground,5,4,6,4,0
+Backside 180 Kickflip,INVALID,Flat Ground,3,INVALID,5,5,0
+Frontside 180 Kickflip,INVALID,Flat Ground,3,INVALID,5,5,0
+Backside 180 Heelflip,INVALID,Flat Ground,3,INVALID,5,5,0
+Frontside 180 Heelflip,INVALID,Flat Ground,4,INVALID,5,5,0
+Backside Bigspin Kickflip,INVALID,Flat Ground,5,4,8,6,0
+Frontside Bigspin Heelflip,INVALID,Flat Ground,8,7,9,7,0
+Kickflip,INVALID,Flat Ground,2,2,4,4,0
+Heelflip,INVALID,Flat Ground,2,2,4,4,0
+Varial Kickflip,INVALID,Flat Ground,2,4,6,5,0
+Varial Heelflip,INVALID,Flat Ground,2,5,6,5,0
+Hardflip,INVALID,Flat Ground,4,5,6,6,0
+Tre Flip,360 Kickflip,Flat Ground,4,4,6,6,0
+Double Kickflip,INVALID,Flat Ground,4,4,6,6,0
+Double Heelflip,INVALID,Flat Ground,4,4,6,6,0
+Backside 180 Double Kickflip,INVALID,Flat Ground,6,INVALID,8,8,0
+Frontside 180 Double Kickflip,INVALID,Flat Ground,7,INVALID,8,8,0
+Backside 180 Double Heelflip,INVALID,Flat Ground,7,INVALID,8,8,0
+Frontside 180 Double Heelflip,INVALID,Flat Ground,7,INVALID,8,8,0
+Backside Half Cab Double Kickflip,INVALID,Flat Ground,7,INVALID,INVALID,INVALID,0
+Frontside Half Cab Double Kickflip,INVALID,Flat Ground,7,INVALID,INVALID,INVALID,0
+Hardflip Rewind,INVALID,Flat Ground,6,7,9,8,0
+Tre Double Kickflip,360 Double Kickflip,Flat Ground,8,8,9,8,0
+Varial Double Heelflip,INVALID,Flat Ground,7,INVALID,INVALID,INVALID,0
+Hard Double Kickflip,INVALID,Flat Ground,7,INVALID,INVALID,INVALID,0
+Inward Heelflip,INVALID,Flat Ground,5,5,6,6,0
+Inward Heelflip Rewind,INVALID,Flat Ground,7,8,8,7,0
+Pressure Flip,INVALID,Flat Ground,4,INVALID,INVALID,INVALID,0
+Pressure Inward Heelflip,INVALID,Flat Ground,6,INVALID,INVALID,INVALID,0
+Backside 360 Heelflip,INVALID,Flat Ground,8,INVALID,10,8,0
+Backside 360 Kickflip,INVALID,Flat Ground,8,INVALID,10,8,0
+Frontside 360 Heelflip,INVALID,Flat Ground,8,INVALID,9,8,0
+Frontside 360 Kickflip,INVALID,Flat Ground,9,INVALID,9,8,0
+Laser Flip,360 Heeflip,Flat Ground,8,8,9,7,0
+Backside Pop Shuvit Late Kickflip,INVALID,Flat Ground,8,INVALID,INVALID,INVALID,0
+Fronstside Pop Shuvit Late Kickflip,INVALID,Flat Ground,8,INVALID,INVALID,INVALID,0
+Backside Biggerspin Kickflip,INVALID,Flat Ground,8,6,INVALID,INVALID,0
+Nollie Biggerspin Kickflip,INVALID,Flat Ground,10,INVALID,INVALID,INVALID,0
+540 Kickflip,INVALID,Flat Ground,8,8,INVALID,9,0
+Backside 540 Pop Shuvit,INVALID,Flat Ground,7,7,INVALID,INVALID,0
+Forward Kickflip,Dolphin Flip,Flat Ground,5,6,8,8,0
+Backside Caballerial Bigspin,Fakie Gazelle,Flat Ground,5,INVALID,INVALID,INVALID,0
+Backside Caballerial Bigspin Kickflip,Fakie Gazelle Kickflip,Flat Ground,7,INVALID,INVALID,INVALID,0
+Backside Bigspin 360,Backside Gazelle,Flat Ground,7,INVALID,INVALID,INVALID,0
+Backside Caballerial Kickflip,Fakie Backside 360 Kickflip,Flat Ground,6,INVALID,INVALID,INVALID,0
+Frontside Caballerial Kickflip,Fakie Frontside 360 Kickflip,Flat Ground,8,INVALID,INVALID,INVALID,0
+Backside Caballerial Heelflip,Fakie Backside 360 Heelflip,Flat Ground,7,INVALID,INVALID,INVALID,0
+Frontside Caballerial Heelflip,Fakie Frontside 360 Heelflip,Flat Ground,8,INVALID,INVALID,INVALID,0
+Backside Halfcab Kickflip,Fakie Backside 180 Kickflip,Flat Ground,3,INVALID,INVALID,INVALID,0
+Frontside Halfcab Kickflip,Fakie Frontside 180 Kickflip,Flat Ground,4,INVALID,INVALID,INVALID,0
+Backside Halfcab Heelflip,Fakie Backside 180 Heelflip,Flat Ground,3,INVALID,INVALID,INVALID,0
+Frontside Halfcab Heelflip,Fakie Frontside 180 Heelflip,Flat Ground,4,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Rewind,INVALID,Flat Ground,2,3,3,4,0
+Frontside Pop Shuvit Rewind,INVALID,Flat Ground,4,3,3,4,0
+Late Kickflip,INVALID,Flat Ground,5,5,7,6,0
+Late Heelflip,INVALID,Flat Ground,7,6,8,8,0
+Backside Half Cab Late Kickflip,Fakie Backside 180 Late Kickflip,Flat Ground,6,INVALID,INVALID,INVALID,0
+Backside 180 Late Kickflip,INVALID,Flat Ground,6,INVALID,9,9,0
+Frontside 180 Late Kickflip,INVALID,Flat Ground,9,INVALID,10,10,0
+Impossible,INVALID,Flat Ground,5,5,8,8,0
+Frontfoot Impossible,INVALID,Flat Ground,6,6,8,7,0
+Impossible Late Kickflip,INVALID,Flat Ground,9,10,10,10,0
+Triple Kickflip,INVALID,Flat Ground,10,INVALID,INVALID,INVALID,0
+Merlin Twist,Switch Frontfoot Impossible Frontside 180,Flat Ground,10,INVALID,INVALID,INVALID,0
+Feather Flip,INVALID,Flat Ground,8,INVALID,INVALID,INVALID,1
+Manual,INVALID,Manual Pad,1,INVALID,INVALID,INVALID,0
+Nose Manual,INVALID,Manual Pad,1,INVALID,INVALID,INVALID,0
+Manual Frontside 180,INVALID,Manual Pad,2,INVALID,INVALID,INVALID,0
+Manual Backside 180,INVALID,Manual Pad,2,INVALID,INVALID,INVALID,0
+Nose Manual Frontside 180,INVALID,Manual Pad,2,INVALID,INVALID,INVALID,0
+Nose Manual Backside 180,INVALID,Manual Pad,2,INVALID,INVALID,INVALID,0
+Manual Kickflip,INVALID,Manual Pad,3,INVALID,INVALID,INVALID,0
+Nose Manual Nollie Kickflip,INVALID,Manual Pad,5,INVALID,INVALID,INVALID,0
+Manual Heelflip,INVALID,Manual Pad,3,INVALID,INVALID,INVALID,0
+Nose Manual Nollie Heelflip,INVALID,Manual Pad,5,INVALID,INVALID,INVALID,0
+Manual Backside Pop Shuvit,INVALID,Manual Pad,2,INVALID,INVALID,INVALID,0
+Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,2,INVALID,INVALID,INVALID,0
+Manual Frontside Pop Shuvit,INVALID,Manual Pad,2,INVALID,INVALID,INVALID,0
+Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,2,INVALID,INVALID,INVALID,0
+Manual Backside 180 Kickflip,INVALID,Manual Pad,5,INVALID,INVALID,INVALID,0
+Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nose Manual Nollie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Tre Flip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Tre Flip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Hardflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Hardflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Frontside 180 Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Backside 180 Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Nollie Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Nollie Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Backside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Backside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Frontside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Frontside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Backside 180 Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Backside 180 Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Frontside 180 Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Frontside 180 Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Backside 180 Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Backside 180 Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Frontside 180 Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Frontside 180 Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Tre Flip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Nollie Tre Flip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Hardflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Nollie Hardflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside 180 Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside 180 Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Nollie Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Nollie Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside 180 Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside 180 Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside 180 Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside 180 Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside 180 Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside 180 Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside 180 Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside 180 Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Tre Flip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Nollie Tre Flip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Hardflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Hardflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside 180 Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside 180 Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Nollie Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Nollie Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside 180 Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside 180 Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside 180 Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside 180 Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside 180 Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside 180 Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside 180 Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside 180 Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Tre Flip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Nollie Tre Flip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Hardflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Hardflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside 180 Switch Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside 180 Switch Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Nose Manual Nollie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Nose Manual Nollie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Nose Manual Nollie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Nose Manual Nollie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Kickflip Nose Manual Nollie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Nose Manual Nollie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Nose Manual Nollie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Heelflip Nose Manual Nollie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Kickflip Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Heelflip Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Nose Manual Nollie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Nose Manual Nollie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Backside Pop Shuvit Nose Manual Nollie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Nose Manual Nollie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Nose Manual Nollie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Frontside Pop Shuvit Nose Manual Nollie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Backside Pop Shuvit Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Switch Frontside Pop Shuvit Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Backside Pop Shuvit Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Frontside Pop Shuvit Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Manual Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie Kickflip Nose Manual Fakie Tre Flip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Nose Manual,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Nose Manual Frontside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Nose Manual Backside 180,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Manual Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Nose Manual Fakie Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Manual Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Nose Manual Fakie Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Nose Manual Backside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Nose Manual Frontside Pop Shuvit,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Nose Manual Backside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Nose Manual Frontside 180 Kickflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Nose Manual Backside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Nose Manual Frontside 180 Heelflip,INVALID,Manual Pad,INVALID,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Manual Fakie Tre Flip,INVALID,Manual Pad,9,INVALID,INVALID,INVALID,0
+Fakie HeelFlip Switch Manual Tre Flip,INVALID,Manual Pad,10,INVALID,INVALID,INVALID,0
+Casper Flip,INVALID,Flat Ground,5,INVALID,INVALID,INVALID,1

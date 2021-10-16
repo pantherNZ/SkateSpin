@@ -30,10 +30,10 @@ public class ChallengesPage : IBasePage, IEventReceiver
 
     private void Initialise()
     {
-        foreach( var( name, challenges ) in DataHandler.Instance.ChallengesData )
+        foreach( var( hash, challenges ) in DataHandler.Instance.ChallengesData )
         {
             var entry = Instantiate( challengeEntryPrefab );
-            entry.GetComponentInChildren<Text>().text = name;
+            entry.GetComponentInChildren<Text>().text = challenges[0].name;
             entry.transform.SetParent( verticalLayout.transform );
 
             foreach( var( _, challenge ) in Utility.Enumerate( challenges ) )

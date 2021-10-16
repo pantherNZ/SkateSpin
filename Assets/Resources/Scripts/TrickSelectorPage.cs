@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Text;
 
 public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 {
@@ -82,6 +83,15 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         // Setup trick list
         RecalculateCurrentTrickList();
         RandomiseTrickList();
+
+        if( challengeMode )
+        {
+            var savedIdx = challengeTrickIndex;
+            challengeMode = false;
+            ActivateChallenge( currentChallenge );
+            challengeTrickIndex = savedIdx;
+            UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
+        }
     }
 
     void IEventReceiver.OnEventReceived( IBaseEvent e )
@@ -409,6 +419,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     {
         challengeMode = !challengeMode;
         currentChallenge = null;
+        challengeTrickIndex = 0;
         optionsPanel.ToggleActive();
         selectorButtonsPanel.ToggleActive();
         challengeButtonsPanel.ToggleActive();
@@ -446,6 +457,14 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         writer.Write( _currentCategories.Count );
         writer.Write( difficultySlider.GetMinValue() );
         writer.Write( difficultySlider.GetMaxValue() );
+        writer.Write( challengeMode );
+
+        if( challengeMode )
+        {
+            writer.Write( ( char )challengeTrickIndex );
+            writer.Write( xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( name ) ) );
+            writer.Write( ( char )currentChallenge.index );
+        }
 
         foreach( var category in _currentCategories )
             writer.Write( category );
@@ -457,6 +476,24 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         var count = reader.ReadInt32();
         var minDifficulty = reader.ReadSingle();
         var maxDifficulty = reader.ReadSingle();
+        challengeMode = reader.ReadBoolean();
+
+        if( challengeMode )
+        {
+            challengeTrickIndex = reader.ReadChar();
+            var hash = reader.ReadUInt32();
+            var index = reader.ReadChar();
+
+            if( !DataHandler.Instance.ChallengesData.ContainsKey( hash ) )
+            {
+                Debug.LogError( "Deserialising challenge hash failed to find a valid challenge entry" );
+                challengeMode = false;
+            }
+            else
+            {
+                currentChallenge = DataHandler.Instance.ChallengesData[hash][index];
+            }
+        }
 
         difficultySlider.SetMinValue( minDifficulty );
         difficultySlider.SetMaxValue( maxDifficulty );

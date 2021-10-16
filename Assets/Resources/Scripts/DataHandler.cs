@@ -27,6 +27,7 @@ public class DataHandler : IBasePage, ISavableComponent
         public string category;
         public int difficulty;
         public uint hash;
+        public bool canBeRolled;
     }
 
     public class TrickList : ReadOnlyDictionary<string, Dictionary<int, List<TrickEntry>>>, IEnumerable<TrickEntry>
@@ -85,14 +86,15 @@ public class DataHandler : IBasePage, ISavableComponent
         public int difficulty;
         public string category;
         public bool completed;
+        public int index;
     }
 
-    [HideInInspector] Dictionary<string, List<ChallengeData>> _challengesData = new Dictionary<string, List<ChallengeData>>();
-    public ReadOnlyDictionary<string, ReadOnlyCollection<ChallengeData>> ChallengesData
+    [HideInInspector] Dictionary<uint, List<ChallengeData>> _challengesData = new Dictionary<uint, List<ChallengeData>>();
+    public ReadOnlyDictionary<uint, ReadOnlyCollection<ChallengeData>> ChallengesData
     {
         get
         {
-            return new ReadOnlyDictionary<string, ReadOnlyCollection<ChallengeData>>( 
+            return new ReadOnlyDictionary<uint, ReadOnlyCollection<ChallengeData>>( 
                 _challengesData.ToDictionary( k => k.Key, v => v.Value.AsReadOnly() ) );
         }
     }
@@ -174,6 +176,8 @@ public class DataHandler : IBasePage, ISavableComponent
                     new Pair<int, string>( reader.GetInt32Safe( 6 ), "Nollie " ),
                 };
 
+                bool canBeRolled = !reader.GetBoolean( 7 );
+
                 foreach( var c in categories.Split( ',' ) )
                 {
                     var category = c.Trim();
@@ -197,6 +201,7 @@ public class DataHandler : IBasePage, ISavableComponent
                             category = category,
                             difficulty = difficulty,
                             hash = hash,
+                            canBeRolled = canBeRolled,
                         };
                         _trickData[category][difficulty].Add( newEntry );
 
@@ -235,29 +240,33 @@ public class DataHandler : IBasePage, ISavableComponent
                 var name = reader.GetString( 0 );
                 var tricks = reader.GetString( 2 ).Split( new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries ).ToList();
                 var trickList = new List<TrickEntry>();
+
+                var challengeHash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( name ) );
+                var challengeEntry = _challengesData.GetOrAdd( challengeHash );
                 var challengeData = new ChallengeData()
                 {
                     name = name,
                     difficulty = reader.GetInt32( 1 ),
                     person = reader.GetString( 3 ),
-                    category = reader.GetString( 4 )
+                    category = reader.GetString( 4 ),
+                    index = challengeEntry.Count,
                 };
 
                 foreach( var trick in tricks )
                 {
-                    var hash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( challengeData.category + trick ) );
+                    var trickHash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( challengeData.category + trick ) );
 
-                    if( !trickDataHashMap.ContainsKey( hash ) )
+                    if( !trickDataHashMap.ContainsKey( trickHash ) )
                     {
                         Debug.LogError( string.Format( "Failed to find trick entry from hash for challenge {0} from ({1}, {2})", name, challengeData.category, trick ) );
                         continue;
                     }
 
-                    trickList.Add( trickDataHashMap[hash] );
+                    trickList.Add( trickDataHashMap[trickHash] );
                 }
 
                 challengeData.tricks = trickList.AsReadOnly();
-                _challengesData.GetOrAdd( name ).Add( challengeData );
+                challengeEntry.Add( challengeData );
             }
         }
 
@@ -280,9 +289,11 @@ public class DataHandler : IBasePage, ISavableComponent
 
                 // Android  
                 var downloadHandler = new DownloadHandlerBuffer();
-                UnityWebRequest request = new UnityWebRequest( sourcePath );
-                request.downloadHandler = downloadHandler;
-                request.timeout = 5;
+                UnityWebRequest request = new UnityWebRequest( sourcePath )
+                {
+                    downloadHandler = downloadHandler,
+                    timeout = 5
+                };
                 request.SendWebRequest();
 
                 // Wait for download to complete - not pretty at all but easy hack for now 
@@ -298,7 +309,6 @@ public class DataHandler : IBasePage, ISavableComponent
                 {
                     Debug.LogError( "ERROR: " + request.error );
                 }
-
             }
             else
             {
@@ -349,13 +359,13 @@ public class DataHandler : IBasePage, ISavableComponent
 
     void ISavableComponent.Serialise( BinaryWriter writer )
     {
-        Int32 count = 0;
+        Int32 trickCount = 0;
 
         foreach( var trick in TrickData )
             if( trick.status != TrickEntry.Status.Default )
-                count++;
+                trickCount++;
 
-        writer.Write( count );
+        writer.Write( trickCount );
 
         foreach( var trick in TrickData )
         {
@@ -365,13 +375,34 @@ public class DataHandler : IBasePage, ISavableComponent
                 writer.Write( ( char )trick.status );
             }
         }
+
+        Int32 challengeCount = 0;
+
+        foreach( var( hash, challenges ) in ChallengesData )
+            foreach( var challenge in challenges )
+                if( challenge.completed )
+                    challengeCount++;
+
+        writer.Write( challengeCount );
+
+        foreach( var (hash, challenges) in ChallengesData )
+        {
+            foreach( var challenge in challenges )
+            {
+                if( challenge.completed )
+                {
+                    writer.Write( hash );
+                    writer.Write( ( char )challenge.index );
+                }
+            }
+        }
     }
 
     void ISavableComponent.Deserialise( BinaryReader reader )
     {
-        var count = reader.ReadInt32();
+        var trickCount = reader.ReadInt32();
 
-        for( int i = 0; i < count; ++i )
+        for( int i = 0; i < trickCount; ++i )
         {
             var hash = reader.ReadUInt32();
             var status = reader.ReadChar();
@@ -384,6 +415,15 @@ public class DataHandler : IBasePage, ISavableComponent
             {
                 trickDataHashMap[hash].status = ( TrickEntry.Status )status;
             }
+        }
+
+        var challengeCount = reader.ReadInt32();
+
+        for( int i = 0; i < challengeCount; ++i )
+        {
+            var hash = reader.ReadUInt32();
+            var index = reader.ReadChar();
+            ChallengesData[hash][index].completed = true;
         }
     }
 }
