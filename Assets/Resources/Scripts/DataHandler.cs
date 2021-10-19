@@ -279,6 +279,7 @@ public class DataHandler : IBasePage, ISavableComponent
     {
         databasePath = Path.Combine( Application.persistentDataPath, dbName );
         string sourcePath = Path.Combine( Application.streamingAssetsPath, dbName );
+        Debug.Log( string.Format( "DataHandler::InitSqliteFile - databasePath: {0}", databasePath ) );
 
         //if DB does not exist in persistent data folder (folder "Documents" on iOS) or source DB is newer then copy it
         if( !System.IO.File.Exists( databasePath ) || ( System.IO.File.GetLastWriteTimeUtc( sourcePath ) > System.IO.File.GetLastWriteTimeUtc( databasePath ) ) )
@@ -318,7 +319,7 @@ public class DataHandler : IBasePage, ISavableComponent
                 //validate the existens of the DB in the original folder (folder "streamingAssets")
                 if( System.IO.File.Exists( sourcePath ) )
                 {
-                    //copy file - alle systems except Android
+                    //copy file - all systems except Android
                     System.IO.File.Copy( sourcePath, databasePath, true );
                     Debug.Log( "DataHandler::InitSqliteFile - Writing to databasepath from streaming folder (Mac, Windows, Iphone)" );
                 }

@@ -348,10 +348,27 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
     public void LandCurrentTrick()
     {
-        if( currentTrickList.Count == 0 )
-            return;
+        if( challengeMode )
+        {
+            if( challengeTrickIndex >= currentChallenge.tricks.Count )
+            {
+                Debug.LogError( "LandCurrentTrick (challengeMode) - Invalid challenge trick index" );
+                return;
+            }
 
-        SetTrickLanded( currentTrickList[index], true );
+            SetTrickLanded( currentChallenge.tricks[challengeTrickIndex], true );
+        }
+        else 
+        {
+            if( index >= currentTrickList.Count )
+            {
+                Debug.LogError( "LandCurrentTrick (trick mode) - Invalid trick index" );
+                return;
+            }
+
+            SetTrickLanded( currentTrickList[index], true );
+        }
+
         PlayBanLandAnimation( landedDisplay.gameObject );
     }
 
@@ -401,7 +418,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         {
             ToggleChallengeMode();
             currentChallenge = challenge;
-            challengeInfoText.text = string.Format( "{0}\n <size=50>Defend against {1}</size>", currentChallenge.name, currentChallenge.person );
+            challengeInfoText.text = string.Format( "{0}\n<size=50>Defend against {1}</size>", currentChallenge.name, currentChallenge.person );
             UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
         }
     }
@@ -426,6 +443,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         menuButton.ToggleActive();
         challengeInfoText.gameObject.ToggleActive();
         optionsText.gameObject.ToggleActive();
+        trickDisplay.anchoredPosition = new Vector2( 0.0f, challengeMode ? 300.0f : 432.0f );
     }
 
     IEnumerator AlternateTrickInterpolate()
