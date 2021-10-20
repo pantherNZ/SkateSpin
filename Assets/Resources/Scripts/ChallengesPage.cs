@@ -58,6 +58,8 @@ public class ChallengesPage : IBasePage, IEventReceiver
         strikethrough.gameObject.SetActive( thisChallenge.completed );
         subEntry.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
 
+        text.color = challenge.completed ? new Color( 1.0f, 93.0f / 255.0f, 93.0f / 255.0f ) : Color.white;
+
         if( thisChallenge.completed )
         {
             strikethrough.transform.localScale = strikethrough.transform.localScale.SetX( Utility.GetTextWidth( text ) / 100.0f );

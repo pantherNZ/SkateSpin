@@ -127,14 +127,14 @@ public class TrickListPage : IBasePage, IEventReceiver
                         if( restrictionDropDown.value != 0 )
                             return;
 
-                        var before = trick.status;
-                        trick.status = ( DataHandler.TrickEntry.Status )( ( ( int )trick.status + 1 ) % ( int )DataHandler.TrickEntry.Status.MaxStatusValues );
+                        var before = newEntry.entry.status;
+                        newEntry.entry.status = ( DataHandler.TrickEntry.Status )( ( ( int )newEntry.entry.status + 1 ) % ( int )DataHandler.TrickEntry.Status.MaxStatusValues );
 
-                        if( before == DataHandler.TrickEntry.Status.Landed || trick.status == DataHandler.TrickEntry.Status.Landed )
-                        {
-                            trickSelector.SetTrickLanded( trick, false );
+                        if( newEntry.entry.status == DataHandler.TrickEntry.Status.Landed )
+                            trickSelector.SetTrickLanded( newEntry.entry, false );
+
+                        if( before == DataHandler.TrickEntry.Status.Landed || newEntry.entry.status == DataHandler.TrickEntry.Status.Landed )
                             RecalculateCompletionPercentages( false );
-                        }
 
                         UpdateTrickEntryVisual( newEntry );
                     } );
@@ -252,11 +252,11 @@ public class TrickListPage : IBasePage, IEventReceiver
             for( int i = 0; i < data.perDifficultyData.Count; ++i )
             {
                 data.perDifficultyData[i].wasOpen = !collapse;
-                if( collapse && data.perDifficultyData[i].isOpen )
+                if( data.perDifficultyData[i].isOpen != collapse )
                     data.perDifficultyData[i].button.onClick.Invoke();
             }
 
-            if( data.isOpen == collapse )
+            if( data.isOpen != collapse )
                 data.categoryEntry.onClick.Invoke();
         }
 
