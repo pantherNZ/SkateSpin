@@ -11,7 +11,7 @@ public class TrickLogPage : IBasePage, IEventReceiver
     {
         trickSelector = FindObjectOfType<TrickSelectorPage>();
 
-        EventSystem.Instance.AddSubscriber( this );
+        EventSystem.Instance.AddSubscriber( this ); 
     }
 
     private void UpdateProgessCircles()
