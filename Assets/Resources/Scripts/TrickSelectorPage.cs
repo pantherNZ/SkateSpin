@@ -58,11 +58,15 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     }
 
     private bool landedDataDirty = true;
-    public void SetTrickLanded( DataHandler.TrickEntry trick, bool saveInstant )
+    public void SetTrickStatus( DataHandler.TrickEntry trick, DataHandler.TrickEntry.Status status, bool saveInstant )
     {
-        trick.status = DataHandler.TrickEntry.Status.Landed;
+        if( trick.status == status )
+            return;
+
+        trick.status = status;
         landedDataDirty = true;
-        EventSystem.Instance.TriggerEvent( new TrickLandedEvent() { trick = trick } );
+        if( status == DataHandler.TrickEntry.Status.Landed )
+            EventSystem.Instance.TriggerEvent( new TrickLandedEvent() { trick = trick } );
         DataHandler.Instance.Save( saveInstant );
     }
 
@@ -356,7 +360,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
                 return;
             }
 
-            SetTrickLanded( currentChallenge.tricks[challengeTrickIndex], true );
+            SetTrickStatus( currentChallenge.tricks[challengeTrickIndex], DataHandler.TrickEntry.Status.Landed, true );
         }
         else 
         {
@@ -366,7 +370,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
                 return;
             }
 
-            SetTrickLanded( currentTrickList[index], true );
+            SetTrickStatus( currentTrickList[index], DataHandler.TrickEntry.Status.Landed, true );
         }
 
         PlayBanLandAnimation( landedDisplay.gameObject );

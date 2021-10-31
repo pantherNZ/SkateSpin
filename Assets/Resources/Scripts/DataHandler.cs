@@ -258,7 +258,7 @@ public class DataHandler : IBasePage, ISavableComponent
 
                     if( !trickDataHashMap.ContainsKey( trickHash ) )
                     {
-                        Debug.LogError( string.Format( "Failed to find trick entry from hash for challenge {0} from ({1}, {2})", name, challengeData.category, trick ) );
+                        Debug.LogError( string.Format( "Failed to find trick entry from hash for challenge {0} - {3} from ({1}, {2})", name, challengeData.category, trick, challengeData.person ) );
                         continue;
                     }
 

@@ -33,6 +33,12 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
 
     void Start()
     {
+        var rootLayout = horizontalPageLayout.GetChild( 0 );
+        ( rootLayout as RectTransform ).anchoredPosition = new Vector2( -horizontalPageLayout.rect.width, 0.0f );
+
+        foreach( Transform child in rootLayout )
+            ( child as RectTransform ).sizeDelta = new Vector2( horizontalPageLayout.rect.width, 0.0f );
+
         PageNavigationCanvas.SetActive( false );
         confirmDeleteDataPanel.SetActive( false );
 

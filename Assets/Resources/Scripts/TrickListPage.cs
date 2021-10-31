@@ -126,12 +126,10 @@ public class TrickListPage : IBasePage, IEventReceiver
                             return;
 
                         var before = newEntry.entry.status;
-                        newEntry.entry.status = ( DataHandler.TrickEntry.Status )( ( ( int )newEntry.entry.status + 1 ) % ( int )DataHandler.TrickEntry.Status.MaxStatusValues );
+                        var status = ( DataHandler.TrickEntry.Status )( ( ( int )newEntry.entry.status + 1 ) % ( int )DataHandler.TrickEntry.Status.MaxStatusValues );
+                        trickSelector.SetTrickStatus( newEntry.entry, status, false );
 
-                        if( newEntry.entry.status == DataHandler.TrickEntry.Status.Landed )
-                            trickSelector.SetTrickLanded( newEntry.entry, false );
-
-                        if( before == DataHandler.TrickEntry.Status.Landed || newEntry.entry.status == DataHandler.TrickEntry.Status.Landed )
+                        if( before == DataHandler.TrickEntry.Status.Landed )
                             RecalculateCompletionPercentages( false );
 
                         UpdateTrickEntryVisual( newEntry );
@@ -200,8 +198,9 @@ public class TrickListPage : IBasePage, IEventReceiver
         bool filterLanded = restrictionOption == "Complete";
         bool filterBanned = restrictionOption == "Banned";
         bool filterUnlanded = restrictionOption == "Incomplete";
+        bool filterOrRestrictionActive = restrictionDropDown.value != 0 || filterLowercase.Length > 0;
 
-        if( ( filterLowercase.Length > 0 || restrictionDropDown.value != 0 ) && !difficultyEntryData.Any( ( data ) => data.Value.isOpen ) )
+        if( filterOrRestrictionActive && !difficultyEntryData.Any( ( data ) => data.Value.isOpen ) )
             CollapseOrExpandAllEntries( false );
 
         foreach( var( category, data ) in difficultyEntryData )
@@ -229,7 +228,8 @@ public class TrickListPage : IBasePage, IEventReceiver
                 }
 
                 data.anyChildVisible |= anyTrickVisible;
-                diffEntry.uiElement.SetActive( data.isOpen && diffEntry.isOpen && anyTrickVisible );
+                bool active = data.isOpen && ( anyTrickVisible || !filterOrRestrictionActive );
+                diffEntry.uiElement.SetActive( active );
             }
         }
     }
