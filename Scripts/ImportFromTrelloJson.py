@@ -39,11 +39,13 @@ with open('TrelloJson.json', 'r') as file:
 
         cur.execute(f'SELECT * FROM Tricks WHERE Name="{trick}"')
         if cur.fetchone() == None:
-            values = f'"{trick}",,"{trick_category}",1,,,,0'
-            values = values.split(',')
-            values[category_idx] = '1'
-            values = ','.join(values)
-            #cur.execute(f'INSERT INTO Tricks VALUES ({values})')
+            values = f'"{trick}","NULL","{trick_category}","{list_id}","NULL","NULL","NULL","0"'
+            if category_idx != 3:
+                values = values.split(',')
+                values[3] = '"NULL"'
+                values[category_idx] = f'"{list_id}"'
+                values = ','.join(values)
+            cur.execute(f'INSERT INTO Tricks VALUES ({values})')
 
             print('[ADDED]' + card['name'] + ' -> ' + list_id)
         else:
@@ -51,9 +53,9 @@ with open('TrelloJson.json', 'r') as file:
                 UPDATE Tricks
                 SET {category}={list_id}
                 WHERE Name="{trick}";'''
-            #cur.execute(update_sql)
+            cur.execute(update_sql)
 
-            #print('[UPDATED]' + card['name'] + ' -> ' + list_id)
+            print('[UPDATED]' + card['name'] + ' -> ' + list_id)
 
 con.commit()
 con.close()
