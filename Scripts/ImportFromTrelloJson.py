@@ -3,7 +3,7 @@ import sqlite3, json
 con = sqlite3.connect("../Assets/StreamingAssets/Database.db")
 cur = con.cursor()
 
-category = 'Flat Ground'
+trick_category = 'Flat Ground'
 
 cur.execute("DROP TABLE IF EXISTS Tricks_Backup")
 cur.execute("CREATE TABLE Tricks_Backup AS SELECT * FROM Tricks")
@@ -19,24 +19,41 @@ with open('TrelloJson.json', 'r') as file:
         list_id = lists_by_id[card['idList']]
         trick = card['name']
         category = 'Difficulty'
+        category_idx = 3
 
-        if trick.startswith('Fakie '):
-            trick = trick[6:]
-            category = 'FakieDifficulty'
-        elif trick.startswith('Switch '):
-                    trick = trick[7:]
-                    category = 'SwitchDifficulty'
-        elif trick.startswith('Nollie '):
-                    trick = trick[7:]
-                    category = 'NollieDifficulty'
+        cur.execute(f'SELECT * FROM Tricks WHERE Name="{trick}"')
 
-        update_sql = f'''
-            UPDATE Tricks
-            SET {category}={list_id}
-            WHERE Name="{trick}";'''
-        cur.execute(update_sql)
+        if cur.fetchone() == None:
+            if trick.startswith('Fakie '):
+                trick = trick[6:]
+                category = 'FakieDifficulty'
+                category_idx = 4
+            elif trick.startswith('Switch '):
+                trick = trick[7:]
+                category = 'SwitchDifficulty'
+                category_idx = 5
+            elif trick.startswith('Nollie '):
+                trick = trick[7:]
+                category = 'NollieDifficulty'
+                category_idx = 6
 
-        print(card['name'] + ' -> ' + list_id)
+        cur.execute(f'SELECT * FROM Tricks WHERE Name="{trick}"')
+        if cur.fetchone() == None:
+            values = f'"{trick}",,"{trick_category}",1,,,,0'
+            values = values.split(',')
+            values[category_idx] = '1'
+            values = ','.join(values)
+            #cur.execute(f'INSERT INTO Tricks VALUES ({values})')
+
+            print('[ADDED]' + card['name'] + ' -> ' + list_id)
+        else:
+            update_sql = f'''
+                UPDATE Tricks
+                SET {category}={list_id}
+                WHERE Name="{trick}";'''
+            #cur.execute(update_sql)
+
+            #print('[UPDATED]' + card['name'] + ' -> ' + list_id)
 
 con.commit()
 con.close()
