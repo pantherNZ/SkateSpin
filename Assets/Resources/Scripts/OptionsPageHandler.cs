@@ -72,12 +72,12 @@ class OptionsPageHandler : IBasePage, IEventReceiver
         {
             canPickLandedTricksToggle.SetIsOnWithoutNotify( canPickLandedTricksEvent.value );
         }
+        else if( e is DataLoadedEvent )
+            Initialise();
     }
 
-    public override void OnShown()
+    private void Initialise()
     {
-        base.OnShown();
-
         foreach( var toggle in toggles )
             toggle.toggle.SetIsOnWithoutNotify( trickSelector.CurrentCategories.Contains( toggle.category ) );
     }
