@@ -74,12 +74,12 @@ class MinMaxSlider : MonoBehaviour
 
         OnValueChanged();
 
-        minEventDispatcher.OnBeginDragEvent += ( _ ) => 
+        minEventDispatcher.OnBeginDragEvent += ( _ ) =>
         {
-            minHandlePin.SetVisibility( true ); 
+            minHandlePin.SetVisibility( true );
         };
 
-        minEventDispatcher.OnEndDragEvent += ( _ ) => 
+        minEventDispatcher.OnEndDragEvent += ( _ ) =>
         {
             if( interpCoroutine[0] != null )
                 StopCoroutine( interpCoroutine[0] );
@@ -94,12 +94,12 @@ class MinMaxSlider : MonoBehaviour
             }
         };
 
-        maxEventDispatcher.OnBeginDragEvent += ( _ ) => 
+        maxEventDispatcher.OnBeginDragEvent += ( _ ) =>
         {
-            maxHandlePin.SetVisibility( true ); 
+            maxHandlePin.SetVisibility( true );
         };
 
-        maxEventDispatcher.OnEndDragEvent += ( _ ) => 
+        maxEventDispatcher.OnEndDragEvent += ( _ ) =>
         {
             if( interpCoroutine[1] != null )
                 StopCoroutine( interpCoroutine[1] );
@@ -113,6 +113,14 @@ class MinMaxSlider : MonoBehaviour
                 OnValueSet?.Invoke( GetMinValue(), targetValue );
             }
         };
+
+        //maxEventDispatcher.OnPointerDownEvent += ( eventData ) =>
+        //{
+        //    if( Mathf.Abs( eventData.position.x - ( minHandle.transform as RectTransform ).position.x ) < Mathf.Abs( eventData.position.x - ( maxHandle.transform as RectTransform ).position.x ) )
+        //        sliderMin.OnPointerDown( eventData );
+        //    else
+        //        sliderMax.OnPointerDown( eventData );
+        //};
 
         minHandlePin.SetVisibility( false );
         maxHandlePin.SetVisibility( false );
