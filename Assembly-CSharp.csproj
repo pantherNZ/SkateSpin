@@ -73,7 +73,6 @@
     <Compile Include="Assets\Resources\Scripts\Utility\FunctionTimer.cs" />
     <Compile Include="Assets\Resources\Scripts\SliderCollision.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\UtilityCoroutines.cs" />
-    <Compile Include="Assets\Resources\Scripts\SliderCollisionUI.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\FPSCounter.cs" />
     <Compile Include="Assets\Resources\Scripts\PageNavigator.cs" />
     <Compile Include="Assets\Resources\Scripts\TrickLogPage.cs" />

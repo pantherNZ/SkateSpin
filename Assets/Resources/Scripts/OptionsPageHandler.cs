@@ -22,10 +22,8 @@ class OptionsPageHandler : IBasePage, IEventReceiver
     [SerializeField] Toggle shortTrickNamesToggle = null;
     [SerializeField] Toggle canPickLandedTricksToggle = null;
     [SerializeField] GameObject pullTab = null;
-    [SerializeField] GridLayoutGroup gridLayout = null;
 
     TrickSelectorPage trickSelector;
-    private new Camera camera;
     float bottomHeight;
     float moveSpeed;
 
@@ -33,7 +31,10 @@ class OptionsPageHandler : IBasePage, IEventReceiver
     {
         EventSystem.Instance.AddSubscriber( this );
         trickSelector = FindObjectOfType<TrickSelectorPage>();
-        camera = Camera.main;
+        var root = FindObjectOfType<PageNavigator>();
+        var yMult = root.GetScaleMultiplier( true );
+        roundUpHeightOffset *= yMult;
+        topHeight *= yMult;
         moveSpeed = Mathf.Abs( topHeight - bottomHeight ) / moveTimeSec;
     }
 
@@ -58,8 +59,6 @@ class OptionsPageHandler : IBasePage, IEventReceiver
         {
             EventSystem.Instance.TriggerEvent( new CanPickLandedTricksEvent() { value = on }, this );
         } );
-
-        RecalculateGridLayout();
     }
 
     void IEventReceiver.OnEventReceived( IBaseEvent e )
@@ -140,29 +139,4 @@ class OptionsPageHandler : IBasePage, IEventReceiver
     {
         Application.OpenURL( "https://www.buymeacoffee.com/AlexDenford" );
     }
-
-    void RecalculateGridLayout()
-    {
-        if( gridLayout != null )
-        {
-            gridLayout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-
-            int count = gridLayout.transform.childCount;
-
-            Vector3 cellSize = gridLayout.cellSize;
-            Vector3 spacing = gridLayout.spacing;
-
-            var amountPerRow = 2;
-            int amountPerColumn = count / amountPerRow;
-
-            float childWidth = ( ( gridLayout.transform as RectTransform ).rect.width - spacing.x * ( amountPerRow - 1 ) ) / amountPerRow;
-            float childHeight = ( ( gridLayout.transform as RectTransform ).rect.height - spacing.y * ( amountPerColumn - 1 ) ) / amountPerColumn;
-
-            cellSize.x *= Camera.main.pixelWidth / 1080.0f;
-            cellSize.y *= Camera.main.pixelHeight / 1920.0f;
-
-            gridLayout.cellSize = cellSize;
-        }
-    }
-
 }

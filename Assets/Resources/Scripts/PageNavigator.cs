@@ -6,25 +6,25 @@ using UnityEngine.UI;
 
 public class PageNavigator : MonoBehaviour, IEventReceiver
 {
-    [SerializeField] private List<GameObject> pages = new List<GameObject>();
-    [SerializeField] private GameObject PageNavigationCanvas = null;
-    [SerializeField] private RectTransform panel = null;
-    [SerializeField] private float centreX = 0.0f;
-    [SerializeField] private GameObject confirmDeleteDataPanel = null;
-    [SerializeField] private RectTransform horizontalPageLayout = null;
-    [SerializeField] private float offsetRoundingWidth = 100.0f;
-    [SerializeField] private float pageMoveTimeSec = 1.0f;
-    [SerializeField] private float navigatorMoveTimeSec = 0.0f;
-    [SerializeField] private Image blurPage = null;
-    [SerializeField] private float blurAmount = 1.5f;
-    [SerializeField] private float blurSpeed = 3.0f;
-    [SerializeField] private VerticalLayoutGroup vertLayout = null;
+    [SerializeField] List<GameObject> pages = new List<GameObject>();
+    [SerializeField] GameObject PageNavigationCanvas = null;
+    [SerializeField] RectTransform panel = null;
+    [SerializeField] float centreX = 0.0f;
+    [SerializeField] GameObject confirmDeleteDataPanel = null;
+    [SerializeField] RectTransform horizontalPageLayout = null;
+    [SerializeField] float offsetRoundingWidth = 100.0f;
+    [SerializeField] float pageMoveTimeSec = 1.0f;
+    [SerializeField] float navigatorMoveTimeSec = 0.0f;
+    [SerializeField] Image blurPage = null;
+    [SerializeField] float blurAmount = 1.5f;
+    [SerializeField] float blurSpeed = 3.0f;
+    [SerializeField] VerticalLayoutGroup vertLayout = null;
 
     Vector2? dragPos;
     float start_x;
-    private const float screenWidth = 1080.0f;
-    private float leftX;
-    private int currentPage = 0;
+    float screenWidth = 1080.0f;
+    float leftX;
+    int currentPage = 0;
 
     void Awake()
     {
@@ -33,6 +33,10 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
 
     void Start()
     {
+        screenWidth = horizontalPageLayout.rect.width;
+        offsetRoundingWidth *= GetScaleMultiplier( false );
+        //centreX *= GetScaleMultiplier( false );
+
         var rootLayout = horizontalPageLayout.GetChild( 0 );
         ( rootLayout as RectTransform ).anchoredPosition = new Vector2( -horizontalPageLayout.rect.width, 0.0f );
 
@@ -42,10 +46,18 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
         PageNavigationCanvas.SetActive( false );
         confirmDeleteDataPanel.SetActive( false );
 
+        //panel.anchoredPosition = new Vector2( -horizontalPageLayout.rect.width / 2.0f - panel.rect.width / 2.0f, panel.anchoredPosition.y );
         leftX = panel.anchoredPosition.x;
         Utility.FunctionTimer.CreateTimer( 0.01f, () => ShowPage( 0 ) );
 
         blurPage.material = Instantiate( blurPage.material );
+    }
+
+    public float GetScaleMultiplier( bool height )
+    {
+        return height
+            ? horizontalPageLayout.rect.height / 1920.0f
+            : horizontalPageLayout.rect.width / 1080.0f;
     }
 
     public void ToggleMenu()
