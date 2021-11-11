@@ -36,11 +36,9 @@ public class TrickLogPage : IBasePage, IEventReceiver
 
     void IEventReceiver.OnEventReceived( IBaseEvent e )
     {
-        if( e is TrickLandedEvent )
-        {
-            UpdateProgessCircles();
-        }
-        else if( e is DataLoadedEvent )
+        if( e is TrickLandedEvent 
+            || e is TrickDifficultyChangedEvent
+            || e is DataLoadedEvent )
         {
             UpdateProgessCircles();
         }

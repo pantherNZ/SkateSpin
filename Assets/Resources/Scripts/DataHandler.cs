@@ -26,6 +26,7 @@ public class DataHandler : IBasePage, ISavableComponent
         public Status status;
         public string category;
         public int difficulty;
+        public int originalDifficulty;
         public uint hash;
         public bool canBeRolled;
     }
@@ -200,6 +201,7 @@ public class DataHandler : IBasePage, ISavableComponent
                             secondaryName = secondaryName.Length > 0 ? prefix + secondaryName : string.Empty,
                             category = category,
                             difficulty = difficulty,
+                            originalDifficulty = difficulty,
                             hash = hash,
                             canBeRolled = canBeRolled,
                         };
@@ -358,22 +360,35 @@ public class DataHandler : IBasePage, ISavableComponent
         Save( true );
     }
 
+    public void ModifyTrickDifficulty( TrickEntry trick, bool increase )
+    {
+        var previousDifficulty = trick.difficulty;
+        _trickData[trick.category][previousDifficulty].Remove( trick );
+        trick.difficulty = Mathf.Clamp( trick.difficulty + ( increase ? 1 : -1 ), 1, 10 );
+        _trickData[trick.category][trick.difficulty].Insert( 0, trick );
+
+        EventSystem.Instance.TriggerEvent( new TrickDifficultyChangedEvent() { trick = trick, previousDifficulty = previousDifficulty } );
+
+        Save( false );
+    }
+
     void ISavableComponent.Serialise( BinaryWriter writer )
     {
         Int32 trickCount = 0;
 
         foreach( var trick in TrickData )
-            if( trick.status != TrickEntry.Status.Default )
+            if( trick.status != TrickEntry.Status.Default || trick.difficulty != trick.originalDifficulty )
                 trickCount++;
 
         writer.Write( trickCount );
 
         foreach( var trick in TrickData )
         {
-            if( trick.status != TrickEntry.Status.Default )
+            if( trick.status != TrickEntry.Status.Default || trick.difficulty != trick.originalDifficulty )
             {
                 writer.Write( trick.hash );
                 writer.Write( ( char )trick.status );
+                writer.Write( ( char )trick.difficulty );
             }
         }
 
@@ -407,6 +422,7 @@ public class DataHandler : IBasePage, ISavableComponent
         {
             var hash = reader.ReadUInt32();
             var status = reader.ReadChar();
+            var modifiedDifficulty = reader.ReadChar();
 
             if( !trickDataHashMap.ContainsKey( hash ) )
             {
@@ -415,6 +431,7 @@ public class DataHandler : IBasePage, ISavableComponent
             else
             {
                 trickDataHashMap[hash].status = ( TrickEntry.Status )status;
+                trickDataHashMap[hash].difficulty = modifiedDifficulty;
             }
         }
 

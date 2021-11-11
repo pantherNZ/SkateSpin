@@ -59,8 +59,23 @@ public class TrickListPage : IBasePage, IEventReceiver
         {
             Initialise();
         }
-        else if( e is TrickLandedEvent )
+        else if( e is TrickLandedEvent || e is TrickDifficultyChangedEvent )
         {
+            if( e is TrickDifficultyChangedEvent trickDiffChanged )
+            {
+                var trickData = difficultyEntryData[trickDiffChanged.trick.category]
+                    .perDifficultyData[trickDiffChanged.previousDifficulty - 1]
+                    .tricks.RemoveAndGet( 
+                        ( x ) => x.entry == trickDiffChanged.trick 
+                    );
+
+                var newDifficultyData = difficultyEntryData[trickDiffChanged.trick.category].perDifficultyData[trickDiffChanged.trick.difficulty - 1];
+                newDifficultyData.tricks.Add( trickData );
+
+                trickData.uiElement.transform.SetParent( verticalLayout.transform );
+                trickData.uiElement.transform.SetSiblingIndex( newDifficultyData.uiElement.transform.GetSiblingIndex() + 1 );
+            }
+
             if( restrictionDropDown.value == 0 || restrictionDropDown.options[restrictionDropDown.value].text == "Banned" )
                 FilterEntries( true, false );
             RecalculateCompletionPercentages( true );
@@ -268,7 +283,7 @@ public class TrickListPage : IBasePage, IEventReceiver
             foreach( var (difficulty, DifficultyEntry) in Utility.Enumerate( data.perDifficultyData ) )
             {
                 var completionData = landedData[category].perDifficultyLands;
-                var completionPercent = ( ( float )completionData[difficulty + 1].First ).SafeDivide( ( float )completionData[difficulty + 1].Second );
+                var completionPercent = ( ( float )completionData[difficulty + 1].First ).SafeDivide( completionData[difficulty + 1].Second );
                 DifficultyEntry.text.text = Mathf.RoundToInt( completionPercent * 100.0f ).ToString() + "%";
 
                 if( updateTrickEntryVisuals )
@@ -291,7 +306,7 @@ public class TrickListPage : IBasePage, IEventReceiver
 
     public void ExpandCategory( string category )
     {
-        CollapseOrExpandAllEntries( false );
+        CollapseOrExpandAllEntries( true );
         difficultyEntryData[category].categoryEntry.onClick.Invoke();
     }
 }

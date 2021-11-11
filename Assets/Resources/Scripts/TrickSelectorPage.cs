@@ -40,6 +40,8 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     [SerializeField] private GameObject menuButton = null;
     [SerializeField] private Text challengeInfoText = null;
     [SerializeField] private Text optionsText = null;
+    [SerializeField] private Button increaseDifficultyButton = null;
+    [SerializeField] private Button decreaseDifficultyButton = null;
     private int index;
     private bool showAlternateTrickName;
     private bool challengeMode;
@@ -212,22 +214,27 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         DataHandler.Instance.Save( false );
     }
 
-    private void UpdateCurrentTrick( bool useShortTrickNames )
+    private DataHandler.TrickEntry GetCurrentTrick()
     {
-        DataHandler.TrickEntry trickToUse = null;
-
         if( challengeMode )
         {
-            trickToUse = currentChallenge.tricks[challengeTrickIndex];
+            return currentChallenge.tricks[challengeTrickIndex];
         }
         else if( previousIndex > 0 )
         {
-            trickToUse = previousTrickList[previousTrickList.Count - previousIndex];
+            return previousTrickList[previousTrickList.Count - previousIndex];
         }
         else if( index < currentTrickList.Count )
         {
-            trickToUse = currentTrickList[index];
+            return currentTrickList[index];
         }
+
+        return null;
+    }
+
+    private void UpdateCurrentTrick( bool useShortTrickNames )
+    {
+        var trickToUse = GetCurrentTrick();
 
         if( trickToUse == null )
             return;
@@ -252,6 +259,9 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
             DataHandler.Instance.DifficultyNames[trickToUse.difficulty] );
 
         trickInfoButton.SetActive( trickToUse.secondaryName.Length > 0 );
+
+        increaseDifficultyButton.gameObject.SetActive( trickToUse.difficulty < 10 );
+        decreaseDifficultyButton.gameObject.SetActive( trickToUse.difficulty > 1 );
     }
 
     public void NextTrick()
@@ -448,6 +458,8 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         challengeInfoText.gameObject.ToggleActive();
         optionsText.gameObject.ToggleActive();
         trickDisplay.anchoredPosition = new Vector2( 0.0f, challengeMode ? 300.0f : 432.0f );
+        increaseDifficultyButton.gameObject.SetActive( !challengeMode );
+        decreaseDifficultyButton.gameObject.SetActive( !challengeMode );
     }
 
     IEnumerator AlternateTrickInterpolate()
@@ -472,6 +484,15 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         //yield return StartCoroutine( Utility.InterpolateScale( trickDisplay, new Vector3( 1.0f, 0.0f, 1.0f ), 0.3f ) );
         //yield return new WaitForSeconds( 0.1f );
         //yield return StartCoroutine( Utility.InterpolateScale( trickDisplay, new Vector3( 1.0f, 1.0f, 1.0f ), 0.3f ) );
+    }
+
+    public void ModifyCurrentTrickDifficulty( bool increase )
+    {
+        if( GetCurrentTrick().status == DataHandler.TrickEntry.Status.Landed )
+            landedDataDirty = true;
+
+        DataHandler.Instance.ModifyTrickDifficulty( GetCurrentTrick(), increase );
+        UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
     }
 
     void ISavableComponent.Serialise( BinaryWriter writer )
