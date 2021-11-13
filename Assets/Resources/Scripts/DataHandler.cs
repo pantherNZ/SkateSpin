@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System;
 using System.Text;
+using System.Globalization;
 
 public class DataHandler : IBasePage, ISavableComponent
 {
@@ -162,6 +163,8 @@ public class DataHandler : IBasePage, ISavableComponent
                 _trickData.Add( category, categoryData );
             }
 
+            var myTI = new CultureInfo( "en-US", false ).TextInfo;
+
             // Read in the tricks and populate the data
             while( reader.Read() )
             {
@@ -197,8 +200,8 @@ public class DataHandler : IBasePage, ISavableComponent
                         var newEntry = new TrickEntry()
                         {
                             index = index,
-                            name = prefix + name,
-                            secondaryName = secondaryName.Length > 0 ? prefix + secondaryName : string.Empty,
+                            name = myTI.ToTitleCase( prefix + name ),
+                            secondaryName = myTI.ToTitleCase( secondaryName.Length > 0 ? prefix + secondaryName : string.Empty ),
                             category = category,
                             difficulty = difficulty,
                             originalDifficulty = difficulty,

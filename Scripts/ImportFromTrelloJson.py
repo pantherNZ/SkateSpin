@@ -1,61 +1,71 @@
-import sqlite3, json
+import sqlite3, json, glob
 
 con = sqlite3.connect("../Assets/StreamingAssets/Database.db")
 cur = con.cursor()
 
-trick_category = 'Flat Ground'
-
 cur.execute("DROP TABLE IF EXISTS Tricks_Backup")
 cur.execute("CREATE TABLE Tricks_Backup AS SELECT * FROM Tricks")
 
-with open('TrelloJson.json', 'r') as file:
-    parsed_json = json.load(file)
+cur.execute("DELETE from Tricks WHERE SpecialTrick=0")
 
-    lists_by_id = {}
-    for list in parsed_json["lists"]:
-        lists_by_id[list['id']] = list['name']
+for file in glob.glob("JSON/*.json"):
+    with open(file, 'r') as file:
+        parsed_json = json.load(file)
 
-    for card in parsed_json["cards"]:
-        list_id = lists_by_id[card['idList']]
-        trick = card['name']
-        category = 'Difficulty'
-        category_idx = 3
+        trick_category = parsed_json['name']
 
-        cur.execute(f'SELECT * FROM Tricks WHERE Name="{trick}"')
+        lists_by_id = {}
+        for list in parsed_json["lists"]:
+            if list['closed'] == True or not list['name'].isdigit():
+                continue
+            lists_by_id[list['id']] = list['name']
 
-        if cur.fetchone() == None:
-            if trick.startswith('Fakie '):
-                trick = trick[6:]
-                category = 'FakieDifficulty'
-                category_idx = 4
-            elif trick.startswith('Switch '):
-                trick = trick[7:]
-                category = 'SwitchDifficulty'
-                category_idx = 5
-            elif trick.startswith('Nollie '):
-                trick = trick[7:]
-                category = 'NollieDifficulty'
-                category_idx = 6
+        for card in parsed_json["cards"]:
 
-        cur.execute(f'SELECT * FROM Tricks WHERE Name="{trick}"')
-        if cur.fetchone() == None:
-            values = f'"{trick}","NULL","{trick_category}","{list_id}","NULL","NULL","NULL","0"'
-            if category_idx != 3:
-                values = values.split(',')
-                values[3] = '"NULL"'
-                values[category_idx] = f'"{list_id}"'
-                values = ','.join(values)
-            cur.execute(f'INSERT INTO Tricks VALUES ({values})')
+            if card['idList'] not in lists_by_id:
+                continue
 
-            print('[ADDED]' + card['name'] + ' -> ' + list_id)
-        else:
-            update_sql = f'''
-                UPDATE Tricks
-                SET {category}={list_id}
-                WHERE Name="{trick}";'''
-            cur.execute(update_sql)
+            list_id = lists_by_id[card['idList']]
+            trick = card['name']
+            category = 'Difficulty'
+            category_idx = 3
 
-            print('[UPDATED]' + card['name'] + ' -> ' + list_id)
+            cur.execute(f'SELECT * FROM Tricks WHERE Name="{trick}" AND Category="{trick_category}"')
+
+            if cur.fetchone() == None:
+                if trick.lower().startswith('fakie '):
+                    trick = trick[6:]
+                    category = 'FakieDifficulty'
+                    category_idx = 4
+                elif trick.lower().startswith('switch '):
+                    trick = trick[7:]
+                    category = 'SwitchDifficulty'
+                    category_idx = 5
+                elif trick.lower().startswith('nollie '):
+                    trick = trick[7:]
+                    category = 'NollieDifficulty'
+                    category_idx = 6
+
+            cur.execute(f'SELECT * FROM Tricks WHERE Name="{trick}" AND Category="{trick_category}"')
+
+            if cur.fetchone() == None:
+                values = f'"{trick}",NULL,"{trick_category}","{list_id}",NULL,NULL,NULL,"0"'
+                if category_idx != 3:
+                    values = values.split(',')
+                    values[3] = 'NULL'
+                    values[category_idx] = list_id
+                    values = ','.join(values)
+                cur.execute(f'INSERT INTO Tricks VALUES ({values})')
+
+                print('[ADDED]' + card['name'] + ' -> ' + list_id)
+            else:
+                update_sql = f'''
+                    UPDATE Tricks
+                    SET {category}={list_id}
+                    WHERE Name="{trick}" AND Category="{trick_category}"'''
+                cur.execute(update_sql)
+
+                print('[UPDATED]' + card['name'] + ' -> ' + list_id)
 
 con.commit()
 con.close()

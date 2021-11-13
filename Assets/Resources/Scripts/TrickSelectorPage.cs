@@ -254,7 +254,8 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
             currentTrickText.text = displayName;
         }
 
-        difficultyText.text = string.Format( "Difficulty - {0} ({1})",
+        difficultyText.text = string.Format( "{0}\nDifficulty - {1} ({2})",
+            trickToUse.category,
             trickToUse.difficulty,
             DataHandler.Instance.DifficultyNames[trickToUse.difficulty] );
 
