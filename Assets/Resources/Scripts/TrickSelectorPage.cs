@@ -134,6 +134,9 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
             if( trick.status == DataHandler.TrickEntry.Status.Landed && !AppSettings.Instance.canPickLandedTricks )
                 continue;
 
+            if( !trick.canBeRolled )
+                continue;
+
             currentTrickPool.Add( trick );
         }
 
@@ -261,8 +264,8 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
         trickInfoButton.SetActive( trickToUse.secondaryName.Length > 0 );
 
-        increaseDifficultyButton.gameObject.SetActive( trickToUse.difficulty < 10 );
-        decreaseDifficultyButton.gameObject.SetActive( trickToUse.difficulty > 1 );
+        increaseDifficultyButton.gameObject.SetActive( !challengeMode && trickToUse.difficulty < 10 );
+        decreaseDifficultyButton.gameObject.SetActive( !challengeMode && trickToUse.difficulty > 1 );
     }
 
     public void NextTrick()
@@ -458,9 +461,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         menuButton.ToggleActive();
         challengeInfoText.gameObject.ToggleActive();
         optionsText.gameObject.ToggleActive();
-        trickDisplay.anchoredPosition = new Vector2( 0.0f, challengeMode ? 300.0f : 432.0f );
-        increaseDifficultyButton.gameObject.SetActive( !challengeMode );
-        decreaseDifficultyButton.gameObject.SetActive( !challengeMode );
+        trickDisplay.anchoredPosition = new Vector2( 0.0f, challengeMode ? 225.0f : 352.0f );
     }
 
     IEnumerator AlternateTrickInterpolate()

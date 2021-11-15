@@ -28,7 +28,8 @@ public class TrickLogPage : IBasePage, IEventReceiver
                 continue;
             }
 
-            var value = ( ( float )landedData[category].landed ).SafeDivide( ( float )landedData[category].total ); // Random.value;
+            var value = ( ( float )landedData[category].landed ).SafeDivide( ( float )landedData[category].total );
+            //var value = Random.value;
             x.GetComponentsInChildren<Image>()[1].fillAmount = value;
             x.GetComponentInChildren<Text>().text = Mathf.RoundToInt( value * 100.0f ).ToString() + "%";
         }
