@@ -89,6 +89,7 @@ public class DataHandler : IBasePage, ISavableComponent
         public string category;
         public bool completed;
         public int index;
+        public uint hash;
     }
 
     [HideInInspector] Dictionary<uint, List<ChallengeData>> _challengesData = new Dictionary<uint, List<ChallengeData>>();
@@ -111,6 +112,18 @@ public class DataHandler : IBasePage, ISavableComponent
         _Instance = this;
         SaveGameSystem.AddSaveableComponent( this );
         Utility.FunctionTimer.CreateTimer( 0.01f, Initialise );
+    }
+
+    private void OnApplicationPause( bool paused )
+    {
+        if( paused )
+            Save( true );
+    }
+
+    private void OnApplicationFocus( bool hasFocus )
+    {
+        if( !hasFocus )
+            Save( true );
     }
 
     private const string saveDataName = "Data";
@@ -255,6 +268,7 @@ public class DataHandler : IBasePage, ISavableComponent
                     person = reader.GetString( 3 ),
                     category = reader.GetString( 4 ),
                     index = challengeEntry.Count,
+                    hash = challengeHash,
                 };
 
                 foreach( var trick in tricks )

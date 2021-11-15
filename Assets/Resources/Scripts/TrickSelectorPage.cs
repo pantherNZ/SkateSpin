@@ -507,7 +507,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         if( challengeMode )
         {
             writer.Write( ( char )challengeTrickIndex );
-            writer.Write( xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( name ) ) );
+            writer.Write( currentChallenge.hash );
             writer.Write( ( char )currentChallenge.index );
         }
 
