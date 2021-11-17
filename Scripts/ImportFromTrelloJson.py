@@ -27,6 +27,7 @@ for file in glob.glob("JSON/*.json"):
 
             list_id = lists_by_id[card['idList']]
             trick = card['name']
+            alternateName = f'"{card["desc"]}"' if len(card['desc']) > 0 else "NULL"
             category = 'Difficulty'
             category_idx = 3
 
@@ -49,7 +50,7 @@ for file in glob.glob("JSON/*.json"):
             cur.execute(f'SELECT * FROM Tricks WHERE Name="{trick}" AND Category="{trick_category}"')
 
             if cur.fetchone() == None:
-                values = f'"{trick}",NULL,"{trick_category}","{list_id}",NULL,NULL,NULL,"0"'
+                values = f'"{trick}",{alternateName},"{trick_category}","{list_id}",NULL,NULL,NULL,"0"'
                 if category_idx != 3:
                     values = values.split(',')
                     values[3] = 'NULL'
