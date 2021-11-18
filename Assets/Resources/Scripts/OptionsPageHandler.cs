@@ -78,7 +78,10 @@ class OptionsPageHandler : IBasePage, IEventReceiver
     private void Initialise()
     {
         foreach( var toggle in toggles )
+        {
             toggle.toggle.SetIsOnWithoutNotify( trickSelector.CurrentCategories.Contains( toggle.category ) );
+            toggle.toggle.GetComponentInChildren<Text>().color = toggle.toggle.isOn ? new Color( 0XE6 / 255.0f, 0XEE / 255.0f, 0XF8 / 255.0f ) : new Color( 0X98 / 255.0f, 0X98 / 255.0f, 0X98 / 255.0f );
+        }
     }
 
     private Vector2? dragPos;

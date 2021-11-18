@@ -197,6 +197,8 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
             return;
         }
 
+        toggle.GetComponentInChildren<Text>().color = toggle.isOn ? new Color( 0XE6 / 255.0f, 0XEE / 255.0f, 0XF8 / 255.0f ) : new Color( 0X98 / 255.0f, 0X98 / 255.0f, 0X98 / 255.0f );
+
         if( toggle.isOn && !_currentCategories.Contains( category ) )
         {
             _currentCategories.Add( category );
