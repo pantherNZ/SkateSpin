@@ -22,6 +22,7 @@ class OptionsPageHandler : IBasePage, IEventReceiver
     [SerializeField] Toggle shortTrickNamesToggle = null;
     [SerializeField] Toggle canPickLandedTricksToggle = null;
     [SerializeField] GameObject pullTab = null;
+    [SerializeField] GameObject hideMenuButton = null;
 
     TrickSelectorPage trickSelector;
     float bottomHeight;
@@ -104,7 +105,7 @@ class OptionsPageHandler : IBasePage, IEventReceiver
             startDragPos = optionsPanel.anchoredPosition;
             clickTime = Time.time;
         }
-        else if( Utility.IsMouseUpOrTouchEnd() )
+        else if( Utility.IsMouseUpOrTouchEnd() && dragPos != null )
         {
             if( ( startMousePos - Input.mousePosition.ToVector2() ).sqrMagnitude < 5.0f * 5.0 && ( Time.time - clickTime ) < 1.0f )
                 ToggleOptions();
@@ -112,7 +113,6 @@ class OptionsPageHandler : IBasePage, IEventReceiver
                 StartCoroutine( MoveToHeight( optionsPanel.anchoredPosition.y < ( topHeight - roundUpHeightOffset ) ? bottomHeight : topHeight ) );
             else
                 StartCoroutine( MoveToHeight( optionsPanel.anchoredPosition.y < ( bottomHeight + roundUpHeightOffset ) ? bottomHeight : topHeight ) );
-
             dragPos = null;
         }
     }
@@ -122,8 +122,16 @@ class OptionsPageHandler : IBasePage, IEventReceiver
         StartCoroutine( MoveToHeight( optionsPanel.anchoredPosition.y < topHeight ? topHeight : bottomHeight ) );
     }
 
+    public void HideOptions()
+    {
+        if( optionsPanel.anchoredPosition.y >= topHeight )
+            ToggleOptions();
+    }
+
     private IEnumerator MoveToHeight( float toHeight )
     {
+        hideMenuButton.SetActive( toHeight == topHeight  );
+
         float direction = Mathf.Sign( toHeight - optionsPanel.anchoredPosition.y );
 
         while( ( direction > 0 && optionsPanel.anchoredPosition.y < toHeight ) ||

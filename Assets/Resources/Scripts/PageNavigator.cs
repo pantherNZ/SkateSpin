@@ -19,6 +19,7 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
     [SerializeField] float blurAmount = 1.5f;
     [SerializeField] float blurSpeed = 3.0f;
     [SerializeField] VerticalLayoutGroup vertLayout = null;
+    [SerializeField] GameObject hideMenuButton = null;
 
     Vector2? dragPos;
     float start_x;
@@ -65,9 +66,16 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
         if( !PageNavigationCanvas.activeSelf )
             PageNavigationCanvas.SetActive( true );
         confirmDeleteDataPanel.SetActive( false );
+        hideMenuButton.SetActive( panel.anchoredPosition.x < centreX );
 
         StartCoroutine( InterpBlur( panel.anchoredPosition.x < centreX ? blurAmount : 0.0f ) );
         StartCoroutine( MovePanel( panel.anchoredPosition.x < centreX ? centreX : leftX ) );
+    }
+
+    public void HideMenu()
+    {
+        if( PageNavigationCanvas.activeSelf )
+            ToggleMenu();
     }
 
     private IEnumerator InterpBlur( float targetBlur )

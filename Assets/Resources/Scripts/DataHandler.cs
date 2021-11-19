@@ -68,6 +68,12 @@ public class DataHandler : IBasePage, ISavableComponent
         get { return _categories.AsReadOnly(); }
     }
 
+    [HideInInspector] Dictionary<string, string> _categoryDisplayNames = new Dictionary<string, string>();
+    public ReadOnlyDictionary<string, string> CategoryDisplayNames
+    {
+        get { return new ReadOnlyDictionary<string, string >( _categoryDisplayNames ); }
+    }
+
     [HideInInspector] Dictionary<int, string> _difficultyNames = new Dictionary<int, string>();
     public ReadOnlyDictionary<int, string> DifficultyNames
     {
@@ -148,7 +154,10 @@ public class DataHandler : IBasePage, ISavableComponent
             using var reader = dbcmd.ExecuteReader();
 
             while( reader.Read() )
+            {
                 _categories.Add( reader.GetString( 0 ) );
+                _categoryDisplayNames.Add( _categories.Back(), reader.GetString( 1 ) );
+            }
         }
 
         // Load difficulty names
