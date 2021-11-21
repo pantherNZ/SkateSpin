@@ -142,7 +142,7 @@ public class TrickListPage : IBasePage, IEventReceiver
 
                         var before = newEntry.entry.status;
                         var status = ( DataHandler.TrickEntry.Status )( ( ( int )newEntry.entry.status + 1 ) % ( int )DataHandler.TrickEntry.Status.MaxStatusValues );
-                        trickSelector.SetTrickStatus( newEntry.entry, status, false );
+                        trickSelector.SetTrickStatus( newEntry.entry, status, false, false );
 
                         if( before == DataHandler.TrickEntry.Status.Landed )
                             RecalculateCompletionPercentages( false );

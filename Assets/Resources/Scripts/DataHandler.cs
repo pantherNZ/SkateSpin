@@ -9,6 +9,7 @@ using System.Linq;
 using System;
 using System.Text;
 using System.Globalization;
+using System.Collections;
 
 public class DataHandler : IBasePage, ISavableComponent
 {
@@ -25,6 +26,7 @@ public class DataHandler : IBasePage, ISavableComponent
         public int index;
         public string name, secondaryName;
         public Status status;
+        public int lands;
         public string category;
         public int difficulty;
         public int originalDifficulty;
@@ -48,7 +50,7 @@ public class DataHandler : IBasePage, ISavableComponent
                         yield return trick;
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
@@ -91,11 +93,16 @@ public class DataHandler : IBasePage, ISavableComponent
         public string name;
         public string person;
         public ReadOnlyCollection<TrickEntry> tricks;
+        public BitArray landedData;
         public int difficulty;
         public string category;
-        public bool completed;
         public int index;
         public uint hash;
+
+        public bool Completed
+        {
+            get { return landedData.CountBits() == tricks.Count; }
+        }
     }
 
     [HideInInspector] Dictionary<uint, List<ChallengeData>> _challengesData = new Dictionary<uint, List<ChallengeData>>();
@@ -147,6 +154,8 @@ public class DataHandler : IBasePage, ISavableComponent
         using SqliteConnection dbcon = new SqliteConnection( connection );
         dbcon.Open();
 
+        Debug.Log( "DataHandler::Initialise - Load Categories" );
+
         // Load categories
         using( var dbcmd = dbcon.CreateCommand() )
         {
@@ -160,6 +169,8 @@ public class DataHandler : IBasePage, ISavableComponent
             }
         }
 
+        Debug.Log( "DataHandler::Initialise - Load Difficulty name" );
+
         // Load difficulty names
         using( var dbcmd = dbcon.CreateCommand() )
         {
@@ -169,6 +180,8 @@ public class DataHandler : IBasePage, ISavableComponent
             while( reader.Read() )
                 _difficultyNames.Add( reader.GetInt32( 0 ), reader.GetString( 1 ) );
         }
+
+        Debug.Log( "DataHandler::Initialise - Load Tricks" );
 
         // Load all tricks
         using( var dbcmd = dbcon.CreateCommand() )
@@ -246,6 +259,9 @@ public class DataHandler : IBasePage, ISavableComponent
             }
         }
 
+        Debug.Log( "DataHandler::Initialise - Load ShortTrickNames" );
+
+
         // Load short trick name replacements
         using( var dbcmd = dbcon.CreateCommand() )
         {
@@ -255,6 +271,8 @@ public class DataHandler : IBasePage, ISavableComponent
             while( reader.Read() )
                 _shortTrickNameReplacements.Add( new Pair<string, string>( reader.GetString( 0 ), reader.GetString( 1 ) ) );
         }
+
+        Debug.Log( "DataHandler::Initialise - Load Challenges" );
 
         // Load challenges
         using( var dbcmd = dbcon.CreateCommand() )
@@ -293,6 +311,15 @@ public class DataHandler : IBasePage, ISavableComponent
                     trickList.Add( trickDataHashMap[trickHash] );
                 }
 
+                challengeData.landedData = new BitArray( 64 );
+
+                if( trickList.Count > 64 )
+                {
+                    Debug.LogError( string.Format( "Failed to add challenge data as there were more tricks than we can stoere (64): {0} - {1} from ({2})", name, challengeData.person, challengeData.category ) );
+                    continue;
+                }
+
+                challengeData.landedData.Length = trickList.Count;
                 challengeData.tricks = trickList.AsReadOnly();
                 challengeEntry.Add( challengeData );
             }
@@ -310,7 +337,7 @@ public class DataHandler : IBasePage, ISavableComponent
         Debug.Log( string.Format( "DataHandler::InitSqliteFile - databasePath: {0}", databasePath ) );
 
         //if DB does not exist in persistent data folder (folder "Documents" on iOS) or source DB is newer then copy it
-        if( !System.IO.File.Exists( databasePath ) || ( System.IO.File.GetLastWriteTimeUtc( sourcePath ) > System.IO.File.GetLastWriteTimeUtc( databasePath ) ) )
+       // if( !System.IO.File.Exists( databasePath ) || ( System.IO.File.GetLastWriteTimeUtc( sourcePath ) > System.IO.File.GetLastWriteTimeUtc( databasePath ) ) )
         {
             if( sourcePath.Contains( "://" ) )
             {
@@ -381,7 +408,10 @@ public class DataHandler : IBasePage, ISavableComponent
         EventSystem.Instance.TriggerEvent( new ResetSaveDataEvent() );
 
         foreach( var trick in TrickData )
+        {
             trick.status = TrickEntry.Status.Default;
+            trick.lands = 0;
+        }
 
         Save( true );
     }
@@ -403,17 +433,19 @@ public class DataHandler : IBasePage, ISavableComponent
         Int32 trickCount = 0;
 
         foreach( var trick in TrickData )
-            if( trick.status != TrickEntry.Status.Default || trick.difficulty != trick.originalDifficulty )
+            if( trick.status != TrickEntry.Status.Default || trick.lands > 0 || trick.difficulty != trick.originalDifficulty )
                 trickCount++;
 
         writer.Write( trickCount );
 
         foreach( var trick in TrickData )
         {
-            if( trick.status != TrickEntry.Status.Default || trick.difficulty != trick.originalDifficulty )
+            if( trick.status != TrickEntry.Status.Default || trick.lands > 0 || trick.difficulty != trick.originalDifficulty )
             {
                 writer.Write( trick.hash );
-                writer.Write( ( char )trick.status );
+                writer.Write( trick.status == TrickEntry.Status.Banned );
+                writer.Write( trick.status == TrickEntry.Status.Landed );
+                writer.Write( ( short )trick.lands );
                 writer.Write( ( char )trick.difficulty );
             }
         }
@@ -422,7 +454,7 @@ public class DataHandler : IBasePage, ISavableComponent
 
         foreach( var( hash, challenges ) in ChallengesData )
             foreach( var challenge in challenges )
-                if( challenge.completed )
+                if( challenge.landedData.Any() )
                     challengeCount++;
 
         writer.Write( challengeCount );
@@ -431,10 +463,11 @@ public class DataHandler : IBasePage, ISavableComponent
         {
             foreach( var challenge in challenges )
             {
-                if( challenge.completed )
+                if( challenge.landedData.Any() )
                 {
                     writer.Write( hash );
                     writer.Write( ( char )challenge.index );
+                    writer.Write( challenge.landedData.ToNumeral() );
                 }
             }
         }
@@ -447,7 +480,9 @@ public class DataHandler : IBasePage, ISavableComponent
         for( int i = 0; i < trickCount; ++i )
         {
             var hash = reader.ReadUInt32();
-            var status = reader.ReadChar();
+            var banned = reader.ReadBoolean();
+            var landed = reader.ReadBoolean();
+            var lands = reader.ReadInt16();
             var modifiedDifficulty = reader.ReadChar();
 
             if( !trickDataHashMap.ContainsKey( hash ) )
@@ -456,7 +491,8 @@ public class DataHandler : IBasePage, ISavableComponent
             }
             else
             {
-                trickDataHashMap[hash].status = ( TrickEntry.Status )status;
+                trickDataHashMap[hash].status = banned ? TrickEntry.Status.Banned : landed ? TrickEntry.Status.Landed : TrickEntry.Status.Default;
+                trickDataHashMap[hash].lands = lands;
                 trickDataHashMap[hash].difficulty = modifiedDifficulty;
             }
         }
@@ -467,7 +503,10 @@ public class DataHandler : IBasePage, ISavableComponent
         {
             var hash = reader.ReadUInt32();
             var index = reader.ReadChar();
-            ChallengesData[hash][index].completed = true;
+            var landedData = reader.ReadInt64();
+            var entry = _challengesData[hash][index];
+            entry.landedData = landedData.ToBitArray();
+            entry.landedData.Length = entry.tricks.Count;
         }
     }
 }

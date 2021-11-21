@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "RF8R716BCGK",
         "name": "com.ReflexGames.SkateSpin",
-        "processId": 24705,
+        "processId": 8312,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -71,31 +71,43 @@
         {
             "deviceId": "RF8R716BCGK",
             "name": "com.ReflexGames.SkateSpin",
-            "processId": 19486,
-            "exited": false
-        },
-        {
-            "deviceId": "RF8R716BCGK",
-            "name": "com.ReflexGames.SkateSpin",
-            "processId": 5347,
-            "exited": false
-        },
-        {
-            "deviceId": "RF8R716BCGK",
-            "name": "com.ReflexGames.SkateSpin",
-            "processId": 14102,
-            "exited": false
-        },
-        {
-            "deviceId": "RF8R716BCGK",
-            "name": "com.ReflexGames.SkateSpin",
             "processId": 23416,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "RF8R716BCGK",
             "name": "com.ReflexGames.SkateSpin",
             "processId": 24705,
+            "exited": true
+        },
+        {
+            "deviceId": "RF8R716BCGK",
+            "name": "com.ReflexGames.SkateSpin",
+            "processId": 16718,
+            "exited": true
+        },
+        {
+            "deviceId": "RF8R716BCGK",
+            "name": "com.ReflexGames.SkateSpin",
+            "processId": 27074,
+            "exited": true
+        },
+        {
+            "deviceId": "RF8R716BCGK",
+            "name": "com.ReflexGames.SkateSpin",
+            "processId": 28263,
+            "exited": true
+        },
+        {
+            "deviceId": "RF8R716BCGK",
+            "name": "com.sec.android.app.myfiles",
+            "processId": 3861,
+            "exited": false
+        },
+        {
+            "deviceId": "RF8R716BCGK",
+            "name": "com.ReflexGames.SkateSpin",
+            "processId": 8312,
             "exited": false
         }
     ],

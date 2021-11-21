@@ -49,6 +49,7 @@ public class ChallengesPage : IBasePage, IEventReceiver
 
         restrictionDropDown.onValueChanged.AddListener( ( x ) => FilterEntries( true, false ) );
         filter.onValueChanged.AddListener( ( x ) => FilterEntries( false, true ) );
+        verticalLayout.transform.DetachChildren();
     }
 
     void IEventReceiver.OnEventReceived( IBaseEvent e )
@@ -93,7 +94,7 @@ public class ChallengesPage : IBasePage, IEventReceiver
 
                 challenge.uiElement = entry;
                 challenge.button = buttons.Back();
-                challenge.wasOpen = true;
+                challenge.wasOpen = false;
 
                 foreach( var defender in challenge.defenders )
                 {
@@ -166,17 +167,20 @@ public class ChallengesPage : IBasePage, IEventReceiver
         var subEntry = challengeToUIEntry[thisChallenge];
         var strikethrough = subEntry.GetComponentInChildren<Image>( true );
         var text = subEntry.GetComponentInChildren<Text>();
-        strikethrough.gameObject.SetActive( thisChallenge.completed );
+
+        bool complete = thisChallenge.Completed;
+        strikethrough.gameObject.SetActive( complete );
         subEntry.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
 
-        text.color = challenge.completed ? new Color( 1.0f, 93.0f / 255.0f, 93.0f / 255.0f ) : Color.white;
-
-        if( thisChallenge.completed )
+        if( complete )
         {
+            text.color = new Color( 1.0f, 93.0f / 255.0f, 93.0f / 255.0f );
             strikethrough.transform.localScale = strikethrough.transform.localScale.SetX( Utility.GetTextWidth( text ) / 100.0f );
         }
         else
         {
+            text.color = Color.white;
+
             subEntry.GetComponentInChildren<Button>().onClick.AddListener( () =>
             {
                 EventSystem.Instance.TriggerEvent( new StartChallengeRequestEvent() { challenge = thisChallenge } );
@@ -191,8 +195,9 @@ public class ChallengesPage : IBasePage, IEventReceiver
         var filterLowercase = filter.text.ToLower();
         bool filterLanded = restrictionOption == "Complete";
         bool filterUnlanded = restrictionOption == "Incomplete";
+        bool filterOrRestrictionActive = restrictionDropDown.value != 0 || filterLowercase.Length > 0;
 
-        if( ( filterLowercase.Length > 0 || restrictionDropDown.value != 0 ) && !categoryData.Any( ( data ) => data.Value.isOpen ) )
+        if( filterOrRestrictionActive && !categoryData.Any( ( data ) => data.Value.isOpen ) )
             CollapseOrExpandAllEntries( false );
 
         foreach( var( category, data ) in categoryData )
@@ -206,9 +211,12 @@ public class ChallengesPage : IBasePage, IEventReceiver
                 foreach( var defender in challenge.defenders )
                 {
                     if( updateRestriction )
-                        defender.isVisibleFromRestriction = ( filterLanded && defender.entry.completed )
-                            || ( filterUnlanded && !defender.entry.completed )
+                    {
+                        bool completed = defender.entry.Completed;
+                        defender.isVisibleFromRestriction = ( filterLanded && completed )
+                            || ( filterUnlanded && !completed )
                             || restrictionDropDown.value == 0;
+                    }
 
                     if( updateFilter )
                         defender.isVisibleFromFilter = filter.text.Length == 0
@@ -221,7 +229,8 @@ public class ChallengesPage : IBasePage, IEventReceiver
                 }
 
                 data.anyChildVisible |= anyVisible;
-                challenge.uiElement.SetActive( data.isOpen && challenge.isOpen && anyVisible );
+                bool active = data.isOpen && ( anyVisible || !filterOrRestrictionActive );
+                challenge.uiElement.SetActive( active );
             }
         }
     }
