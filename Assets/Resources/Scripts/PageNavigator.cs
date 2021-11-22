@@ -27,6 +27,8 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
     float leftX;
     int currentPage = 0;
 
+    public bool draggingEnabled = true;
+
     void Awake()
     {
         EventSystem.Instance.AddSubscriber( this );
@@ -136,6 +138,9 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
 
     private void Update()
     {
+        if( !draggingEnabled )
+            return;
+
         if( dragPos != null )
         {
             float val = horizontalPageLayout.anchoredPosition.x + Utility.GetMouseOrTouchPos().x - dragPos.Value.x;
@@ -213,7 +218,7 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
         layoutRoot.GetChild( fromIndex ).SetSiblingIndex( toIndex );
         horizontalPageLayout.anchoredPosition = horizontalPageLayout.anchoredPosition.SetX( 0.0f );
         blurPage.material.SetFloat( "_Size", 0.0f );
-        ChangePageInstant( ( currentPage + ( left ? 1 : ( pages.Count - 1 ) ) ) % pages.Count );
+        ChangePageInstant( Utility.Mod( currentPage + ( left ? 1 : -1 ), pages.Count ) );
     }
 
     void ChangePageInstant( int page )

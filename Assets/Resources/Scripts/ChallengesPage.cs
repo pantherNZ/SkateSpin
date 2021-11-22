@@ -12,6 +12,7 @@ public class ChallengesPage : IBasePage, IEventReceiver
     [SerializeField] GameObject challengeSubEntryPrefab = null;
     [SerializeField] Dropdown restrictionDropDown = null;
     [SerializeField] InputField filter = null;
+    [SerializeField] Gradient gradient;
 
     public class DefenderData
     {
@@ -20,6 +21,10 @@ public class ChallengesPage : IBasePage, IEventReceiver
         public Text text;
         public bool isVisibleFromRestriction;
         public bool isVisibleFromFilter;
+        public Text difficultyText;
+        public Text completionText;
+        public Image strikeThrough;
+        public Button button;
     }
 
     public class ChallengeData
@@ -39,7 +44,7 @@ public class ChallengesPage : IBasePage, IEventReceiver
         public List<ChallengeData> challenges = new List<ChallengeData>();
     }
 
-    private Dictionary<DataHandler.ChallengeData, GameObject> challengeToUIEntry = new Dictionary<DataHandler.ChallengeData, GameObject>();
+    private Dictionary<DataHandler.ChallengeData, DefenderData> challengeToUIEntry = new Dictionary<DataHandler.ChallengeData, DefenderData>();
     readonly Dictionary<string, CategoryData> categoryData = new Dictionary<string, CategoryData>();
     private bool callbackEnabled = true;
 
@@ -58,9 +63,14 @@ public class ChallengesPage : IBasePage, IEventReceiver
         {
             Initialise();
         }
-        else if( e is ChallengeCompletedEvent challengeCompleted )
+        else if( e is ChallengeEndedEvent challengeCompleted )
         {
             UpdateCompleted( challengeCompleted.challenge );
+        }
+        else if( e is ResetSaveDataEvent )
+        {
+            foreach( var( challenge, _ ) in challengeToUIEntry )
+                UpdateCompleted( challenge );
         }
     }
 
@@ -99,14 +109,24 @@ public class ChallengesPage : IBasePage, IEventReceiver
                 foreach( var defender in challenge.defenders )
                 {
                     var subEntry = Instantiate( challengeSubEntryPrefab );
-                    var text = subEntry.GetComponentInChildren<Text>();
-                    text.text = "Defend against " + defender.entry.person;
+                    var text = subEntry.GetComponentsInChildren<Text>();
+                    text[0].text = "Defend against " + defender.entry.person;
                     subEntry.transform.SetParent( verticalLayout.transform );
 
-                    defender.text = text;
-                    defender.uiElement = subEntry;
+                    defender.text = text[0];
+                    defender.text.text = "Defend against " + defender.entry.person;
 
-                    challengeToUIEntry.Add( defender.entry, subEntry );
+                    defender.difficultyText = text[1];
+                    //defender.entry.difficulty = Random.Range( 1, 10 );
+                    defender.difficultyText.text = defender.entry.difficulty.ToString();
+                    defender.difficultyText.color = gradient.Evaluate( ( defender.entry.difficulty - 1.0f ) / 9.0f );
+
+                    defender.completionText = text[2];
+                    defender.uiElement = subEntry;
+                    defender.strikeThrough = subEntry.GetComponentInChildren<Image>( true );
+                    defender.button = subEntry.GetComponentInChildren<Button>( true );
+
+                    challengeToUIEntry.Add( defender.entry, defender );
                     UpdateCompleted( defender.entry );
                 }
 
@@ -164,29 +184,31 @@ public class ChallengesPage : IBasePage, IEventReceiver
     private void UpdateCompleted( DataHandler.ChallengeData challenge )
     {
         var thisChallenge = challenge;
-        var subEntry = challengeToUIEntry[thisChallenge];
-        var strikethrough = subEntry.GetComponentInChildren<Image>( true );
-        var text = subEntry.GetComponentInChildren<Text>();
+        var defender = challengeToUIEntry[thisChallenge];
 
         bool complete = thisChallenge.Completed;
-        strikethrough.gameObject.SetActive( complete );
-        subEntry.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
+        defender.strikeThrough.gameObject.SetActive( complete );
+        defender.button.onClick.RemoveAllListeners();
 
         if( complete )
         {
-            text.color = new Color( 1.0f, 93.0f / 255.0f, 93.0f / 255.0f );
-            strikethrough.transform.localScale = strikethrough.transform.localScale.SetX( Utility.GetTextWidth( text ) / 100.0f );
+            defender.text.color = new Color( 1.0f, 93.0f / 255.0f, 93.0f / 255.0f );
+            defender.strikeThrough.transform.localScale = defender.strikeThrough.transform.localScale.SetX( Utility.GetTextWidth( defender.text ) / 100.0f );
         }
         else
         {
-            text.color = Color.white;
+            defender.text.color = Color.white;
 
-            subEntry.GetComponentInChildren<Button>().onClick.AddListener( () =>
+            defender.button.onClick.AddListener( () =>
             {
                 EventSystem.Instance.TriggerEvent( new StartChallengeRequestEvent() { challenge = thisChallenge } );
                 EventSystem.Instance.TriggerEvent( new PageChangeRequestEvent() { page = 0 } );
             } );
         }
+
+        var completion = ( int )( defender.entry.landedData.CountBits() / ( float )defender.entry.tricks.Count * 100.0f );
+        defender.completionText.gameObject.SetActive( completion < 100 );
+        defender.completionText.text = string.Format( "{0}%", completion );
     }
 
     public void FilterEntries( bool updateRestriction, bool updateFilter )

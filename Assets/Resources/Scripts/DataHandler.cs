@@ -311,6 +311,11 @@ public class DataHandler : IBasePage, ISavableComponent
                     trickList.Add( trickDataHashMap[trickHash] );
                 }
 
+                //var total = 0.0f;
+                //foreach( var x in trickList )
+                //    total += 1.0f + Mathf.Pow( ( x.difficulty - 1.0f ) / 10.0f, 3.0f ) * 9.0f;
+                //Debug.Log( string.Format( "Challenge: {0}-{1}, average diff: {2}, num tricks: {3}", name, challengeData.person, total * 3.0f / trickList.Count, trickList.Count ) );
+
                 challengeData.landedData = new BitArray( 64 );
 
                 if( trickList.Count > 64 )
@@ -405,14 +410,17 @@ public class DataHandler : IBasePage, ISavableComponent
 
     public void ClearSavedData()
     {
-        EventSystem.Instance.TriggerEvent( new ResetSaveDataEvent() );
-
         foreach( var trick in TrickData )
         {
             trick.status = TrickEntry.Status.Default;
             trick.lands = 0;
         }
 
+        foreach( var( key, data ) in _challengesData )
+            foreach( var challenge in data )
+                challenge.landedData.SetAll( false );
+
+        EventSystem.Instance.TriggerEvent( new ResetSaveDataEvent() );
         Save( true );
     }
 

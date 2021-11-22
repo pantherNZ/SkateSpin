@@ -39,7 +39,8 @@ public class TrickLogPage : IBasePage, IEventReceiver
     {
         if( e is TrickLandedEvent 
             || e is TrickDifficultyChangedEvent
-            || e is DataLoadedEvent )
+            || e is DataLoadedEvent
+            || e is ResetSaveDataEvent )
         {
             UpdateProgessCircles();
         }

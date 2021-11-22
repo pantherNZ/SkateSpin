@@ -112,7 +112,10 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         else if( e is DataLoadedEvent )
             Initialise();
         else if( e is ResetSaveDataEvent )
+        {
             ResetSaveData();
+            Initialise();
+        }
         else if( e is StartChallengeRequestEvent startChallengeRequest )
             ActivateChallenge( startChallengeRequest.challenge );
     }
@@ -273,7 +276,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
             displayText += string.Format( "\nTrick {0}/{1}", challengeTrickIndex + 1, currentChallenge.tricks.Count );
             landedTrickText.text = currentChallenge.landedData.Get( challengeTrickIndex ) ? "Landed" : "Not landed";
         }
-        else if( trickToUse.lands == 0 )
+        else if( trickToUse.lands == 0 || trickToUse.status == DataHandler.TrickEntry.Status.Default )
         {
             landedTrickText.text = "Not landed";
         }
@@ -300,7 +303,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     {
         if( challengeMode )
         {
-            challengeTrickIndex = ( challengeTrickIndex + 1 ) % currentChallenge.tricks.Count;
+            challengeTrickIndex = Utility.Mod( challengeTrickIndex + 1, currentChallenge.tricks.Count );
             
         }
         else
@@ -317,10 +320,9 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
 
     public void PreviousTrick()
     {
-
         if( challengeMode )
         {
-            challengeTrickIndex = ( challengeTrickIndex - 1 ) % currentChallenge.tricks.Count;
+            challengeTrickIndex = Utility.Mod( challengeTrickIndex - 1, currentChallenge.tricks.Count );
 
         }
         else
@@ -340,11 +342,10 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         if( challengeMode )
         {
             currentChallenge.landedData.Set( challengeTrickIndex, true );
-            EventSystem.Instance.TriggerEvent( new ChallengeTrickCompletedEvent() { challenge = currentChallenge } );
 
             for( int i = 1; i < currentChallenge.tricks.Count; ++i )
             {
-                var index = ( challengeTrickIndex + i ) % currentChallenge.tricks.Count;
+                var index = Utility.Mod( challengeTrickIndex + i, currentChallenge.tricks.Count );
 
                 if( !currentChallenge.landedData.Get( index ) )
                 {
@@ -354,7 +355,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
                 }
             }
 
-            DeactivateChallenge();
+            DeactivateChallenge( true );
             return;
         }
         else
@@ -399,7 +400,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     {
         if( challengeMode )
         {
-            DeactivateChallenge();
+            DeactivateChallenge( false );
             return;
         }
 
@@ -466,6 +467,8 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         _currentCategories = new List<string> { "Flat Ground" };
         difficultySlider.SetMinValue( 1.0f );
         difficultySlider.SetMaxValue( 10.0f );
+        challengeTrickIndex = 0;
+        challengeMode = false;
     }
 
     public void ToggleAlternateTrickName()
@@ -488,10 +491,11 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         }
     }
 
-    public void DeactivateChallenge()
+    public void DeactivateChallenge( bool completed )
     {
         if( challengeMode )
         {
+            EventSystem.Instance.TriggerEvent( new ChallengeEndedEvent() { challenge = currentChallenge, completed = completed } );
             ToggleChallengeMode();
             EventSystem.Instance.TriggerEvent( new PageChangeRequestEvent() { page = 3 } );
             UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
@@ -510,6 +514,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         challengeInfoText.gameObject.ToggleActive();
         optionsText.gameObject.ToggleActive();
         ( trickDisplay.parent as RectTransform ).anchoredPosition = new Vector2( 0.0f, challengeMode ? 225.0f : 352.0f );
+        FindObjectOfType<PageNavigator>().draggingEnabled = !challengeMode;
     }
 
     IEnumerator AlternateTrickInterpolate()

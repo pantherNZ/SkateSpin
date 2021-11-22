@@ -55,12 +55,12 @@ public class TrickListPage : IBasePage, IEventReceiver
 
     void IEventReceiver.OnEventReceived( IBaseEvent e )
     {
-        if( e is DataLoadedEvent )
+        if( e is DataLoadedEvent || e is ResetSaveDataEvent )
         {
             Initialise();
         }
         else if( e is TrickLandedEvent || e is TrickDifficultyChangedEvent )
-        {
+         {
             if( e is TrickDifficultyChangedEvent trickDiffChanged )
             {
                 var trickData = difficultyEntryData[trickDiffChanged.trick.category]
@@ -141,7 +141,7 @@ public class TrickListPage : IBasePage, IEventReceiver
                             return;
 
                         var before = newEntry.entry.status;
-                        var status = ( DataHandler.TrickEntry.Status )( ( ( int )newEntry.entry.status + 1 ) % ( int )DataHandler.TrickEntry.Status.MaxStatusValues );
+                        var status = ( DataHandler.TrickEntry.Status )Utility.Mod( ( int )newEntry.entry.status + 1, ( int )DataHandler.TrickEntry.Status.MaxStatusValues );
                         trickSelector.SetTrickStatus( newEntry.entry, status, false, false );
 
                         if( before == DataHandler.TrickEntry.Status.Landed )
