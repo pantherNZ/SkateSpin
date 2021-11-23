@@ -98,6 +98,7 @@ public class TrickListPage : IBasePage, IEventReceiver
 
             var categoryInfo = difficultyEntryData.GetOrAdd( category );
             categoryInfo.categoryEntry = categoryButton;
+            categoryInfo.perDifficultyData.Clear();
             var buttons = new List<Button>();
 
             foreach( var (difficulty, name) in DataHandler.Instance.DifficultyNames )

@@ -251,20 +251,12 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         if( trickToUse == null )
             return;
 
-        if( showAlternateTrickName )
-        {
-            currentTrickText.text = trickToUse.secondaryName;
-        }
-        else
-        {
-            var displayName = trickToUse.name;
+        var displayName = showAlternateTrickName ? trickToUse.secondaryName : trickToUse.name;
 
-            if( useShortTrickNames )
-                foreach( var (toReplace, replaceWith) in DataHandler.Instance.ShortTrickNameReplacements )
-                    displayName = displayName.Replace( toReplace, replaceWith );
-
-            currentTrickText.text = displayName;
-        }
+        if( useShortTrickNames )
+            foreach( var (toReplace, replaceWith) in DataHandler.Instance.ShortTrickNameReplacements )
+                displayName = displayName.Replace( toReplace, replaceWith );
+        currentTrickText.text = displayName;
 
         var displayText = string.Format( "{0}\nDifficulty - {1} ({2})",
             DataHandler.Instance.CategoryDisplayNames[trickToUse.category],
