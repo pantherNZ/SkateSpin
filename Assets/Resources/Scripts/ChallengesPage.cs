@@ -21,7 +21,6 @@ public class ChallengesPage : IBasePage, IEventReceiver
         public Text text;
         public bool isVisibleFromRestriction;
         public bool isVisibleFromFilter;
-        public Text difficultyText;
         public Text completionText;
         public Image strikeThrough;
         public Button button;
@@ -116,14 +115,15 @@ public class ChallengesPage : IBasePage, IEventReceiver
                     defender.text = text[0];
                     defender.text.text = "Defend against " + defender.entry.person;
 
-                    defender.difficultyText = text[1];
-                    //defender.entry.difficulty = Random.Range( 1, 10 );
-                    defender.difficultyText.text = defender.entry.difficulty.ToString();
-                    defender.difficultyText.color = gradient.Evaluate( ( defender.entry.difficulty - 1.0f ) / 9.0f );
+                    var images = subEntry.GetComponentsInChildren<Image>( true );
+                    images[1].color = gradient.Evaluate( ( defender.entry.difficulty - 1.0f ) / 9.0f );
+                    images[1].fillAmount = defender.entry.difficulty / 10.0f;
+                    //text[1]..entry.difficulty = Random.Range( 1, 10 );
+                    text[1].text = defender.entry.difficulty.ToString();
 
                     defender.completionText = text[2];
                     defender.uiElement = subEntry;
-                    defender.strikeThrough = subEntry.GetComponentInChildren<Image>( true );
+                    defender.strikeThrough = images.Last();
                     defender.button = subEntry.GetComponentInChildren<Button>( true );
 
                     challengeToUIEntry.Add( defender.entry, defender );

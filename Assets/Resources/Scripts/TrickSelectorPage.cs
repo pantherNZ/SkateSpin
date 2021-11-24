@@ -258,7 +258,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
                 displayName = displayName.Replace( toReplace, replaceWith );
         currentTrickText.text = displayName;
 
-        var displayText = string.Format( "{0}\nDifficulty - {1} ({2})",
+        var displayText = string.Format( "{0}\nDifficulty {1} ({2})",
             DataHandler.Instance.CategoryDisplayNames[trickToUse.category],
             trickToUse.difficulty,
             DataHandler.Instance.DifficultyNames[trickToUse.difficulty] );
