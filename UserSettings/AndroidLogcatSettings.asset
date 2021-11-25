@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "RF8R716BCGK",
         "name": "com.ReflexGames.SkateSpin",
-        "processId": 6046,
+        "processId": 6352,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -132,6 +132,12 @@
             "deviceId": "RF8R716BCGK",
             "name": "com.ReflexGames.SkateSpin",
             "processId": 6046,
+            "exited": false
+        },
+        {
+            "deviceId": "RF8R716BCGK",
+            "name": "com.ReflexGames.SkateSpin",
+            "processId": 6352,
             "exited": false
         }
     ],
