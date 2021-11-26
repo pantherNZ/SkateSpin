@@ -29,6 +29,7 @@ public class TrickListPage : IBasePage, IEventReceiver
         public Text text;
         public Button button;
         public GameObject uiElement;
+        public Image openImage;
         public List<TrickData> tricks = new List<TrickData>();
     }
 
@@ -37,6 +38,7 @@ public class TrickListPage : IBasePage, IEventReceiver
         public Button categoryEntry;
         public bool isOpen;
         public bool anyChildVisible;
+        public Image openImage;
         public List<DifficultyData> perDifficultyData = new List<DifficultyData>();
     }
 
@@ -99,6 +101,7 @@ public class TrickListPage : IBasePage, IEventReceiver
             var categoryInfo = difficultyEntryData.GetOrAdd( category );
             categoryInfo.categoryEntry = categoryButton;
             categoryInfo.perDifficultyData.Clear();
+            categoryInfo.openImage = categoryHeading.GetComponentInChildren<Image>();
             var buttons = new List<Button>();
 
             foreach( var (difficulty, name) in DataHandler.Instance.DifficultyNames )
@@ -117,6 +120,7 @@ public class TrickListPage : IBasePage, IEventReceiver
                     text = texts[1],
                     button = buttons.Back(),
                     wasOpen = true,
+                    openImage = difficultyHeading.GetComponentInChildren<Image>(),
                 };
 
                 // Create trick entries
@@ -161,6 +165,8 @@ public class TrickListPage : IBasePage, IEventReceiver
                         newDifficultyEntry.wasOpen = !newDifficultyEntry.wasOpen;
 
                     newDifficultyEntry.isOpen = !newDifficultyEntry.isOpen;
+                    newDifficultyEntry.openImage.transform.localEulerAngles = new Vector3( 0.0f, 0.0f, newDifficultyEntry.isOpen ? 180.0f : -90.0f );
+
                     foreach( var trick in newDifficultyEntry.tricks )
                         trick.uiElement.SetActive( newDifficultyEntry.isOpen && trick.isVisibleFromRestriction && trick.isVisibleFromFilter );
                 } );
@@ -172,6 +178,7 @@ public class TrickListPage : IBasePage, IEventReceiver
                     return;
 
                 categoryInfo.isOpen = !categoryInfo.isOpen;
+                categoryInfo.openImage.transform.localEulerAngles = new Vector3( 0.0f, 0.0f, categoryInfo.isOpen ? 180.0f : -90.0f );
 
                 // Read and open any difficulty categories already open
                 if( categoryInfo.isOpen )

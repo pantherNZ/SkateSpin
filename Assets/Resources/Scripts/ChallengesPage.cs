@@ -40,6 +40,7 @@ public class ChallengesPage : IBasePage, IEventReceiver
         public Button categoryEntry;
         public bool isOpen;
         public bool anyChildVisible;
+        public Image openImage;
         public List<ChallengeData> challenges = new List<ChallengeData>();
     }
 
@@ -90,7 +91,7 @@ public class ChallengesPage : IBasePage, IEventReceiver
             categoryHeading.transform.SetParent( verticalLayout.transform, false );
             categoryHeading.GetComponentInChildren<Text>().text = category;
             var categoryButton = categoryHeading.GetComponent<Button>();
-
+            categoryInfo.openImage = categoryHeading.GetComponentInChildren<Image>();
             categoryInfo.categoryEntry = categoryButton;
             var buttons = new List<Button>();
 
@@ -109,17 +110,16 @@ public class ChallengesPage : IBasePage, IEventReceiver
                 {
                     var subEntry = Instantiate( challengeSubEntryPrefab );
                     var text = subEntry.GetComponentsInChildren<Text>();
-                    text[0].text = "Defend against " + defender.entry.person;
+                    text[0].text = defender.entry.difficulty.ToString();
                     subEntry.transform.SetParent( verticalLayout.transform );
 
-                    defender.text = text[0];
+                    defender.text = text[1];
                     defender.text.text = "Defend against " + defender.entry.person;
 
                     var images = subEntry.GetComponentsInChildren<Image>( true );
                     images[1].color = gradient.Evaluate( ( defender.entry.difficulty - 1.0f ) / 9.0f );
                     images[1].fillAmount = defender.entry.difficulty / 10.0f;
                     //text[1]..entry.difficulty = Random.Range( 1, 10 );
-                    text[1].text = defender.entry.difficulty.ToString();
 
                     defender.completionText = text[2];
                     defender.uiElement = subEntry;
@@ -147,6 +147,7 @@ public class ChallengesPage : IBasePage, IEventReceiver
                     return;
 
                 categoryInfo.isOpen = !categoryInfo.isOpen;
+                categoryInfo.openImage.transform.localEulerAngles = new Vector3( 0.0f, 0.0f, categoryInfo.isOpen ? 180.0f : -90.0f );
 
                 // Read and open any difficulty categories already open
                 if( categoryInfo.isOpen )
