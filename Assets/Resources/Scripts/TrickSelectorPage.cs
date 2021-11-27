@@ -505,7 +505,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         menuButton.ToggleActive();
         challengeInfoText.gameObject.ToggleActive();
         optionsText.gameObject.ToggleActive();
-        ( trickDisplay.parent as RectTransform ).anchoredPosition = new Vector2( 0.0f, challengeMode ? 225.0f : 352.0f );
+        ( trickDisplay.parent as RectTransform ).anchoredPosition = new Vector2( 0.0f, challengeMode ? -135.0f : 0.0f );
         FindObjectOfType<PageNavigator>().draggingEnabled = !challengeMode;
     }
 

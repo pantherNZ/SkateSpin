@@ -28,6 +28,7 @@ public class ChallengesPage : IBasePage, IEventReceiver
 
     public class ChallengeData
     {
+        public DataHandler.ChallengeData entry;
         public bool wasOpen;
         public bool isOpen;
         public Button button;
@@ -78,11 +79,23 @@ public class ChallengesPage : IBasePage, IEventReceiver
     {
         foreach( var (hash, challenges) in DataHandler.Instance.ChallengesData )
         {
-            var entry = new ChallengeData(); 
-            categoryData.GetOrAdd( challenges[0].category ).challenges.Add( entry );
-
             foreach( var challenge in challenges )
-                entry.defenders.Add( new DefenderData() { entry = challenge } );
+            {
+                var category = categoryData.GetOrAdd( challenge.category );
+                var found = category.challenges.FindIndex( ( x ) => x.entry.name == challenge.name );
+
+                if( found == -1 )
+                {
+                    var newChallenge = new ChallengeData();
+                    newChallenge.entry = challenge;
+                    category.challenges.Add( newChallenge );
+                    newChallenge.defenders.Add( new DefenderData() { entry = challenge } );
+                }
+                else
+                {
+                    category.challenges[found].defenders.Add( new DefenderData() { entry = challenge } );
+                }
+            }
         }
 
         foreach( var( category, categoryInfo) in categoryData )

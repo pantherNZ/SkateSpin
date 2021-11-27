@@ -144,6 +144,8 @@ public class DataHandler : IBasePage, ISavableComponent
 
     private void Initialise()
     {
+        var myTI = new CultureInfo( "en-US", false ).TextInfo;
+
         Debug.Log( "DataHandler::Initialise" );
 
         // Copy db file to local device persistent storage (if not already there)
@@ -198,8 +200,6 @@ public class DataHandler : IBasePage, ISavableComponent
                 _trickData.Add( category, categoryData );
             }
 
-            var myTI = new CultureInfo( "en-US", false ).TextInfo;
-
             // Read in the tricks and populate the data
             while( reader.Read() )
             {
@@ -229,7 +229,7 @@ public class DataHandler : IBasePage, ISavableComponent
                         if( difficulty <= 0 )
                             continue;
 
-                        var hash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( category + prefix + name ) );
+                        var hash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( category + prefix + myTI.ToTitleCase( name ) ) );
                         var index = _trickData.Count;
 
                         var newEntry = new TrickEntry()
@@ -300,12 +300,26 @@ public class DataHandler : IBasePage, ISavableComponent
 
                 foreach( var trick in tricks )
                 {
-                    var trickHash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( challengeData.category + trick ) );
+                    var trickName = myTI.ToTitleCase( trick );
+
+                    var trickHash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( challengeData.category + trickName ) );
 
                     if( !trickDataHashMap.ContainsKey( trickHash ) )
                     {
-                        Debug.LogError( string.Format( "Failed to find trick entry from hash for challenge {0} - {3} from ({1}, {2})", name, challengeData.category, trick, challengeData.person ) );
-                        continue;
+                        foreach( var( category, display ) in _categoryDisplayNames )
+                        {
+                            if( display == challengeData.category )
+                            {
+                                trickHash = xxHashSharp.xxHash.CalculateHash( Encoding.ASCII.GetBytes( category + trickName ) );
+                                break;
+                            }
+                        }
+
+                        if( !trickDataHashMap.ContainsKey( trickHash ) )
+                        {
+                            Debug.LogError( string.Format( "Failed to find trick entry from hash for challenge {0} - {3} from ({1}, {2})", name, challengeData.category, trickName, challengeData.person ) );
+                            continue;
+                        }
                     }
 
                     trickList.Add( trickDataHashMap[trickHash] );
