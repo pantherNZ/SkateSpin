@@ -98,6 +98,7 @@ public class DataHandler : IBasePage, ISavableComponent
         public string category;
         public int index;
         public uint hash;
+        public string descriptionOverride;
 
         public bool Completed
         {
@@ -166,8 +167,10 @@ public class DataHandler : IBasePage, ISavableComponent
 
             while( reader.Read() )
             {
-                _categories.Add( reader.GetString( 0 ) );
-                _categoryDisplayNames.Add( _categories.Back(), reader.GetString( 1 ) );
+                var category = reader.GetString( 0 );
+                if( reader.GetBoolean( 2 ) )
+                    _categories.Add( category );
+                _categoryDisplayNames.Add( category, reader.GetString( 1 ) );
             }
         }
 
@@ -192,7 +195,7 @@ public class DataHandler : IBasePage, ISavableComponent
             using var reader = dbcmd.ExecuteReader();
 
             // Setup empty data structures
-            foreach( var category in Categories )
+            foreach( var( category, _ ) in _categoryDisplayNames )
             {
                 var categoryData = new Dictionary< int, List< TrickEntry >>();
                 foreach( var (difficulty, _) in DifficultyNames )
@@ -296,6 +299,7 @@ public class DataHandler : IBasePage, ISavableComponent
                     category = reader.GetString( 4 ),
                     index = challengeEntry.Count,
                     hash = challengeHash,
+                    descriptionOverride = reader.GetStringSafe( 6 ),
                 };
 
                 foreach( var trick in tricks )

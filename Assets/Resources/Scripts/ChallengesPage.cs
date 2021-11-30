@@ -127,7 +127,7 @@ public class ChallengesPage : IBasePage, IEventReceiver
                     subEntry.transform.SetParent( verticalLayout.transform );
 
                     defender.text = text[1];
-                    defender.text.text = "Defend against " + defender.entry.person;
+                    defender.text.text = ( defender.entry.descriptionOverride.Length > 0 ? defender.entry.descriptionOverride : "Defend against " ) + defender.entry.person;
 
                     var images = subEntry.GetComponentsInChildren<Image>( true );
                     images[1].color = gradient.Evaluate( ( defender.entry.difficulty - 1.0f ) / 9.0f );

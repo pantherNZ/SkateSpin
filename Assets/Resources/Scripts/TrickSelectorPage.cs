@@ -478,7 +478,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         {
             ToggleChallengeMode();
             currentChallenge = challenge;
-            challengeInfoText.text = string.Format( "{0}\n<size=50>Defend against {1}</size>", currentChallenge.name, currentChallenge.person );
+            challengeInfoText.text = string.Format( "{0}\n<size=50>{1}{2}</size>", currentChallenge.name, challenge.descriptionOverride.Length > 0 ? challenge.descriptionOverride : "Defend against ", currentChallenge.person );
             UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
         }
     }
