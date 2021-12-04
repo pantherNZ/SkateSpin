@@ -461,6 +461,7 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         difficultySlider.SetMaxValue( 10.0f );
         challengeTrickIndex = 0;
         challengeMode = false;
+        landedDataDirty = true;
     }
 
     public void ToggleAlternateTrickName()
