@@ -81,6 +81,7 @@
     <Compile Include="Assets\Resources\Scripts\IBasePage.cs" />
     <Compile Include="Assets\Resources\Scripts\SaveGame.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\Quad.cs" />
+    <Compile Include="Assets\Resources\Scripts\Utility\InputPriority.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\Extensions.cs" />
     <Compile Include="Assets\Resources\Scripts\MinMaxSlider.cs" />
     <Compile Include="Assets\Resources\Scripts\Utility\EventSystem.cs" />

@@ -115,6 +115,9 @@ class OptionsPageHandler : IBasePage, IEventReceiver
                 StartCoroutine( MoveToHeight( optionsPanel.anchoredPosition.y < ( bottomHeight + roundUpHeightOffset ) ? bottomHeight : topHeight ) );
             dragPos = null;
         }
+
+        if( Utility.IsBackButtonDown() && optionsPanel.anchoredPosition.y >= topHeight )
+            StartCoroutine( MoveToHeight( bottomHeight ) );
     }
 
     public void ToggleOptions()

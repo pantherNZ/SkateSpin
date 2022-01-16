@@ -52,7 +52,7 @@ public class AppSettings : MonoBehaviour, ISavableComponent, IEventReceiver
         writer.Write( canPickLandedTricks );
     }
 
-    void ISavableComponent.Deserialise( BinaryReader reader )
+    void ISavableComponent.Deserialise( int saveVersion, BinaryReader reader )
     {
         useShortTrickNames = reader.ReadBoolean();
         canPickLandedTricks = reader.ReadBoolean();

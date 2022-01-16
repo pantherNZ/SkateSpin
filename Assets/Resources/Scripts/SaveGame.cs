@@ -7,8 +7,9 @@ using UnityEngine;
 
 public static class SaveGameSystem
 {
-    const string folderName = "/SavedData/";
-    const string fileExtension = ".dat";
+    public const int currentVersion = 1;
+    public const string folderName = "/SavedData/";
+    public const string fileExtension = ".dat";
 
     static string ConvertSaveNameToPath( string name )
     {
@@ -57,6 +58,7 @@ public static class SaveGameSystem
                 {
                     using( var writer = new BinaryWriter( memoryStream ) )
                     {
+                        writer.Write( ( char )( currentVersion ) );
                         foreach( var subscriber in subscribers )
                             subscriber.Serialise( writer );
                     }
@@ -93,8 +95,9 @@ public static class SaveGameSystem
                 {
                     using( var reader = new BinaryReader( memoryStream ) )
                     {
+                        var version = reader.ReadByte();
                         foreach( var subscriber in subscribers )
-                            subscriber.Deserialise( reader );
+                            subscriber.Deserialise( version, reader );
                     }
                 }
             }
@@ -120,7 +123,7 @@ public static class SaveGameSystem
 public interface ISavableComponent
 {
     void Serialise( System.IO.BinaryWriter writer );
-    void Deserialise( System.IO.BinaryReader reader );
+    void Deserialise( int saveVersion, System.IO.BinaryReader reader );
 }
 
 public static partial class Extensions

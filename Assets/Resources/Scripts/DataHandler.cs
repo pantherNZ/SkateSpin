@@ -99,10 +99,11 @@ public class DataHandler : IBasePage, ISavableComponent
         public int index;
         public uint hash;
         public string descriptionOverride;
+        public bool isGameOfSkate;
 
         public bool Completed
         {
-            get { return landedData.CountBits() == tricks.Count; }
+            get { return landedData.CountBits() >= ( tricks.Count - ( isGameOfSkate ? 4 : 0 ) ); }
         }
     }
 
@@ -300,6 +301,7 @@ public class DataHandler : IBasePage, ISavableComponent
                     index = challengeEntry.Count,
                     hash = challengeHash,
                     descriptionOverride = reader.GetStringSafe( 6 ),
+                    isGameOfSkate = reader.GetBoolean( 7 ),
                 };
 
                 foreach( var trick in tricks )
@@ -499,7 +501,7 @@ public class DataHandler : IBasePage, ISavableComponent
         }
     }
 
-    void ISavableComponent.Deserialise( BinaryReader reader )
+    void ISavableComponent.Deserialise( int saveVersion, BinaryReader reader )
     {
         var trickCount = reader.ReadInt32();
 
