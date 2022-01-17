@@ -561,6 +561,13 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
         challengeLettersDisplay.text = challengeMode ? text.Insert( Mathf.Max( 0, text.Length - challengeTrickLives * 2 ), "</color>" ).Insert( 0, "<color=#FF4F4FFF>" ) : text;
     }
 
+    public override void OnHidden()
+    {
+        base.OnHidden();
+
+        DeactivateChallenge( false );
+    }
+
     public void DeactivateChallenge( bool completed )
     {
         if( challengeMode )

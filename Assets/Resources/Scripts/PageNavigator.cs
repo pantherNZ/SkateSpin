@@ -25,7 +25,7 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
     float start_x;
     float screenWidth = 1080.0f;
     float leftX;
-    int currentPage = 0;
+    int currentPage, previousPage = -1;
 
     public bool draggingEnabled = true;
 
@@ -124,6 +124,7 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
         if( currentPage == index )
             return;
 
+        previousPage = currentPage;
         while( currentPage != index )
             ChangePageInstant( true );
 
@@ -138,6 +139,9 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
 
     private void Update()
     {
+        if( previousPage != -1 && Utility.IsBackButtonDown() )
+            ShowPage( previousPage );
+
         if( !draggingEnabled )
             return;
 
@@ -205,7 +209,10 @@ public class PageNavigator : MonoBehaviour, IEventReceiver
         }
 
         if( fixPagesAfter )
+        {
+            previousPage = currentPage;
             ChangePageInstant( horizontalPageLayout.anchoredPosition.x < start_x );
+        }
         else
             horizontalPageLayout.anchoredPosition = horizontalPageLayout.anchoredPosition.SetX( xPos );
     }
