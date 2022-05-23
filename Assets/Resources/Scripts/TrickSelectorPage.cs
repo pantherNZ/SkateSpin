@@ -366,15 +366,28 @@ public class TrickSelectorPage : IBasePage, ISavableComponent, IEventReceiver
     {
         if( challengeMode )
         {
-            int nextUnlanded = FindNextUnlandedTrick();
-
-            if( nextUnlanded != -1 )
+            if( currentChallenge.isGameOfSkate )
             {
-                challengeTrickIndex = nextUnlanded;
-                UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
-                return;
+                if( challengeTrickIndex + 1 < currentChallenge.tricks.Count )
+                {
+                    ++challengeTrickIndex;
+                    UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
+                    return;
+                }
+            }
+            else
+            {
+                int nextUnlanded = FindNextUnlandedTrick();
+
+                if( nextUnlanded != -1 )
+                {
+                    challengeTrickIndex = nextUnlanded;
+                    UpdateCurrentTrick( AppSettings.Instance.useShortTrickNames );
+                    return;
+                }
             }
 
+            // Challenge complete
             PlayEventAnimation( completeDisplay, () => DeactivateChallenge( true ) );
             return;
         }
